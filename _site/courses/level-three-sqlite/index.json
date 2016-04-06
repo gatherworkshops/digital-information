@@ -1,0 +1,18 @@
+{
+	"course": "level-three-sqlite",
+	"title": "Web Data with SQLite",
+	"tagline": "Design and code a one-page website with a database",
+
+	"chapters": [
+
+		
+			{
+			"name": "introduction",
+			"title": "Introduction"
+			}
+			
+		
+
+	]
+
+}
