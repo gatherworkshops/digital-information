@@ -1,0 +1,33 @@
+name: Digital Information
+
+baseurl: "/digital-information"
+theme_assets: "/digital-information/theme/assets"
+theme_images: "/digital-information/theme/assets/images"
+course_images: "/digital-information/media/images"
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  enable_coderay: false
+
+# Where things are
+source:       .
+destination:  ./_site
+layouts_dir:  ./theme/_layouts
+includes_dir: ./theme/_includes
+sass:
+    sass_dir: ./theme/_sass
+
+# custom collections
+collections:
+  courses:
+    output: true
+    layout: chapter
+
+
+# theme
+themecolor: "#663399"
+
+# keep the built site tidy, only include files we need for publishing
+exclude: ["node_modules", "Gemfile", "Gruntfile.js", "package.json", "README.md", "*.sublime-project", "*.sublime-workspace"]
