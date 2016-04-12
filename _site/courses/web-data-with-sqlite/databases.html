@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Databases</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- google translate - language identifier -->
+        <meta name="google-translate-customization" content="a148a80643fbe5d7-b9de7b0f0180d6d8-g318479cea978092f-2b"></meta>
+
+        <!-- Bootstrap -->
+        <link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Custom Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+        <!-- revealjs for slideshows -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/revealjs/css/reveal.min.css">
+
+        <!-- Prism -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
+        <script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="/digital-information/favicon.ico">
+
+    </head>
+
+    <body class="">
+<nav id="page-navigation">
+
+
+    <!-- branding and strand name - always visible. links to home page -->
+    <a class="strand-name navbar-brand" href="/digital-information/">
+        <img class="avatar" src="/digital-information/theme/assets/images/gw-avatar.png">
+        Digital Information 
+    </a>
+
+
+
+    <!-- vertical divider bar, if we can move this to CSS that'd be ace -->
+    <p class="divider-bar navbar-text invisible">
+        |
+    </p>
+
+
+
+    <!-- page name or course name depending on context -->
+    
+
+        <!-- course name has to be set by jQuery from JSON data -->
+        <a class="course-name navbar-text invisible" href="index.html"></a>
+
+    
+
+
+
+    <!-- chapter dropdown available if this page is a chapter -->
+    
+        
+        <ul class="chapter-nav nav navbar-nav invisible">
+        <li class="dropdown">
+          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Databases <span class="caret"></span></a>
+          <ul class="chapters dropdown-menu">
+          </ul>
+        </li>
+      </ul>
+
+    
+
+
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right">
+      <ul class="site-nav nav navbar-nav">
+
+        
+
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+
+
+
+    <script>
+        // generates the chapter dropdown menu from a json file
+        $(document).ready( function() {
+
+            // updates the nav with data fetched from the course's JSON.
+            // we do this via JSON to avoid the need for repetition of
+            // sitemap or coursemap data in a place other than the course's
+            // root directory, as Jekyll can only read custom data from the
+            // _data dir which is not ideal.
+            function generateMenu(course) {
+
+                // find all elements we will modify
+                var navBar = $('#page-navigation');
+                var courseName = navBar.find('.course-name');
+                var chapterDropdown = navBar.find('.dropdown-menu');
+
+                // update the course name in the nav bar
+                courseName.html(course.title);
+
+                // create and append a menu item for each chapter
+                $.each(course.chapters, function(index, chapter){
+                    var chapterLink = $(
+                        '<li>' +
+                            '<a href="' + this.name + '">' +
+                                this.title +
+                            '</a>' +
+                        '</li>'
+                    );
+                    chapterDropdown.append(chapterLink);
+                });
+
+                // show all hidden nav elements
+                navBar
+                    .find('.invisible')
+                    .removeClass('invisible');
+            }
+
+            // go get the course data
+            $.get( "index.json", generateMenu);
+
+        });
+    </script>
+
+
+</nav>
+
+	
+		
+			
+<div class="page-content">
+
+
+<div class="slideshow">
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+
+
+
+
+<!-- slide -->
+<section class="title-slide"
+		
+	
+		id=""
+		data-background="/digital-information/media/images/theme/theme-tile.svg" 
+		data-background-color="#663399"
+		data-background-size="200px" 
+		data-background-repeat="repeat"
+	
+	>
+		
+
+<p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
+
+<h1 id="databases">Databases</h1>
+<p><em>Storing your app data</em></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="creating-a-database">Creating a Database</h2>
+
+<p>First step, creating a thing!</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="open-sqlite-studio">Open SQLite Studio</h3>
+
+<p><img src="assets/images/sqlite-studio-main-screen.png" alt="SQLite Studio main screen" height="350" /></p>
+
+<p><a href="http://sqlitestudio.pl/?act=download" target="_blank">SQLite Studio</a> should already be installed.<br />
+Open it up so we can get started!</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="click-add-a-database">Click “Add a database”</h3>
+
+<p><img src="assets/images/sqlite-studio-add-database-button.png" alt="The &quot;Add Database&quot; button is a small grey cylinder with a green plus sign on it" height="350" /></p>
+
+<p>Click the “Add a database” button <br />
+at the top left of the app.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="click-create-new-database-file">Click “Create new database file”</h3>
+
+<p><img src="assets/images/sqlite-studio-create-database-button.png" alt="The button to create a new database is a green circle with a plus sign" height="350" /></p>
+
+<p>Click the “Create a new database file” button<br />
+to the right of the File input box.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="navigate-to-your-project-folder">Navigate to your project folder</h3>
+
+<p><img src="assets/images/sqlite-studio-navigate-to-project.png" alt="Find the folder you are using for your project and navigate inside it" height="350" /></p>
+
+<p>Use the file explorer to find your project<br />
+and navigate inside the project folder.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="enter-a-file-name-for-your-database">Enter a file name for your database</h3>
+
+<p><img src="assets/images/sqlite-studio-name-database-file.png" alt="Enter a file name with the file extension .db" height="350" /></p>
+
+<p>Enter a name for your database file,<br />
+using the file extension <code>.db</code>.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="save-the-file">Save the file</h3>
+
+<p><img src="assets/images/sqlite-studio-file-save-button.png" alt="The save button at the bottom right of the window" height="350" /></p>
+
+<p>Click the “Save” button to save your new database file.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="press-ok">Press OK</h3>
+
+<p><img src="assets/images/sqlite-studio-open-database-ok-button.png" alt="The OK button is at the bottom right of the window" height="350" /></p>
+
+<p>Click the “OK” button at the bottom right<br />
+to open the database in SQLite Studio</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="select-your-database-in-the-sidebar">Select your database in the sidebar</h3>
+
+<p><img src="assets/images/sqlite-studio-database-list.png" alt="Databases are listed down the left of the window" height="350" /></p>
+
+<p>Click on your database in the sidebar to select it.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="connect-to-the-database">Connect to the database</h3>
+
+<p><img src="assets/images/sqlite-studio-connect-db-button.png" alt="The connect button is the first icon in the top button bar" height="350" /></p>
+
+<p>Once the database is selected, <br />
+click the “Connect” button.</p>
+
+
+<aside class="notes">
+
+<p>Alternatively, you can double-click the database name in the sidebar.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="the-tables-and-views-options-should-be-visible">The “Tables” and “Views” options should be visible</h3>
+
+<p><img src="assets/images/sqlite-studio-connected-db.png" alt="A connected database will have Tables and Views listed beneath it" height="350" /></p>
+
+<p>A connected database will display the Tables and Views<br />
+under the database name in the sidebar.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="disconnecting-the-database">Disconnecting the database</h3>
+
+<p><img src="assets/images/sqlite-studio-disconnect-db.png" alt="The disconnect button is the second icon in the top button bar" height="350" /></p>
+
+<p>Select the database in the sidebar, <br />
+then click the “Disconnect” button.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="creating-a-database-using-the-shell">Creating a database using the shell</h2>
+
+<p>We can do the same database creation process <br />
+using the command line, which can be a lot faster <br />
+once you get used to it.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="open-the-command-line">Open the command line</h3>
+
+<p>Open the Command Line app (cmd),<br />
+or Terminal if you’re using OSX.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="navigate-to-your-project-folder">Navigate to your project folder</h3>
+
+<p>Use <code>cd</code> to change directory into your project folder.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="open-the-new-database">Open the new database</h3>
+
+<pre class="big-code"><code class="language-bash">sqlite3 messenger.db
+</code></pre>
+
+<p>Type <code>sqlite3</code> followed by the database file name<br />
+you would like to use, and press enter.</p>
+
+
+<aside class="notes">
+
+<p>This command opens a connection to the file you specify, but it doesn’t permanently save the file.</p>
+
+<p>Executing this command only expresses your <em>intention</em> to create a new database. The database file you specify will be a temp file until you execute an additional command to initialise the database.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="initialise-the-database">Initialise the database</h3>
+
+<pre class="big-code"><code class="language-bash">.databases
+</code></pre>
+
+<p>Type <code>.databases</code> and press enter to initialise the database.</p>
+
+
+<aside class="notes">
+<p>This step creates the permanent database file and confirms its location.</p>
+
+<p>The <code>.databases</code> command is optional - if we immediately ran a query, such as creating a table, it would have the same effect of permanently saving the database.</p>
+
+<p>Sqlite does not automatically allow us to create an empty database by default.</p>
+
+<p>Using this command simply allows us to save the database without anything in it.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="close-the-connection">Close the connection</h3>
+
+<pre><code class="language-bash">.exit
+</code></pre>
+
+<p>Type <code>.exit</code> and press enter <br />
+to close the database connection.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-that-the-file-exists">Check that the file exists</h3>
+
+<pre><code class="language-bash">ls
+</code></pre>
+
+<p>Type <code>ls</code> on OSX or <code>dir</code> on Windows and press enter.<br />
+The file <code>messenger.db</code> should be listed.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="naming-your-database">Naming your Database</h2>
+
+<p>Use file naming consistent with the rest of your project,<br />
+most likely <code>hyphenated-names</code> or <code>underscore_names</code>.</p>
+
+
+<aside class="notes">
+
+<p>For the database file name you should use naming conventions consistent with the rest of your project.</p>
+
+<p>For a web project, that means <code>hyphenated-names</code> or <code>underscore_names</code>.</p>
+
+<p>HTML and JavaScript usually use hyphenated naming, while Python projects often use underscores. Since a database is more on the Python side of our project, it would be logical to use underscores rather than hyphens.</p>
+
+<p>In the end this decision is up to you, just make sure you’re consistent!</p>
+
+<p>Different rules apply once we get <em>inside</em> the database! We’ll get to those rules shortly.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-a-name-relevant-to-the-project">Use a name relevant to the project</h3>
+
+<p>Your database file name should be based on your project name.</p>
+
+<p>Try to avoid generic names like <code>database.db</code> or <code>mydata.db</code>.</p>
+
+
+<aside class="notes">
+
+<p>To decide if your database name is a good one, try asking the question:</p>
+
+<p>“If I found this database file on my desktop in 6 months would I know which project it was from?”</p>
+
+<p>Use a name which makes your database identifiable with or without the project.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="names-should-be-alphanumeric">Names should be alphanumeric</h3>
+
+<p>Use letters with underscores or hyphens only.</p>
+
+<p>Numbers can be used, but should be avoided where possible!</p>
+
+
+<aside class="notes">
+
+<p>Some examples of good database names:</p>
+
+<ul>
+  <li><code>messenger.db</code></li>
+  <li><code>local-user-data.db</code></li>
+  <li><code>sports_day_planner.db</code></li>
+</ul>
+
+<p>You may use a number if it is part of the project name:</p>
+
+<ul>
+  <li><code>things2do.db</code></li>
+  <li><code>4sale.db</code></li>
+</ul>
+
+<p>But don’t keep multiple versions of your databases:</p>
+
+<ul>
+  <li><code>party_planner_v2.db</code> - no!</li>
+  <li><code>booking-system-final.db</code> - yuck!</li>
+  <li><code>treasure-hunter2.db</code> - don’t do it!</li>
+</ul>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="names-should-be-all-lowercase">Names should be all lowercase</h3>
+
+<p>No capital letters here! Use all lowercase letters.</p>
+
+
+<aside class="notes">
+
+<p>Your database will still work fine if you don’t follow this rule, but it’s good practice to be consistent.</p>
+
+<p>When programming, one of the most common typos is forgetting to match the capitalisation of file names in the code with the actual file name. Using all lowercase all the time helps to avoid this issue.</p>
+
+<p>Also, some operating systems ignore letter case while others are very specific!</p>
+
+<p>Consistency helps us minimise potential problems or errors.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-underscores-or-hyphens-instead-of-spaces">Use underscores or hyphens instead of spaces</h3>
+
+<p>For the database file name you should use naming<br />
+conventions consistent with the rest of your project.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="structural-overview">Structural Overview</h2>
+
+<p>Let’s look briefly at how a SQLite database works <br />
+and what is stored inside it.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="sqlite-databases-are-a-standalone-file">SQLite databases are a standalone file</h3>
+
+<p>This means you can copy it, paste it, delete it,<br />
+email it, just like any other file.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-one-database-per-project">Use one database per project</h3>
+
+<p>All the data for your whole app is stored in a <br />
+single database, with organised data inside.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="a-single-database-has-many-tables">A single database has many tables</h3>
+
+<p>A database is a collection of tables. <br />
+Each table stores a specific type of data.</p>
+
+
+<aside class="notes">
+
+<p>Data is not stored directly inside the database, <br />
+but always another level down, inside a table.</p>
+
+<p>All data in a database must be stored inside a table.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="data-can-be-treated-independently-of-the-database">Data can be treated independently of the database</h3>
+
+<p>The structure of a database is defined <br />
+independently of the data stored within it.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="access-permissions">Access Permissions</h2>
+
+<p>Protecting a SQLite database with a password<br />
+encrypts all the data stored inside.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="there-is-no-password-protection-by-default">There is no password protection by default</h3>
+
+<p>SQLite databases are open and unencrypted by default.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="a-password-can-be-added-using-python">A password can be added using Python</h3>
+
+<p>Encryption can only be enabled by reading the file<br />
+from a script and including a command.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="sqlite-studio-can-not-open-encrypted-databases">SQLite Studio can not open encrypted databases</h3>
+
+<p>A very sad side effect of encrypting your database<br />
+is that free SQLite GUI programs can’t open them.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="challenge-new-project-with-sqlite-studio">Challenge: New project with SQLite Studio</h2>
+
+<p><strong>Use SQLite Studio</strong> to create a new project called <br />
+“SuperChat” containing a new SQLite database.</p>
+
+<p>Make sure to use correct naming conventions!</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="challenge-new-project-with-the-shell">Challenge: New project with the shell</h2>
+
+<p>Use shell commands to create a new project called <br />
+“Bake Sale Manager” containing a new SQLite database.</p>
+
+<p>Make sure to use correct naming conventions!</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="challenge-edit-with-sqlite-studio">Challenge: Edit with SQLite Studio</h2>
+
+<p>Use SQLite Studio to open and connect to your <br />
+“Bake Sale Manager” database created using the shell.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="what-we-learned-about-databases">What we learned about databases</h2>
+
+<ul class="flex-list">
+  <li><strong>Creating</strong><br />
+We can create using the command line or SQLite Studio.</li>
+  <li><strong>Naming</strong><br />
+File name should be consistent with other project files.</li>
+  <li><strong>Structure</strong><br />
+A database contains tables which contain actual data.</li>
+  <li><strong>Permissions</strong><br />
+Password protecting a SQLite database is frustrating.</li>
+</ul>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<p><img src="/digital-information/theme/assets/images/thumbs-up.svg" alt="Thumbs Up!" height="200" /></p>
+
+<h2 id="databases-complete">Databases: Complete!</h2>
+
+<p><a href="tables.html">Take me to the next chapter!</a></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+
+
+		</div>
+
+	</div><!-- .reveal -->
+
+
+
+
+	<div class="sidenotes">
+		<div class="content">
+			<!-- display notes here using js -->
+			<p>Loading...</p>
+		</div>
+	</div>
+
+</div><!-- .slideshow -->
+
+
+
+</div>
+
+
+
+		<script src="/digital-information/theme/assets/submodules/revealjs/lib/js/head.min.js"></script>
+<script src="/digital-information/theme/assets/submodules/revealjs/js/reveal.min.js"></script>
+
+<script>
+
+	// Full list of configuration options available here:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+
+		width: 1024,
+		height: 576,
+		margin: 0.1,
+		maxScale: 5,
+
+		theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+		// Optional libraries used to extend on reveal.js
+		dependencies: [
+			{ src: '/digital-information/theme/assets/submodules/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			/*{ src: '/digital-information/assets/submodules/revealjs/plugin/markdown/marked.js' },
+			{ src: '/digital-information/assets/submodules/revealjs/plugin/markdown/markdown.js' },*/
+			{ src: '/digital-information/theme/assets/submodules/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: '/digital-information/theme/assets/submodules/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: '/digital-information/theme/assets/submodules/sidenotes/sidenotes.js' },
+			{ src: '/digital-information/theme/assets/submodules/sidenotes/libs/js.cookie.js' }
+			/*{ src: '/digital-information/assets/submodules/prism/prism.js', callback: function() { Prism.highlightAll() }}*/
+		]
+	});
+    
+    function checkNotesState() {
+
+	    // show the notes on page load if notesByDefault has been 
+	    // set to true in the page's front matter.
+	    
+	      var notesByDefault = false;
+	    
+
+	    if(notesByDefault == true) {
+	    	Sidenotes.showNotes();
+	    }
+	}
+
+	Reveal.addEventListener( 'slidechanged', function( event ) {
+		slide = $(event.currentSlide);
+		if(slide.hasClass('fullscreen')) {
+			slide.css('zoom', 1 / Reveal.getScale());
+			slide.children().css('zoom', Reveal.getScale());
+		}
+	});
+		
+
+</script>
+
+		<script>
+
+		// adds a class 'codeblock-title' to the paragraph element
+		// directly preceding any '.highlight' code block.
+		// the title is used to give instructions on where to place
+		// the code from the code block.
+		$(document).ready( function(){
+
+			$('.highlight').prev('p').addClass('codeblock-title');
+			
+		});
+
+
+		// checkpoints are able to be clicked to go to the next slide.
+		// when clicked they also visibly update to a green style.
+		$(document).ready( function() {
+			Reveal.addEventListener( 'ready', function( event ) {
+    			
+    			$('.checkpoint').click( function(){
+					$(this).addClass('checked');
+					setTimeout( Reveal.next, 1000 );
+				});
+
+			});
+		});
+
+		</script>
+
+	</body>
+</html>
