@@ -194,25 +194,8 @@
 		
 <h2 id="adding-a-row">Adding a row</h2>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-<h3 id="using-sqlite-studio">using SQLite Studio</h3>
+<p>Each item stored in a database<br />
+is a single row in a table.</p>
 
 
 <aside class="notes">
@@ -232,7 +215,10 @@
 	
 	>
 		
-<h3 id="using-a-query">using a query</h3>
+
+<h3 id="open-the-table-in-sqlite-studio">Open the table in SQLite Studio</h3>
+
+<p>Double click the <code>users</code> table in the sidebar.</p>
 
 
 <aside class="notes">
@@ -252,7 +238,10 @@
 	
 	>
 		
-<h2 id="adding-linked-rows">Adding linked rows</h2>
+
+<h3 id="switch-to-the-data-tab">Switch to the data tab</h3>
+
+<p>Click the data tab at the top of the window.</p>
 
 
 <aside class="notes">
@@ -272,7 +261,11 @@
 	
 	>
 		
-<h3 id="using-sqlite-studio">using SQLite Studio</h3>
+
+<h3 id="click-the-insert-row-button">Click the “Insert Row” button</h3>
+
+<p>The button to insert a row is the<br />
+green square with a plus sign on it.</p>
 
 
 <aside class="notes">
@@ -292,7 +285,11 @@
 	
 	>
 		
-<h3 id="using-a-query">using a query</h3>
+
+<h3 id="fill-in-the-row-data">Fill in the row data</h3>
+
+<p>Click a cell and then start typing.<br />
+Leave <code>user_id</code> and <code>photo</code> as <code>NULL</code>.</p>
 
 
 <aside class="notes">
@@ -312,7 +309,64 @@
 	
 	>
 		
-<h2 id="scripting-dummy-data">scripting dummy data</h2>
+<h3 id="commit-your-changes">Commit your changes</h3>
+
+<p>Click the green tick button to save<br />
+your changes to the table data.</p>
+
+
+<aside class="notes">
+
+<p>The user_id should have been filled in automatically, because the column is set to autoincrement.</p>
+
+<p>The photo will still be null, as we didn’t specify that this cell was a required one.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="adding-rows-from-the-shell">Adding rows from the shell</h2>
+
+<p>We can also script the creation of data.<br />
+This is helpful for creating dummy data.</p>
+
+
+<aside class="notes">
+
+<p>For example, it can be helpful to have a set of dummy data which can be used to recreate your database in its entirety if anything were to go wrong.</p>
+
+<p>It can also be an easy way to switch between different sets of data to test your database with different data combinations.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="create-a-new-file-dummy-datasql">Create a new file dummy-data.sql</h3>
+
+<p>Create a new file called dummy-data.sql <br />
+in the db folder and open it in your editor.</p>
 
 
 <aside class="notes">
@@ -332,7 +386,501 @@
 	
 	>
 		
-<h3 id="using-a-query">using a query</h3>
+
+<h3 id="create-a-transaction">Create a transaction</h3>
+
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+COMMIT;
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="delete-all-existing-users">Delete all existing users</h3>
+
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+DELETE FROM users;
+
+COMMIT;
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="write-an-insert-statement">Write an insert statement</h3>
+
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+DELETE FROM users;
+
+INSERT INTO users VALUES(
+  NULL, 
+  'tanya', 
+  'test', 
+  'Tanya', 
+  'Gray', 
+  'tanya@gathergather.co.nz', 
+  NULL
+);
+
+COMMIT;
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="open-the-database-in-the-shell">Open the database in the shell</h3>
+
+<pre><code class="language-sql">sqlite3 message-board.db
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="execute-the-dummy-data-script">Execute the dummy data script</h3>
+
+<pre><code class="language-sql">.read dummy-data.sql
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="visually-check-the-result">Visually check the result</h3>
+
+<p>Open the table in SQLite Studio and refresh<br />
+to see the new rows you’ve added.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-additional-users">Challenge: Additional users</h3>
+
+<p>Add at least two extra fake users to <br />
+your dummy data script and execute it.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+<h2 id="scripting-complex-data">Scripting complex data</h2>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="current-date-or-time">Current date or time</h3>
+
+<p>date(‘now’)</p>
+
+<p>time(‘now’)</p>
+
+<p>datetime(‘now’)</p>
+
+<p>julianday(‘now’)</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="specific-date-or-time">Specific date or time</h3>
+
+<p>date(‘YYYY-MM-DD’)</p>
+
+<p>time(‘HH:MM:SS’)</p>
+
+<p>datetime(‘YYYY-MM-DD HH:MM:SS’)</p>
+
+<p>julianday(‘123456789’)</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="images">Images</h3>
+
+<p>Stored as a BLOB, which needs to be Hex format.</p>
+
+<p>You can convert images to Hex <a href="motobit.com/util/binary-file-to-sql-hexstring.asp">here</a></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="random-numbers">Random numbers</h3>
+
+<p>random() % (:high  - :low) + :low</p>
+
+<p>random() % (10  - 5) + 5</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+<h2 id="inserting-linked-data">Inserting linked data</h2>
+
+<p>Most tables will have some form of linked data,<br />
+and we need to script these relationships too.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="decide-correct-order-of-creation">Decide correct order of creation</h3>
+
+<p>Rows which “own” other rows need to be created first.</p>
+
+<p>For example, a user needs to be created before their posts <br />
+so that we can apply the user_id to the posts.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="write-an-independent-insert-statement">Write an independent insert statement</h3>
+
+<p>Write a top-level insert statement which doesn’t<br />
+require foreign key data, such as a user.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="write-dependent-insert-statements">Write dependent insert statements</h3>
+
+<p>Write an insert statement for a row which<br />
+depends on the previously created row.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-the-last-row-id-as-the-foreign-key">Use the last row ID as the foreign key</h3>
+
+<pre><code class="language-sql">INSERT INTO messages VALUES (
+  NULL,
+  'Hello',
+  julianday('now'),
+  last_insert_rowid()
+);
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="execute-the-script-in-the-shell">Execute the script in the shell</h3>
+
+<pre><code class="language-sql">.read dummy-data.sql
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="visually-check-the-result">Visually check the result</h3>
+
+<p>Open the table in SQLite Studio and refresh<br />
+to see the new rows you’ve added.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-additional-messages">Challenge: Additional messages</h3>
+
+<p>Add a message for each of your users<br />
+by adding to your dummy-data script.</p>
 
 
 <aside class="notes">
