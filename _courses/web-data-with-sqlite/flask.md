@@ -29,7 +29,7 @@ slides:
 
 ## Set up new project from starter
 
-### copy files
+### copy files assets/zip/flask-starter.zip
 
 ### put files in project folder
 
