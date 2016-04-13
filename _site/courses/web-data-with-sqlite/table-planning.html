@@ -1,1 +1,913 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Table Planning</title>
+        <meta name="viewport" content="width=device-width">
 
+        <!-- google translate - language identifier -->
+        <meta name="google-translate-customization" content="a148a80643fbe5d7-b9de7b0f0180d6d8-g318479cea978092f-2b"></meta>
+
+        <!-- Bootstrap -->
+        <link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Custom Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+        <!-- revealjs for slideshows -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/revealjs/css/reveal.min.css">
+
+        <!-- Prism -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
+        <script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="/digital-information/favicon.ico">
+
+    </head>
+
+    <body class="">
+<nav id="page-navigation">
+
+
+    <!-- branding and strand name - always visible. links to home page -->
+    <a class="strand-name navbar-brand" href="/digital-information/">
+        <img class="avatar" src="/digital-information/theme/assets/images/gw-avatar.png">
+        Digital Information 
+    </a>
+
+
+
+    <!-- vertical divider bar, if we can move this to CSS that'd be ace -->
+    <p class="divider-bar navbar-text invisible">
+        |
+    </p>
+
+
+
+    <!-- page name or course name depending on context -->
+    
+
+        <!-- course name has to be set by jQuery from JSON data -->
+        <a class="course-name navbar-text invisible" href="index.html"></a>
+
+    
+
+
+
+    <!-- chapter dropdown available if this page is a chapter -->
+    
+        
+        <ul class="chapter-nav nav navbar-nav invisible">
+        <li class="dropdown">
+          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Table Planning <span class="caret"></span></a>
+          <ul class="chapters dropdown-menu">
+          </ul>
+        </li>
+      </ul>
+
+    
+
+
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right">
+      <ul class="site-nav nav navbar-nav">
+
+        
+
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+
+
+
+    <script>
+        // generates the chapter dropdown menu from a json file
+        $(document).ready( function() {
+
+            // updates the nav with data fetched from the course's JSON.
+            // we do this via JSON to avoid the need for repetition of
+            // sitemap or coursemap data in a place other than the course's
+            // root directory, as Jekyll can only read custom data from the
+            // _data dir which is not ideal.
+            function generateMenu(course) {
+
+                // find all elements we will modify
+                var navBar = $('#page-navigation');
+                var courseName = navBar.find('.course-name');
+                var chapterDropdown = navBar.find('.dropdown-menu');
+
+                // update the course name in the nav bar
+                courseName.html(course.title);
+
+                // create and append a menu item for each chapter
+                $.each(course.chapters, function(index, chapter){
+                    var chapterLink = $(
+                        '<li>' +
+                            '<a href="' + this.name + '">' +
+                                this.title +
+                            '</a>' +
+                        '</li>'
+                    );
+                    chapterDropdown.append(chapterLink);
+                });
+
+                // show all hidden nav elements
+                navBar
+                    .find('.invisible')
+                    .removeClass('invisible');
+            }
+
+            // go get the course data
+            $.get( "index.json", generateMenu);
+
+        });
+    </script>
+
+
+</nav>
+
+	
+		
+			
+<div class="page-content">
+
+
+<div class="slideshow">
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+
+
+
+
+<!-- slide -->
+<section class="title-slide"
+		
+	
+		id=""
+		data-background="/digital-information/media/images/theme/theme-tile.svg" 
+		data-background-color="#663399"
+		data-background-size="200px" 
+		data-background-repeat="repeat"
+	
+	>
+		
+
+<p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
+
+<h1 id="table-planning">Table Planning</h1>
+<p><em>Mapping your data structure</em></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="database-diagrams">Database Diagrams</h2>
+
+<p>The first step in building a database<br />
+is creating a map of the data.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="tables-contain-rows-of-data">Tables contain rows of data</h3>
+
+<p>A table should contain information <br />
+about a single set of data, eg:</p>
+
+<p><code>people</code>, <code>cities</code>, <code>purchases</code>, <code>users</code>, <code>scores</code></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="table-columns-describe-the-data">Table columns describe the data</h3>
+
+<p>Each table contains a number of columns.<br />
+A column stores an attribute of the table item.</p>
+
+<p>The table <code>people</code> might have attributes<br />
+<code>first_name</code>, <code>last_name</code>, <code>birth_date</code>, <code>email</code></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="names-use-lowercase-and-underscores">Names use lowercase and underscores</h3>
+
+<p>Table and column names should be all lowercase<br />
+and use underscores instead of spaces.</p>
+
+<p>Table names are always plural.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-table-diagrams-to-plan">Use table diagrams to plan</h3>
+
+<p>To plan a table visually, write the name of the table<br />
+and list the table’s attributes underneath.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-attributes">Challenge: Attributes</h3>
+
+<p>Choose one or more of the following tables <br />
+and draw a visual plan for its structure:</p>
+
+<p><code>users</code>, <code>scores</code>, <code>todo_items</code></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="data-types">Data Types</h2>
+
+<p>Table columns each have a defined data type<br />
+to restrict the information which can be stored.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="sqlite-has-only-five-data-types">SQLite has only five data types</h3>
+
+<p>In SQLite3, the available data types are:</p>
+
+<p><code>text</code>, <code>numeric</code>, <code>integer</code>, <code>real</code>, <code>blob</code></p>
+
+
+<aside class="notes">
+
+<p>In SQLite, giving a table column one of these types is known as giving it an “affinity”.</p>
+
+<p>An affinity is a column’s recommended data type, but any type of data can still be stored in it.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-text-to-store-strings">Use <code>text</code> to store strings</h3>
+
+<ul class="flex-list">
+  <li><strong>Name</strong><br />
+First names, last names, pet names, celebrity crush names.</li>
+  <li><strong>Address</strong><br />
+Stored text can have spaces, so could store a street address.</li>
+  <li><strong>Long Text</strong><br />
+Can also store paragraphs of text, like someone’s personal bio.</li>
+  <li><strong>Date</strong><br />
+Stored as ISO8601 strings (“YYYY-MM-DD HH:MM:SS.SSS”)</li>
+</ul>
+
+
+<aside class="notes">
+
+<p>The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-integer-to-store-whole-numbers">Use <code>integer</code> to store whole numbers</h3>
+
+<ul class="flex-list">
+  <li><strong>Boolean</strong><br />
+Stored using 1 for true and 0 for false</li>
+  <li><strong>Score</strong><br />
+A number from 0 to something really big</li>
+  <li><strong>Stock Count</strong><br />
+Positive or negative whole number</li>
+  <li><strong>Date</strong><br />
+Stored as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC.</li>
+</ul>
+
+
+<aside class="notes">
+
+<p>In an <code>integer</code> column, the value stored is a signed integer.</p>
+
+<p>The value will be stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-real-to-store-decimals">Use <code>real</code> to store decimals</h3>
+
+<ul class="flex-list">
+  <li><strong>Date</strong><br />
+Stored as Julian day numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the proleptic Gregorian calendar.</li>
+  <li><strong>Bank Balance</strong><br />
+Positive or negative number with decimal places</li>
+</ul>
+
+
+<aside class="notes">
+
+<p>The value is a floating point value, stored as an 8-byte IEEE floating point number.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-numeric-to-store-numbers">Use <code>numeric</code> to store numbers</h3>
+
+<p>USe to store a mix of integer and real numbers</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-blob-to-store-other-weird-data">Use <code>blob</code> to store other weird data</h3>
+
+<ul class="flex-list">
+  <li><strong>Photos</strong><br />
+Can be stored as hex data, though it’s not ideal.</li>
+  <li><strong>Documents</strong><br />
+Can be stored as binary data, but a bad idea.</li>
+</ul>
+
+
+<aside class="notes">
+
+<p>The value is a blob of data, stored exactly as it was input.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-data-types">Challenge: Data Types</h3>
+
+<p>Assign a data type to each of your table columns, from:</p>
+
+<p><code>text</code>, <code>numeric</code>, <code>integer</code>, <code>real</code>, <code>blob</code></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="relationships-between-tables">Relationships between tables</h2>
+
+<p>We can represent how data links together, for example:</p>
+
+<ul>
+  <li>A parent <strong>has</strong> children.</li>
+  <li>A person <strong>has</strong> an address.</li>
+  <li>A customer <strong>has</strong> purchases.</li>
+  <li>A user <strong>has</strong> friends.</li>
+</ul>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="there-are-three-types-of-relationships">There are three types of relationships</h3>
+
+<ul class="flex-list">
+  <li><strong>One to One</strong><br />
+A user has a profile page, and a profile page belongs to only one user.</li>
+  <li><strong>One to Many</strong><br />
+A customer has many purchases, but a purchase belongs to only one customer.</li>
+  <li><strong>Many to Many</strong><br />
+A purchase has many bought items, and an item can be in many purchases.</li>
+</ul>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="relationships-are-drawn-as-lines-between-tables">Relationships are drawn as lines between tables</h3>
+
+<p>A table can have one, none, or many <br />
+lines going to other tables.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="every-table-need-a-unique-id-column">Every table need a unique ID column</h3>
+
+<p>This column is called the <strong>Primary Key</strong>.<br />
+Its type is <code>integer</code> and its value is auto-generated.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="linked-data-is-stored-using-the-rows-id">Linked data is stored using the row’s ID</h3>
+
+<p>A linked data column is know as a <strong>Foreign Key</strong>.<br />
+Its type is <code>integer</code> and you must specify the ID to store.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-relationship-diagrams">Challenge: Relationship Diagrams</h3>
+
+<p>Draw the relationship lines between these tables.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-identify-primary-and-foreign-keys">Challenge: Identify Primary and Foreign Keys</h3>
+
+<p>Mark the primary key column with (PK),<br />
+and mark the foreign key columns with (FK)</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="what-we-learned-about-table-planning">What we learned about table planning</h2>
+
+<ul class="flex-list">
+  <li><strong>Planning</strong><br />
+Tables are planned using table maps and visual lines between.</li>
+  <li><strong>Relationships</strong><br />
+Tables can have related data using primary and foreign keys.</li>
+  <li><strong>Creating</strong><br />
+We can create using the command line or SQLite Studio.</li>
+  <li><strong>Schemas</strong><br />
+We can write a script to represent our table structure.</li>
+</ul>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<p><img src="/digital-information/theme/assets/images/thumbs-up.svg" alt="Thumbs Up!" height="200" /></p>
+
+<h2 id="table-planning-complete">Table Planning: Complete!</h2>
+
+<p><a href="table-creation.html">Take me to the next chapter!</a></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+
+
+		</div>
+
+	</div><!-- .reveal -->
+
+
+
+
+	<div class="sidenotes">
+		<div class="content">
+			<!-- display notes here using js -->
+			<p>Loading...</p>
+		</div>
+	</div>
+
+</div><!-- .slideshow -->
+
+
+
+</div>
+
+
+
+		<script src="/digital-information/theme/assets/submodules/revealjs/lib/js/head.min.js"></script>
+<script src="/digital-information/theme/assets/submodules/revealjs/js/reveal.min.js"></script>
+
+<script>
+
+	// Full list of configuration options available here:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+
+		width: 1024,
+		height: 576,
+		margin: 0.1,
+		maxScale: 5,
+
+		theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+		// Optional libraries used to extend on reveal.js
+		dependencies: [
+			{ src: '/digital-information/theme/assets/submodules/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			/*{ src: '/digital-information/assets/submodules/revealjs/plugin/markdown/marked.js' },
+			{ src: '/digital-information/assets/submodules/revealjs/plugin/markdown/markdown.js' },*/
+			{ src: '/digital-information/theme/assets/submodules/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: '/digital-information/theme/assets/submodules/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: '/digital-information/theme/assets/submodules/sidenotes/sidenotes.js' },
+			{ src: '/digital-information/theme/assets/submodules/sidenotes/libs/js.cookie.js' }
+			/*{ src: '/digital-information/assets/submodules/prism/prism.js', callback: function() { Prism.highlightAll() }}*/
+		]
+	});
+    
+    function checkNotesState() {
+
+	    // show the notes on page load if notesByDefault has been 
+	    // set to true in the page's front matter.
+	    
+	      var notesByDefault = false;
+	    
+
+	    if(notesByDefault == true) {
+	    	Sidenotes.showNotes();
+	    }
+	}
+
+	Reveal.addEventListener( 'slidechanged', function( event ) {
+		slide = $(event.currentSlide);
+		if(slide.hasClass('fullscreen')) {
+			slide.css('zoom', 1 / Reveal.getScale());
+			slide.children().css('zoom', Reveal.getScale());
+		}
+	});
+		
+
+</script>
+
+		<script>
+
+		// adds a class 'codeblock-title' to the paragraph element
+		// directly preceding any '.highlight' code block.
+		// the title is used to give instructions on where to place
+		// the code from the code block.
+		$(document).ready( function(){
+
+			$('.highlight').prev('p').addClass('codeblock-title');
+			
+		});
+
+
+		// checkpoints are able to be clicked to go to the next slide.
+		// when clicked they also visibly update to a green style.
+		$(document).ready( function() {
+			Reveal.addEventListener( 'ready', function( event ) {
+    			
+    			$('.checkpoint').click( function(){
+					$(this).addClass('checked');
+					setTimeout( Reveal.next, 1000 );
+				});
+
+			});
+		});
+
+		</script>
+
+	</body>
+</html>
