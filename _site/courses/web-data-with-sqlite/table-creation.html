@@ -171,7 +171,7 @@
 
 <p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
 
-<h1 id="creating-tables">Creating Tables</h1>
+<h1 id="table-creation">Table Creation</h1>
 <p><em>Containers to store your app data</em></p>
 
 
@@ -195,26 +195,7 @@
 
 <h2 id="creating-a-table">Creating a Table</h2>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="open-sqlite-studio">Open SQLite Studio</h3>
+<p>Tables can be created using SQLite Studio.</p>
 
 
 <aside class="notes">
@@ -235,7 +216,10 @@
 	>
 		
 
-<h3 id="create-a-new-database">Create a new database</h3>
+<h3 id="open-a-database">Open a database</h3>
+
+<p>Use SQLite Studio to connect your<br />
+<strong>Message Board</strong> database.</p>
 
 
 <aside class="notes">
@@ -258,6 +242,9 @@
 
 <h3 id="click-the-create-table-button">Click the “Create Table” button</h3>
 
+<p>Click the “Create Table” button which is<br />
+a blue and white square with a green plus on it.</p>
+
 
 <aside class="notes">
 
@@ -278,6 +265,9 @@
 		
 
 <h3 id="fill-in-a-table-name">Fill in a table name</h3>
+
+<p>Give your table a name, lowercase and plural.<br />
+This one will be the <code>users</code> table.</p>
 
 
 <aside class="notes">
@@ -300,6 +290,9 @@
 
 <h3 id="click-the-add-column-button">Click the “Add Column” button</h3>
 
+<p>The “Add column” button is a blue and <br />
+white square with a green stripe.</p>
+
 
 <aside class="notes">
 
@@ -319,7 +312,9 @@
 	>
 		
 
-<h3 id="fill-in-the-column-name-data-type-and-size">Fill in the column name, data type and size</h3>
+<h3 id="fill-in-the-column-information">Fill in the column information</h3>
+
+<p>Specify the relevant column name, data type and size.</p>
 
 
 <aside class="notes">
@@ -342,6 +337,8 @@
 
 <h3 id="select-primary-or-foreign-key-if-required">Select Primary or Foreign Key if required</h3>
 
+<p>You may select Primary Key or Foreign key if needed.</p>
+
 
 <aside class="notes">
 
@@ -362,6 +359,9 @@
 		
 
 <h3 id="click-the-ok-button">Click the OK button</h3>
+
+<p>Add the new column to the set of planned<br />
+changes for the database.</p>
 
 
 <aside class="notes">
@@ -384,6 +384,33 @@
 
 <h3 id="repeat-the-process-for-all-required-columns">Repeat the process for all required columns</h3>
 
+<p>Fill in the relevant information for each<br />
+column needed in the <code>users</code> table.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="click-the-apply-changes-button">Click the “Apply changes” button</h3>
+
+<p>The changes are not automatically saved,<br />
+you need to apply them.</p>
+
 
 <aside class="notes">
 
@@ -405,6 +432,9 @@
 
 <h2 id="creating-a-table-using-the-shell">Creating a table using the shell</h2>
 
+<p>We can also create tables using a predefined script <br />
+stored in a file, which is helpful for backups.</p>
+
 
 <aside class="notes">
 
@@ -424,7 +454,7 @@
 	>
 		
 
-<h3 id="create-a-new-text-file-schemasql">Create a new text file <code>schema.sql</code></h3>
+<h3 id="create-a-new-text-file-schemasql-in-your-db-folder">Create a new text file <code>schema.sql</code> in your db folder</h3>
 
 <p>A database schema describes the structure<br />
 of a database using code.</p>
@@ -448,9 +478,70 @@ of a database using code.</p>
 	>
 		
 
+<h3 id="create-a-new-transaction">Create a new transaction</h3>
+
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+COMMIT;
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="drop-existing-table">Drop existing table</h3>
+
+<p>If the table already exists, we need to delete it first.</p>
+
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS users;
+
+COMMIT;
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
 <h3 id="write-a-create-table-statement">Write a create table statement</h3>
 
-<pre><code class="language-sql">CREATE TABLE users;
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users;
+
+COMMIT;
 </code></pre>
 
 
@@ -474,9 +565,14 @@ of a database using code.</p>
 
 <h3 id="add-a-row-describing-the-primary-key">Add a row describing the primary key</h3>
 
-<pre><code class="language-sql">CREATE TABLE users(
-  order_id INT AUTO_INCREMENT PRIMARY KEY
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users(
+  user_id INTEGER PRIMARY KEY
 );
+
+COMMIT;
 </code></pre>
 
 
@@ -501,9 +597,13 @@ of a database using code.</p>
 <h3 id="add-rows-describing-the-attributes">Add rows describing the attributes</h3>
 
 <pre><code class="language-sql">CREATE TABLE users(
-  order_id INT AUTO_INCREMENT PRIMARY KEY,
-  customer_id INT,
-  amount DOUBLE
+  user_id INTEGER PRIMARY KEY,
+  username TEXT(30),
+  password TEXT(64),
+  first_name TEXT(20),
+  last_name TEXT(20),
+  email TEXT(50),
+  photo BLOB(10000)
 );
 </code></pre>
 
@@ -526,14 +626,73 @@ of a database using code.</p>
 	>
 		
 
-<h3 id="add-rows-describing-the-foreign-keys">Add rows describing the foreign keys</h3>
+<h3 id="create-another-table-for-messages">Create another table for messages</h3>
 
 <pre><code class="language-sql">CREATE TABLE users(
-  order_id INT AUTO_INCREMENT PRIMARY KEY,
-  customer_id INT,
-  amount DOUBLE,
+  ...
+);
+
+DROP TABLE IF EXISTS messages;
+CREATE TABLE messages(
+  message_id INTEGER PRIMARY KEY,
+  content TEXT(300),
+  time_created TEXT(30),
+  user_id INTEGER FOREIGN_KEY
 );
 </code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="include-any-required-foreign-keys">Include any required foreign keys</h3>
+
+<pre><code class="language-sql">CREATE TABLE messages(
+  message_id INTEGER PRIMARY KEY,
+  content TEXT(300),
+  time_created TEXT(30),
+  user_id INTEGER FOREIGN_KEY
+);
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="verify-structure-of-schema">Verify structure of schema</h3>
+
+<p>There should be a “begin transaction” and a “commit”<br />
+with two “drop table” and two “create table” commands between.</p>
 
 
 <aside class="notes">
@@ -556,6 +715,8 @@ of a database using code.</p>
 
 <h3 id="save-the-file">Save the file</h3>
 
+<p>Very important, don’t forget to save!</p>
+
 
 <aside class="notes">
 
@@ -577,7 +738,7 @@ of a database using code.</p>
 
 <h3 id="open-the-database-from-shell">Open the database from shell</h3>
 
-<pre><code class="language-bash">sqlite3 auction.db
+<pre><code class="language-bash">sqlite3 message-board.db
 </code></pre>
 
 
@@ -601,8 +762,32 @@ of a database using code.</p>
 
 <h3 id="read-and-execute-your-sql-file-using-sqlite">Read and execute your SQL file using SQLite</h3>
 
-<pre><code class="language-bash">.read create.sql
+<pre><code class="language-bash">.read schema.sql
 </code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-the-database-visually">Check the database visually</h3>
+
+<p>Open the database in SQLite Studio and refresh,<br />
+you should be able to see your new table structure.</p>
 
 
 <aside class="notes">
