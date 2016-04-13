@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Tables</title>
+        <title>Table Planning</title>
         <meta name="viewport" content="width=device-width">
 
         <!-- google translate - language identifier -->
@@ -70,7 +70,7 @@
         
         <ul class="chapter-nav nav navbar-nav invisible">
         <li class="dropdown">
-          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tables <span class="caret"></span></a>
+          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Table Planning <span class="caret"></span></a>
           <ul class="chapters dropdown-menu">
           </ul>
         </li>
@@ -171,8 +171,8 @@
 
 <p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
 
-<h1 id="tables">Tables</h1>
-<p><em>Defining structure for your data</em></p>
+<h1 id="table-planning">Table Planning</h1>
+<p><em>Mapping your data structure</em></p>
 
 
 <aside class="notes">
@@ -193,7 +193,10 @@
 	>
 		
 
-<h1 id="what-is-a-table">What is a table</h1>
+<h2 id="database-diagrams">Database Diagrams</h2>
+
+<p>The first step in building a database<br />
+is creating a map of the data.</p>
 
 
 <aside class="notes">
@@ -214,7 +217,12 @@
 	>
 		
 
-<h1 id="columns">Columns</h1>
+<h3 id="tables-contain-rows-of-data">Tables contain rows of data</h3>
+
+<p>A table should contain information <br />
+about a single set of data, eg:</p>
+
+<p><code>people</code>, <code>cities</code>, <code>purchases</code>, <code>users</code>, <code>scores</code></p>
 
 
 <aside class="notes">
@@ -235,7 +243,13 @@
 	>
 		
 
-<h1 id="data-types">Data Types</h1>
+<h3 id="table-columns-describe-the-data">Table columns describe the data</h3>
+
+<p>Each table contains a number of columns.<br />
+A column stores an attribute of the table item.</p>
+
+<p>The table <code>people</code> might have attributes<br />
+<code>first_name</code>, <code>last_name</code>, <code>birth_date</code>, <code>email</code></p>
 
 
 <aside class="notes">
@@ -256,7 +270,12 @@
 	>
 		
 
-<h1 id="linked-data">Linked Data</h1>
+<h3 id="names-use-lowercase-and-underscores">Names use lowercase and underscores</h3>
+
+<p>Table and column names should be all lowercase<br />
+and use underscores instead of spaces.</p>
+
+<p>Table names are always plural.</p>
 
 
 <aside class="notes">
@@ -277,7 +296,452 @@
 	>
 		
 
-<h1 id="naming">Naming</h1>
+<h3 id="use-table-diagrams-to-plan">Use table diagrams to plan</h3>
+
+<p>To plan a table visually, write the name of the table<br />
+and list the table’s attributes underneath.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-attributes">Challenge: Attributes</h3>
+
+<p>Choose one or more of the following tables <br />
+and draw a visual plan for its structure:</p>
+
+<p><code>users</code>, <code>scores</code>, <code>todo_items</code></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="data-types">Data Types</h2>
+
+<p>Table columns each have a defined data type<br />
+to restrict the information which can be stored.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="sqlite-has-only-five-data-types">SQLite has only five data types</h3>
+
+<p>In SQLite3, the available data types are:</p>
+
+<p><code>text</code>, <code>numeric</code>, <code>integer</code>, <code>real</code>, <code>blob</code></p>
+
+
+<aside class="notes">
+
+<p>In SQLite, giving a table column one of these types is known as giving it an “affinity”.</p>
+
+<p>An affinity is a column’s recommended data type, but any type of data can still be stored in it.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-text-to-store-strings">Use <code>text</code> to store strings</h3>
+
+<ul class="flex-list">
+  <li><strong>Name</strong><br />
+First names, last names, pet names, celebrity crush names.</li>
+  <li><strong>Address</strong><br />
+Stored text can have spaces, so could store a street address.</li>
+  <li><strong>Long Text</strong><br />
+Can also store paragraphs of text, like someone’s personal bio.</li>
+  <li><strong>Date</strong><br />
+Stored as ISO8601 strings (“YYYY-MM-DD HH:MM:SS.SSS”)</li>
+</ul>
+
+
+<aside class="notes">
+
+<p>The value is a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE).</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-numeric-to-store-numbers">Use <code>numeric</code> to store numbers</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-integer-to-store-whole-numbers">Use <code>integer</code> to store whole numbers</h3>
+
+<ul class="flex-list">
+  <li><strong>Boolean</strong><br />
+Stored using 1 for true and 0 for false</li>
+  <li><strong>Date</strong><br />
+Stored as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC.</li>
+</ul>
+
+
+<aside class="notes">
+
+<p>In an <code>integer</code> column, the value stored is a signed integer.</p>
+
+<p>The value will be stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-real-to-store-decimals">Use <code>real</code> to store decimals</h3>
+
+<ul class="flex-list">
+  <li><strong>date</strong><br />
+Stored as Julian day numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the proleptic Gregorian calendar.</li>
+</ul>
+
+
+<aside class="notes">
+
+<p>The value is a floating point value, stored as an 8-byte IEEE floating point number.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-blob-to-store-other-weird-data">Use <code>blob</code> to store other weird data</h3>
+
+
+<aside class="notes">
+
+<p>The value is a blob of data, stored exactly as it was input.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-data-types">Challenge: Data Types</h3>
+
+<p>Assign a data type to each of your table columns, from:</p>
+
+<p><code>text</code>, <code>numeric</code>, <code>integer</code>, <code>real</code>, <code>blob</code></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="relationships-between-tables">Relationships between tables</h2>
+
+<p>We can represent how data links together, for example:</p>
+
+<ul>
+  <li>A parent <strong>has</strong> children.</li>
+  <li>A person <strong>has</strong> an address.</li>
+  <li>A customer <strong>has</strong> purchases.</li>
+  <li>A user <strong>has</strong> friends.</li>
+</ul>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="there-are-three-types-of-relationships">There are three types of relationships</h3>
+
+<ul class="flex-list">
+  <li><strong>One to One</strong><br />
+A user has a profile page, and a profile page belongs to only one user.</li>
+  <li><strong>One to Many</strong><br />
+A customer has many purchases, but a purchase belongs to only one customer.</li>
+  <li><strong>Many to Many</strong><br />
+A purchase has many bought items, and an item can be in many purchases.</li>
+</ul>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="relationships-are-drawn-as-lines-between-tables">Relationships are drawn as lines between tables</h3>
+
+<p>A table can have one, none, or many <br />
+lines going to other tables.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="every-table-need-a-unique-id-column">Every table need a unique ID column</h3>
+
+<p>This column is called the <strong>Primary Key</strong>.<br />
+Its type is <code>integer</code> and its value is auto-generated.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="linked-data-is-stored-using-the-rows-id">Linked data is stored using the row’s ID</h3>
+
+<p>A linked data column is know as a <strong>Foreign Key</strong>.<br />
+Its type is <code>integer</code> and you must specify the ID to store.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-relationship-diagrams">Challenge: Relationship Diagrams</h3>
+
+<p>Draw the relationship lines between these tables.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-identify-primary-and-foreign-keys">Challenge: Identify Primary and Foreign Keys</h3>
+
+<p>Mark the primary key column with a (1),<br />
+and mark the foreign key columns with a (2)</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="what-we-learned-about-tables">What we learned about tables</h2>
+
+<ul class="flex-list">
+  <li><strong>Creating</strong><br />
+We can create using the command line or SQLite Studio.</li>
+</ul>
 
 
 <aside class="notes">

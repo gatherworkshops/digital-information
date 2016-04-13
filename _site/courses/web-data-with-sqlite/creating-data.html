@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Creating Data</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- google translate - language identifier -->
+        <meta name="google-translate-customization" content="a148a80643fbe5d7-b9de7b0f0180d6d8-g318479cea978092f-2b"></meta>
+
+        <!-- Bootstrap -->
+        <link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Custom Fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+        <!-- revealjs for slideshows -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/revealjs/css/reveal.min.css">
+
+        <!-- Prism -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
+        <script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="/digital-information/favicon.ico">
+
+    </head>
+
+    <body class="">
+<nav id="page-navigation">
+
+
+    <!-- branding and strand name - always visible. links to home page -->
+    <a class="strand-name navbar-brand" href="/digital-information/">
+        <img class="avatar" src="/digital-information/theme/assets/images/gw-avatar.png">
+        Digital Information 
+    </a>
+
+
+
+    <!-- vertical divider bar, if we can move this to CSS that'd be ace -->
+    <p class="divider-bar navbar-text invisible">
+        |
+    </p>
+
+
+
+    <!-- page name or course name depending on context -->
+    
+
+        <!-- course name has to be set by jQuery from JSON data -->
+        <a class="course-name navbar-text invisible" href="index.html"></a>
+
+    
+
+
+
+    <!-- chapter dropdown available if this page is a chapter -->
+    
+        
+        <ul class="chapter-nav nav navbar-nav invisible">
+        <li class="dropdown">
+          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Creating Data <span class="caret"></span></a>
+          <ul class="chapters dropdown-menu">
+          </ul>
+        </li>
+      </ul>
+
+    
+
+
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right">
+      <ul class="site-nav nav navbar-nav">
+
+        
+
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+
+
+
+    <script>
+        // generates the chapter dropdown menu from a json file
+        $(document).ready( function() {
+
+            // updates the nav with data fetched from the course's JSON.
+            // we do this via JSON to avoid the need for repetition of
+            // sitemap or coursemap data in a place other than the course's
+            // root directory, as Jekyll can only read custom data from the
+            // _data dir which is not ideal.
+            function generateMenu(course) {
+
+                // find all elements we will modify
+                var navBar = $('#page-navigation');
+                var courseName = navBar.find('.course-name');
+                var chapterDropdown = navBar.find('.dropdown-menu');
+
+                // update the course name in the nav bar
+                courseName.html(course.title);
+
+                // create and append a menu item for each chapter
+                $.each(course.chapters, function(index, chapter){
+                    var chapterLink = $(
+                        '<li>' +
+                            '<a href="' + this.name + '">' +
+                                this.title +
+                            '</a>' +
+                        '</li>'
+                    );
+                    chapterDropdown.append(chapterLink);
+                });
+
+                // show all hidden nav elements
+                navBar
+                    .find('.invisible')
+                    .removeClass('invisible');
+            }
+
+            // go get the course data
+            $.get( "index.json", generateMenu);
+
+        });
+    </script>
+
+
+</nav>
+
+	
+		
+			
+<div class="page-content">
+
+
+<div class="slideshow">
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+
+
+
+
+
+<!-- slide -->
+<section class="title-slide"
+		
+	
+		id=""
+		data-background="/digital-information/media/images/theme/theme-tile.svg" 
+		data-background-color="#663399"
+		data-background-size="200px" 
+		data-background-repeat="repeat"
+	
+	>
+		
+
+<p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
+
+<h1 id="creating-data">Creating Data</h1>
+<p><em>Getting data into your database</em></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+
+
+		</div>
+
+	</div><!-- .reveal -->
+
+
+
+
+	<div class="sidenotes">
+		<div class="content">
+			<!-- display notes here using js -->
+			<p>Loading...</p>
+		</div>
+	</div>
+
+</div><!-- .slideshow -->
+
+
+
+</div>
+
+
+
+		<script src="/digital-information/theme/assets/submodules/revealjs/lib/js/head.min.js"></script>
+<script src="/digital-information/theme/assets/submodules/revealjs/js/reveal.min.js"></script>
+
+<script>
+
+	// Full list of configuration options available here:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+
+		width: 1024,
+		height: 576,
+		margin: 0.1,
+		maxScale: 5,
+
+		theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+		// Optional libraries used to extend on reveal.js
+		dependencies: [
+			{ src: '/digital-information/theme/assets/submodules/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			/*{ src: '/digital-information/assets/submodules/revealjs/plugin/markdown/marked.js' },
+			{ src: '/digital-information/assets/submodules/revealjs/plugin/markdown/markdown.js' },*/
+			{ src: '/digital-information/theme/assets/submodules/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: '/digital-information/theme/assets/submodules/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: '/digital-information/theme/assets/submodules/sidenotes/sidenotes.js' },
+			{ src: '/digital-information/theme/assets/submodules/sidenotes/libs/js.cookie.js' }
+			/*{ src: '/digital-information/assets/submodules/prism/prism.js', callback: function() { Prism.highlightAll() }}*/
+		]
+	});
+    
+    function checkNotesState() {
+
+	    // show the notes on page load if notesByDefault has been 
+	    // set to true in the page's front matter.
+	    
+	      var notesByDefault = false;
+	    
+
+	    if(notesByDefault == true) {
+	    	Sidenotes.showNotes();
+	    }
+	}
+
+	Reveal.addEventListener( 'slidechanged', function( event ) {
+		slide = $(event.currentSlide);
+		if(slide.hasClass('fullscreen')) {
+			slide.css('zoom', 1 / Reveal.getScale());
+			slide.children().css('zoom', Reveal.getScale());
+		}
+	});
+		
+
+</script>
+
+		<script>
+
+		// adds a class 'codeblock-title' to the paragraph element
+		// directly preceding any '.highlight' code block.
+		// the title is used to give instructions on where to place
+		// the code from the code block.
+		$(document).ready( function(){
+
+			$('.highlight').prev('p').addClass('codeblock-title');
+			
+		});
+
+
+		// checkpoints are able to be clicked to go to the next slide.
+		// when clicked they also visibly update to a green style.
+		$(document).ready( function() {
+			Reveal.addEventListener( 'ready', function( event ) {
+    			
+    			$('.checkpoint').click( function(){
+					$(this).addClass('checked');
+					setTimeout( Reveal.next, 1000 );
+				});
+
+			});
+		});
+
+		</script>
+
+	</body>
+</html>

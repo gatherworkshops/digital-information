@@ -19,8 +19,14 @@
 			,
 		
 			{
-			"name": "tables",
-			"title": "tables"
+			"name": "table-planning",
+			"title": "Table Planning"
+			}
+			,
+		
+			{
+			"name": "table-creation",
+			"title": "Table Creation"
 			}
 			,
 		
