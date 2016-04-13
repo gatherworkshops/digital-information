@@ -13,12 +13,45 @@ slides:
 
 
 
-# using SQLite Studio
+  - content: |
+      ## Adding a row
+
+  - content: |
+      ### using SQLite Studio
+
+  - content: |
+      ### using a query
 
 
-# using a query
+
+  - content: |
+      ## Adding linked rows
+  
+  - content: |
+      ### using SQLite Studio
+  
+  - content: |
+      ### using a query
 
 
+
+
+  - content: |
+      ## scripting dummy data
+  
+  - content: |
+      ### using a query
+
+
+
+
+  - content: |
+
+      ![Thumbs Up!]([[BASE_URL]]/theme/assets/images/thumbs-up.svg){: height="200"}
+
+      ## Creating Data: Complete!
+
+      [Take me to the next chapter!](flask.html)
 
 
 ---
