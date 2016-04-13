@@ -25,8 +25,8 @@
 			,
 		
 			{
-			"name": "table-creation",
-			"title": "Table Creation"
+			"name": "creating-tables",
+			"title": "Creating Tables"
 			}
 			,
 		
@@ -37,26 +37,26 @@
 			,
 		
 			{
-			"name": "flask",
-			"title": "Flask"
-			}
-			,
-		
-			{
-			"name": "web-forms",
-			"title": "Web Forms"
-			}
-			,
-		
-			{
 			"name": "reading-data",
 			"title": "Reading Data"
 			}
 			,
 		
 			{
+			"name": "flask",
+			"title": "Flask"
+			}
+			,
+		
+			{
 			"name": "web-lists",
 			"title": "Web Lists"
+			}
+			,
+		
+			{
+			"name": "web-forms",
+			"title": "Web Forms"
 			}
 			,
 		
