@@ -471,7 +471,7 @@ slides:
 
       ## Databases: Complete!
 
-      [Take me to the next chapter!](tables.html)
+      [Take me to the next chapter!](table-planning.html)
 
 
 
