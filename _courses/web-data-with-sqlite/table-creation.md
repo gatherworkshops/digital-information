@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: Table Planning
+title: Table Creation
 slides:
 
   - class: title-slide
@@ -8,7 +8,7 @@ slides:
 
       ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
-      # Creating Tables
+      # Table Creation
       _Containers to store your app data_
 
 
@@ -18,52 +18,79 @@ slides:
   
       ## Creating a Table
 
-      
-
-  - content: |
-
-  		### Open SQLite Studio
-
+      Tables can be created using SQLite Studio.
 
 
   - content: |
 
-  		### Create a new database
+      ### Open a database
+
+      Use SQLite Studio to connect your
+      **Message Board** database.
 
 
   - content: |
 
-  		### Click the "Create Table" button
+      ### Click the "Create Table" button
+
+      Click the "Create Table" button which is
+      a blue and white square with a green plus on it.
 
 
   - content: |
 
-  		### Fill in a table name
+      ### Fill in a table name
+
+      Give your table a name, lowercase and plural.
+      This one will be the `users` table.
 
 
   - content: |
 
-  		### Click the "Add Column" button
+      ### Click the "Add Column" button
+
+      The "Add column" button is a blue and 
+      white square with a green stripe.
 
 
   - content: |
 
-  		### Fill in the column name, data type and size
+      ### Fill in the column information
+
+      Specify the relevant column name, data type and size.
 
 
   - content: |
 
-  		### Select Primary or Foreign Key if required
+      ### Select Primary or Foreign Key if required
+
+      You may select Primary Key or Foreign key if needed.
 
 
   - content: |
 
-  		### Click the OK button
+      ### Click the OK button
+
+      Add the new column to the set of planned
+      changes for the database.
 
 
   - content: |
 
-  		### Repeat the process for all required columns
+      ### Repeat the process for all required columns
+
+      Fill in the relevant information for each
+      column needed in the `users` table.
+
+
+  - content: |
+
+      ### Click the "Apply changes" button
+
+      The changes are not automatically saved,
+      you need to apply them.
+
+
 
 
 
@@ -71,80 +98,169 @@ slides:
 
   - content: |
 
-  		## Creating a table using the shell
+      ## Creating a table using the shell
+
+      We can also create tables using a predefined script 
+      stored in a file, which is helpful for backups.
 
   - content: |
 
-  		### Create a new text file `schema.sql`
+      ### Create a new text file `schema.sql` in your db folder
 
-  		A database schema describes the structure
-  		of a database using code.
-
-  - content: |
-
-  		### Write a create table statement
-
-  		```sql
-  		CREATE TABLE users;
-  		```
-
-  - content: |
-
-  		### Add a row describing the primary key
-
-  		```sql
-  		CREATE TABLE users(
-  			order_id INT AUTO_INCREMENT PRIMARY KEY
-  		);
-  		```
-
-  - content: |
-
-  		### Add rows describing the attributes
-
-  		```sql
-  		CREATE TABLE users(
-  			order_id INT AUTO_INCREMENT PRIMARY KEY,
-  			customer_id INT,
-    		amount DOUBLE
-  		);
-  		```
-
-  - content: |
-
-  		### Add rows describing the foreign keys
-
-  		```sql
-  		CREATE TABLE users(
-  			order_id INT AUTO_INCREMENT PRIMARY KEY,
-  			customer_id INT,
-    		amount DOUBLE,
-  		);
-  		```
+      A database schema describes the structure
+      of a database using code.
 
 
   - content: |
 
-  		### Save the file
+      ### Create a new transaction
+
+      ```sql
+      BEGIN TRANSACTION;
+
+      COMMIT;
+      ```
+
+  - content: |
+
+      ### Drop existing table
+
+      If the table already exists, we need to delete it first.
+
+      ```sql
+      BEGIN TRANSACTION;
+
+      DROP TABLE IF EXISTS users;
+
+      COMMIT;
+      ```
 
 
   - content: |
 
-  		### Open the database from shell
+      ### Write a create table statement
 
-  		```bash
-  		sqlite3 auction.db
-  		```
+      ```sql
+      BEGIN TRANSACTION;
+
+      DROP TABLE IF EXISTS users;
+      CREATE TABLE users;
+
+      COMMIT;
+      ```
 
   - content: |
 
-  		### Read and execute your SQL file using SQLite
+      ### Add a row describing the primary key
 
-  		```bash
-  		.read create.sql
-  		```
+      ```sql
+      BEGIN TRANSACTION;
+
+      DROP TABLE IF EXISTS users;
+      CREATE TABLE users(
+        user_id INTEGER PRIMARY KEY
+      );
+
+      COMMIT;
+      ```
+
+  - content: |
+
+      ### Add rows describing the attributes
+
+      ```sql
+      CREATE TABLE users(
+        user_id INTEGER PRIMARY KEY,
+        username TEXT(30),
+        password TEXT(64),
+        first_name TEXT(20),
+        last_name TEXT(20),
+        email TEXT(50),
+        photo BLOB(10000)
+      );
+      ```
+
+  - content: |
+
+      ### Create another table for messages
+
+      ```sql
+      CREATE TABLE users(
+        ...
+      );
+
+      DROP TABLE IF EXISTS messages;
+      CREATE TABLE messages(
+        message_id INTEGER PRIMARY KEY,
+        content TEXT(300),
+        time_created TEXT(30),
+        user_id INTEGER FOREIGN_KEY
+      );
+      ```
+
+  - content: |
+
+      ### Include any required foreign keys
+
+      ```sql
+      CREATE TABLE messages(
+        message_id INTEGER PRIMARY KEY,
+        content TEXT(300),
+        time_created TEXT(30),
+        user_id INTEGER FOREIGN_KEY
+      );
+      ```
+
+  - content: |
+
+      ### Verify structure of schema
+
+      There should be a "begin transaction" and a "commit"
+      with two "drop table" and two "create table" commands between.
 
 
+  - content: |
+
+      ### Save the file
+
+      Very important, don't forget to save!
+
+
+  - content: |
+
+      ### Open the database from shell
+
+      ```bash
+      sqlite3 message-board.db
+      ```
+
+  - content: |
+
+      ### Read and execute your SQL file using SQLite
+
+      ```bash
+      .read schema.sql
+      ```
+
+  - content: |
+
+      ### Check the database visually
+
+      Open the database in SQLite Studio and refresh,
+      you should be able to see your new table structure.
+
+
+
+
+  
+
+  - content: |
+
+      ![Thumbs Up!]([[BASE_URL]]/theme/assets/images/thumbs-up.svg){: height="200"}
+
+      ## Table Creation: Complete!
+
+      [Take me to the next chapter!](creating-data.html)
 
 
 ---
