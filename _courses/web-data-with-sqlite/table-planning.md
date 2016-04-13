@@ -21,6 +21,7 @@ slides:
       The first step in building a database
       is creating a map of the data.
 
+
   - content: |
 
       ### Tables contain rows of data
@@ -29,6 +30,7 @@ slides:
       about a single set of data, eg:
 
       `people`, `cities`, `purchases`, `users`, `scores`
+
 
   - content: |
 
@@ -39,6 +41,7 @@ slides:
 
       The table `people` might have attributes
       `first_name`, `last_name`, `birth_date`, `email`
+
 
   - content: |
 
@@ -113,15 +116,14 @@ slides:
 
   - content: |
 
-      ### Use `numeric` to store numbers
-
-
-  - content: |
-
       ### Use `integer` to store whole numbers
 
       - **Boolean**
         Stored using 1 for true and 0 for false
+      - **Score**
+        A number from 0 to something really big
+      - **Stock Count**
+        Positive or negative whole number
       - **Date**
         Stored as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC.
       {:.flex-list}
@@ -137,17 +139,33 @@ slides:
 
       ### Use `real` to store decimals
 
-      - **date**
+      - **Date**
         Stored as Julian day numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the proleptic Gregorian calendar.
+      - **Bank Balance**
+        Positive or negative number with decimal places
       {:.flex-list}
 
     notes: |
 
       The value is a floating point value, stored as an 8-byte IEEE floating point number.
 
+
+  - content: |
+
+      ### Use `numeric` to store numbers
+
+      USe to store a mix of integer and real numbers
+
+
   - content: |
 
       ### Use `blob` to store other weird data
+
+      - **Photos**
+        Can be stored as hex data, though it's not ideal.
+      - **Documents**
+        Can be stored as binary data, but a bad idea.
+      {:.flex-list}
 
 
     notes: |
@@ -177,6 +195,7 @@ slides:
       - A person **has** an address.
       - A customer **has** purchases.
       - A user **has** friends.
+
 
   - content: |
 
@@ -226,22 +245,34 @@ slides:
 
       ### Challenge: Identify Primary and Foreign Keys
 
-      Mark the primary key column with a (1),
-      and mark the foreign key columns with a (2)
+      Mark the primary key column with (PK),
+      and mark the foreign key columns with (FK)
 
 
 
 
   - content: |
 
-      ## What we learned about tables
+      ## What we learned about table planning
 
+      - **Planning**
+        Tables are planned using table maps and visual lines between.
+      - **Relationships**
+        Tables can have related data using primary and foreign keys.
       - **Creating**
         We can create using the command line or SQLite Studio.
+      - **Schemas**
+        We can write a script to represent our table structure.
       {:.flex-list}
 
 
+  - content: |
 
+      ![Thumbs Up!]([[BASE_URL]]/theme/assets/images/thumbs-up.svg){: height="200"}
+
+      ## Table Planning: Complete!
+
+      [Take me to the next chapter!](table-creation.html)
 
 
 ---
