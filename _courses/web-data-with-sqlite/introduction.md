@@ -32,6 +32,13 @@ slides:
       ## SQLite Browser
 
 
+  - content: |
+
+      ![Thumbs Up!]([[BASE_URL]]/theme/assets/images/thumbs-up.svg){: height="200"}
+
+      ## Introduction: Complete!
+
+      [Take me to the next chapter!](databases.html)
 
 
 ---
