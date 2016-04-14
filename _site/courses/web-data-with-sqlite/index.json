@@ -55,14 +55,14 @@
 			,
 		
 			{
-			"name": "web-forms",
-			"title": "Web Forms"
+			"name": "user-login",
+			"title": "User Login"
 			}
 			,
 		
 			{
-			"name": "user-login",
-			"title": "User Login"
+			"name": "web-forms",
+			"title": "Web Forms"
 			}
 			,
 		
