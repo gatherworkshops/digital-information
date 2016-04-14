@@ -1,0 +1,13 @@
+{% extends "base-template.html" %}
+
+{% block content %}
+<h1>Messages</h1>
+
+<ol>
+
+	{% for message in messages %}
+	<li>{{ message['content'] }}</li>
+	{% endfor %}
+
+</ol>
+{% endblock %}

@@ -1,0 +1,52 @@
+import sqlite3
+from public import website
+from flask import g
+
+
+DATABASE = 'db/message-board.db'
+
+
+def connect_db():
+    db = sqlite3.connect(DATABASE)
+    db.row_factory = sqlite3.Row
+    return db
+
+
+
+def init_db():
+    with website.app_context():
+        db = get_db()
+        with website.open_resource('/db/schema.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
+
+
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = connect_db()
+    return db
+
+
+
+@website.before_request
+def before_request():
+    g.db = connect_db()
+
+
+
+@website.teardown_request
+def teardown_request(exception):
+    db = getattr(g, 'db', None)
+    if db is not None:
+        db.close()
+
+
+
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv
+
