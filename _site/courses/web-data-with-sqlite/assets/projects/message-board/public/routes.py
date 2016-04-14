@@ -8,8 +8,17 @@ from public import datamanager
 @website.route('/')
 def index():
     
-    query_string = 'select * from messages'
+    query_string = (
+      'SELECT content, username, time_created ' 
+      'FROM messages INNER JOIN users '
+      'USING (user_id) '
+      'ORDER BY time_created DESC'
+    )
+
     query_results = datamanager.query_db(query_string, [], one=False)
+
+    for result in query_results:
+        print(result)
 
     return render_template('index.html', messages=query_results)
 

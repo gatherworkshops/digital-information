@@ -284,6 +284,48 @@ to the database and fetch the results.</p>
 	>
 		
 
+<h3 id="print-the-query-results-to-check-them">Print the query results to check them</h3>
+
+<pre><code class="language-python"># home/index page
+@website.route('/')
+def index():
+    
+    query_string = 'SELECT content FROM messages'
+    query_results = datamanager.query_db(query_string, [], one=False)
+
+    for result in query_results:
+        print(result)
+
+    return render_template('index.html')
+</code></pre>
+
+<p>You can optionally print the results<br />
+of the query to the shell.</p>
+
+
+<aside class="notes">
+
+<p>The results will only print to the shell when you referesh the page.</p>
+
+<p>You can see from the shell that each row item is formatted as a set of key:value pairs with curly brackets at each end.</p>
+
+<p>This is the python format for a dictionary, and means we can access values in each row item by name.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
 <h3 id="pass-the-query-results-to-the-template">Pass the query results to the template</h3>
 
 <pre><code class="language-python"># home/index page
@@ -323,7 +365,7 @@ under the variable name <code>messages</code>.</p>
 <pre><code class="language-html">&lt;ol&gt;
 
   {% for message in messages %}
-  &lt;li&gt;{{ message['content'] }}&lt;/li&gt;
+    &lt;li&gt;{{ message['content'] }}&lt;/li&gt;
   {% endfor %}
 
 &lt;/ol&gt;
@@ -377,6 +419,9 @@ and check the messages are showing!</p>
 
 <h2 id="combine-user-data">Combine user data</h2>
 
+<p>Our messages should also display the <br />
+username of the user who posted the message.</p>
+
 
 <aside class="notes">
 
@@ -396,7 +441,21 @@ and check the messages are showing!</p>
 	>
 		
 
-<h3 id="get-all-messages-and-the-user-who-posted">Get all messages and the user who posted</h3>
+<h3 id="modify-the-query">Modify the query</h3>
+
+<pre><code class="language-python">def index():
+    
+    query_string = 'SELECT content, username FROM messages INNER JOIN users USING (user_id)'
+    query_results = datamanager.query_db(query_string, [], one=False)
+
+    for result in query_results:
+        print(result)
+
+    return render_template('index.html', messages=query_results)
+</code></pre>
+
+<p>To get the username for each message,<br />
+we need to join data from two tables.</p>
 
 
 <aside class="notes">
@@ -419,6 +478,38 @@ and check the messages are showing!</p>
 
 <h3 id="display-username-by-message">Display username by message</h3>
 
+<pre><code class="language-html">{% for message in messages %}
+    &lt;li&gt;{{ message['username'] }}: {{ message['content'] }}&lt;/li&gt;
+{% endfor %}
+</code></pre>
+
+<p>Modify the index template message loop<br />
+to display the username beside the message.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-display-the-message-time">Challenge: Display the message time</h3>
+
+<p>Modify the query to get the time the message <br />
+was posted, and modify the template to display it.</p>
+
 
 <aside class="notes">
 
@@ -440,6 +531,9 @@ and check the messages are showing!</p>
 
 <h2 id="order-and-optimise-the-results">Order and optimise the results</h2>
 
+<p>Recent messages should be displayed first,<br />
+and only the last hundred messages should load.</p>
+
 
 <aside class="notes">
 
@@ -459,11 +553,25 @@ and check the messages are showing!</p>
 	>
 		
 
-<h3 id="order-messages-reverse-chrono">Order messages reverse chrono</h3>
+<h3 id="order-messages-by-time-posted">Order messages by time posted</h3>
+
+<pre><code class="language-python">query_string = (
+    'SELECT content, username, time_created ' 
+    'FROM messages INNER JOIN users '
+    'USING (user_id) '
+    'ORDER BY time_created DESC'
+)
+</code></pre>
+
+<p>Modify the query to order the results<br />
+based on the <code>time_created</code> value.</p>
 
 
 <aside class="notes">
 
+<p>Ordering by the time_created with ASC will be ascending order, where the oldest are at the top and the newest are at the bottom.</p>
+
+<p>DESC or ‘descending’ will put the newest post at the top and the oldest at the bottom.</p>
 
 </aside>
 
@@ -481,6 +589,18 @@ and check the messages are showing!</p>
 		
 
 <h3 id="limit-to-the-last-hundred-messages">Limit to the last hundred messages</h3>
+
+<pre><code class="language-python">query_string = (
+    'SELECT content, username, time_created ' 
+    'FROM messages INNER JOIN users '
+    'USING (user_id) '
+    'ORDER BY time_created DESC '
+    'LIMIT 100'
+)
+</code></pre>
+
+<p>We should limit the number of messages<br />
+to reduce strain on the website.</p>
 
 
 <aside class="notes">

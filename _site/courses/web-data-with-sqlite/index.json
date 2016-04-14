@@ -61,6 +61,12 @@
 			,
 		
 			{
+			"name": "user-login",
+			"title": "User Login"
+			}
+			,
+		
+			{
 			"name": "updating-data",
 			"title": "Updating Data"
 			}
