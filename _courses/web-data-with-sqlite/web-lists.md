@@ -64,7 +64,7 @@ slides:
       def index():
           
           query_string = 'SELECT content FROM messages'
-          messages = datamanager.query_db(query_string, [], one=False)
+          query_results = datamanager.query_db(query_string, [], one=False)
 
           return render_template('index.html', messages=query_results)
       ```
