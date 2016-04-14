@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: Web Lists
+title: User Login
 slides:
 
   - class: title-slide
@@ -8,8 +8,8 @@ slides:
 
       ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
-      # Web Lists
-      _Loading and displaying data_
+      # User Login
+      _Authenticating users_
 
 
 ## Authenticate user
@@ -29,9 +29,9 @@ slides:
 
       ![Thumbs Up!]([[BASE_URL]]/theme/assets/images/thumbs-up.svg){: height="200"}
 
-      ## Web Lists: Complete!
+      ## User Login: Complete!
 
-      [Take me to the next chapter!](web-forms.html)
+      [Take me to the next chapter!](updating-data.html)
 
 
 ---
