@@ -8,10 +8,10 @@ from public import datamanager
 @website.route('/')
 def index():
     
-    messages = datamanager.query_db('select * from messages', [], one=False)
-    print(messages)
+    query_string = 'select * from messages'
+    query_results = datamanager.query_db(query_string, [], one=False)
 
-    return render_template('index.html', messages=messages)
+    return render_template('index.html', messages=query_results)
 
 
 # new message page
