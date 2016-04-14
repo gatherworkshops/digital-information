@@ -8,7 +8,7 @@ DATABASE = 'db/message-board.db'
 
 def connect_db():
     db = sqlite3.connect(DATABASE)
-    db.row_factory = sqlite3.Row
+    db.row_factory = convert_row_to_dictionary
     return db
 
 
@@ -49,4 +49,9 @@ def query_db(query, args=(), one=False):
     rv = cur.fetchall()
     cur.close()
     return (rv[0] if rv else None) if one else rv
+
+
+def convert_row_to_dictionary(cursor, row):
+    return dict((cursor.description[idx][0], value)
+                for idx, value in enumerate(row))
 
