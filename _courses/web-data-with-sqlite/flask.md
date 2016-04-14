@@ -13,67 +13,128 @@ slides:
 
 
 
-## What is it
-
-### Python framework for websites
-
-### HTML and CSS website with python behind it
-
-### allows you to run code before displaying a page
-
-### allows you to re-use code across pages
-
-### built in support for database access
 
 
+  - content: |
 
-## Set up new project from starter
+      ## What the heck is Flask?
 
-### copy files assets/zip/flask-starter.zip
+  - content: |
 
-### put files in project folder
+      ### Python framework for websites
 
-### simple tour
+  - content: |
 
+      ### HTML and CSS website with python behind it
 
+  - content: |
 
+      ### allows you to run code before displaying a page
 
-## Run project
+  - content: |
 
-### open shell
+      ### allows you to re-use code across pages
 
-### navigate to project
+  - content: |
 
-### run runserver.py
-
-### open in browser
+      ### built in support for database access
 
 
 
 
-## Create routes and templates
+  - content: |
+      
+      ## Set up new project from starter
 
-### route for upload
+  - content: |
 
-### template for upload
+      ### copy files assets/zip/flask-starter.zip
 
-### route for login
+  - content: |
 
-### template for login
+      ### put files in project folder
 
-### route for user profile
+  - content: |
+      
+      ### simple tour
 
-### template for user profile
 
 
 
-## Create navigation
 
-### create nav bar include
 
-### write html for nav bar
+  - content: |
+      
+      ## Run project
 
-### include in all templates
+  - content: |
+
+      ### open shell
+
+  - content: |
+
+      ### navigate to project
+
+  - content: |
+      
+      ### run runserver.py
+
+  - content: |
+
+      ### open in browser
+
+
+
+  - content: |
+
+      ## Create routes and templates
+
+  - content: |
+      
+      ### route for upload
+
+  - content: |
+      
+      ### template for upload
+
+  - content: |
+      
+      ### route for login
+
+  - content: |
+
+      ### template for login
+
+  - content: |
+
+      ### route for user profile
+
+  - content: |
+      
+      ### template for user profile
+
+
+
+
+
+
+  - content: |
+      
+      ## Create navigation
+
+  - content: |
+
+      ### create nav bar include
+
+  - content: |
+
+      ### write html for nav bar
+
+  - content: |
+      
+      ### include in all templates
+
+
 
 
 
