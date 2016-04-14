@@ -640,6 +640,33 @@ so we need to start it running.</p>
 	>
 		
 
+<h3 id="set-the-correct-database-name">Set the correct database name</h3>
+
+<pre><code class="language-python">DATABASE = 'db/message-board.db'
+</code></pre>
+
+<p>Open the file <strong>datamanager.py</strong> and <br />
+update the database file path.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
 <h3 id="create-a-run-script">Create a run script</h3>
 
 <pre><code class="language-python">from public import website
@@ -647,7 +674,7 @@ website.run(debug=True)
 </code></pre>
 
 <p>Create a new file in your project<br />
-called <code>runserver.py</code> with the code above.</p>
+called <strong>runserver.py</strong> with the code above.</p>
 
 
 <aside class="notes">
@@ -815,13 +842,37 @@ containing the HTML code provided.</p>
 <h3 id="route-for-new-message">Route for new message</h3>
 
 <pre><code class="language-python"># new message page
-@website.route('/new')
+@website.route('/new-message')
 def new_message():
-    return 'Home page'
+    return render_template('new-message.html')
 </code></pre>
 
 <p>Add a new route to <code>routes.py</code> which shows <br />
-the template <code>new-message</code> for the url <code>/new</code>.</p>
+the template <code>new-message</code> for the url <code>/new-message</code>.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-new-message-page-works">Check new message page works</h3>
+
+<p>Navigate to the “new message” page <br />
+in your browser and check it exists!</p>
 
 
 <aside class="notes">
@@ -885,8 +936,8 @@ which contains a simple sign in form.</p>
 
 <pre><code class="language-python"># sign in page
 @website.route('/sign-in')
-def login():
-    return 'Sign in page'
+def sign_in():
+    return render_template('sign-in.html')
 </code></pre>
 
 <p>Add a new route to which shows the<br />
@@ -911,10 +962,36 @@ sign in template at the url <code>/sign-in</code>.</p>
 	>
 		
 
-<h3 id="challenge-log-out-page">Challenge: Log out page</h3>
+<h3 id="check-sign-in-page-works">Check sign in page works</h3>
+
+<p>Navigate to the “sign in” page <br />
+in your browser to check it exists!</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-sign-out-page">Challenge: Sign out page</h3>
 
 <p>Create a new template and route<br />
-for the site url <code>/log-out</code>.</p>
+for the site url <code>/sign-out</code>.</p>
+
+<p>It should just say “You are signed out”.</p>
 
 
 <aside class="notes">
@@ -989,7 +1066,7 @@ a menu bar for use on every page.</p>
 
 <pre><code class="language-html">&lt;nav&gt;
   &lt;a href="/"&gt;Home&lt;/a&gt;
-  &lt;a href="/new"&gt;New Message&lt;/a&gt;
+  &lt;a href="/new-message"&gt;New Message&lt;/a&gt;
   &lt;a href="/sign-in"&gt;Sign in&lt;/a&gt;
   &lt;a href="/sign-out"&gt;Sign out&lt;/a&gt;
 &lt;/nav&gt;
@@ -1075,7 +1152,7 @@ and click to each page to test it.</p>
 
 <h2 id="flask-complete">Flask: Complete!</h2>
 
-<p><a href="web-forms.html">Take me to the next chapter!</a></p>
+<p><a href="web-lists.html">Take me to the next chapter!</a></p>
 
 
 <aside class="notes">

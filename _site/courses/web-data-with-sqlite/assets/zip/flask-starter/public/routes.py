@@ -1,4 +1,5 @@
 from flask import g
+from flask import render_template
 from public import website
 from public import datamanager
 
@@ -6,6 +7,6 @@ from public import datamanager
 # home/index page
 @website.route('/')
 def index():
-    return 'Home page'
+    return render_template('index.html')
 
 

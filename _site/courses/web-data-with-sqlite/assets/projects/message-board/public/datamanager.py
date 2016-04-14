@@ -3,7 +3,7 @@ from public import website
 from flask import g
 
 
-DATABASE = 'db/database-name.db'
+DATABASE = 'db/message-board.db'
 
 
 def connect_db():
