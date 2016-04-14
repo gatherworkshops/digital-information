@@ -6,7 +6,7 @@
 <ol>
 
 	{% for message in messages %}
-	<li>{{ message['content'] }}</li>
+		<li>{{ message['username'] }}: {{ message['content'] }}</li>
 	{% endfor %}
 
 </ol>
