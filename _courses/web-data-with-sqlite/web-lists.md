@@ -260,7 +260,7 @@ slides:
 
       ## Web Lists: Complete!
 
-      [Take me to the next chapter!](web-forms.html)
+      [Take me to the next chapter!](user-login.html)
 
 
 ---
