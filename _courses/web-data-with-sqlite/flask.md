@@ -209,6 +209,17 @@ slides:
 
   - content: |
 
+      ### Set the correct database name
+
+      ```python
+      DATABASE = 'db/message-board.db'
+      ```
+
+      Open the file **datamanager.py** and 
+      update the database file path.
+
+  - content: |
+
       ### Create a run script
 
       ```python
@@ -217,7 +228,7 @@ slides:
       ```
 
       Create a new file in your project
-      called `runserver.py` with the code above.
+      called **runserver.py** with the code above.
 
     notes: |
 
@@ -297,13 +308,20 @@ slides:
 
       ```python
       # new message page
-      @website.route('/new')
+      @website.route('/new-message')
       def new_message():
-          return 'Home page'
+          return render_template('new-message.html')
       ```
 
       Add a new route to `routes.py` which shows 
-      the template `new-message` for the url `/new`.
+      the template `new-message` for the url `/new-message`.
+
+  - content: |
+
+      ### Check new message page works
+
+      Navigate to the "new message" page 
+      in your browser and check it exists!
 
   - content: |
       
@@ -335,8 +353,8 @@ slides:
       ```python
       # sign in page
       @website.route('/sign-in')
-      def login():
-          return 'Sign in page'
+      def sign_in():
+          return render_template('sign-in.html')
       ```
 
       Add a new route to which shows the
@@ -345,10 +363,20 @@ slides:
 
   - content: |
 
-      ### Challenge: Log out page
+      ### Check sign in page works
+
+      Navigate to the "sign in" page 
+      in your browser to check it exists!
+
+
+  - content: |
+
+      ### Challenge: Sign out page
 
       Create a new template and route
-      for the site url `/log-out`.
+      for the site url `/sign-out`.
+
+      It should just say "You are signed out".
 
 
   - content: |
@@ -379,7 +407,7 @@ slides:
       ```html
       <nav>
         <a href="/">Home</a>
-        <a href="/new">New Message</a>
+        <a href="/new-message">New Message</a>
         <a href="/sign-in">Sign in</a>
         <a href="/sign-out">Sign out</a>
       </nav>
@@ -423,6 +451,6 @@ slides:
 
       ## Flask: Complete!
 
-      [Take me to the next chapter!](web-forms.html)
+      [Take me to the next chapter!](web-lists.html)
 
 ---
