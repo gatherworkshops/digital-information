@@ -7,7 +7,9 @@ DATABASE = 'db/database-name.db'
 
 
 def connect_db():
-    return sqlite3.connect(DATABASE)
+    db = sqlite3.connect(DATABASE)
+    db.row_factory = sqlite3.Row
+    return db
 
 
 
@@ -17,6 +19,15 @@ def init_db():
         with website.open_resource('/db/schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
+
+
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = connect_db()
+    return db
+
 
 
 @website.before_request
