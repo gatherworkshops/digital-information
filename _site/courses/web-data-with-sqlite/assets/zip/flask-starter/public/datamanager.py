@@ -3,7 +3,7 @@ from public import website
 from flask import g
 
 
-DATABASE = 'db/digi-info-prototype.db'
+DATABASE = 'db/database-name.db'
 
 
 def connect_db():

@@ -171,8 +171,918 @@
 
 <p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
 
-<h1 id="creating-data">Creating Data</h1>
-<p><em>Getting data into your database</em></p>
+<h1 id="reading-data">Reading Data</h1>
+<p><em>Getting data out of your database</em></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="backup-to-a-text-file">Backup to a text file</h2>
+
+<p>Once you deploy a site, most of your interactions<br />
+will need to be via the command line.</p>
+
+<p>Text files can also be backed up using version control.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="open-and-connect-database-in-sqlite-studio">Open and connect database in SQLite Studio</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="right-click-the-database-in-the-sidebar">Right click the database in the sidebar</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="click-export">Click export</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="select-all-and-tick-export-data-from-tables">Select all and tick export data from tables</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="continue">Continue</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="format-as-sql-and-choose-file-destination">Format as SQL and choose file destination</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="click-done">Click Done</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="backup-to-text-file-using-shell">Backup to text file using shell</h2>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="open-database-in-shell">Open database in shell</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-output">Set the output</h3>
+
+<pre><code class="language-bash">.output message-board-backup.sql
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="dump-the-database">Dump the database</h3>
+
+<pre><code class="language-bash">.dump
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="quit-sqlite">Quit sqlite</h3>
+
+<pre><code class="language-bash">.quit
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-file-in-text-editor">Check file in text editor</h3>
+
+<p>Look for your table names and check<br />
+that the data appears to be there.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="creating-table-reports">Creating table reports</h2>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-output-mode">Set the output mode</h3>
+
+<pre><code class="language-bash">.mode csv
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-output-file-name">Set the output file name</h3>
+
+<pre><code class="language-bash">.output user-report.txt
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="execute-a-table-query">Execute a table query</h3>
+
+<pre><code class="language-sql">SELECT * FROM users;
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-the-report-file">Check the report file</h3>
+
+<p>Open the user-report.txt in your editor<br />
+and check that the information is listed.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-create-a-messages-report">Challenge: Create a messages report</h3>
+
+<p>Generate a report containing all messages<br />
+and output it to messages-report.txt</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="creating-simplified-table-reports">Creating simplified table reports</h2>
+
+<p>You can choose to select just some columns<br />
+from a table’s data, keep it relevant!</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-output-mode">Set the output mode</h3>
+
+<pre><code class="language-bash">.mode csv
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-output-file-name">Set the output file name</h3>
+
+<pre><code class="language-bash">.output user-list.txt
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="execute-a-table-query">Execute a table query</h3>
+
+<pre><code class="language-sql">SELECT first_name, last_name, email_address FROM users;
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="creating-complex-linked-reports">Creating complex linked reports</h2>
+
+<p>Often you’ll need to create detailed reports<br />
+which combine data from multiple tables.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="there-are-three-ways-to-combine-table-data">There are three ways to combine table data</h3>
+
+<ul>
+  <li>Inner Join<br />
+Most common</li>
+  <li>
+    <p>Outer Join</p>
+  </li>
+  <li>Cross Join<br />
+Rarely used</li>
+</ul>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="inner-joins">Inner Joins</h3>
+
+<p>Combines data from two tables by<br />
+matching up the values in a column.</p>
+
+
+<aside class="notes">
+
+<p>An inner join creates result rows for every combination of matching data from the first and second tables.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="using-an-inner-join">Using an Inner Join</h3>
+
+<pre><code class="language-sql">SELECT *
+FROM messages INNER JOIN users
+USING (user_id);
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-message-and-username">Challenge: Message and username</h3>
+
+<p>Modify the query to display every message<br />
+and the first name of the user who created it.</p>
+
+<pre><code class="language-txt">"Hello from tanya",Tanya
+"Hello back, from Sarah",Sarah
+"Woof woof",Pascal
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="outer-join">Outer Join</h3>
+
+<p>Combines data from two tables by displaying<br />
+all data from the first and any relevant matches<br />
+from the second.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="using-an-outer-join">Using an outer join</h3>
+
+<pre><code class="language-sql">SELECT first_name, content
+FROM users LEFT OUTER JOIN messages
+USING (user_id);
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="saving-complex-reports-to-file">Saving complex reports to file</h2>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-output-mode">Set the output mode</h3>
+
+<pre><code class="language-bash">.mode column
+</code></pre>
+
+
+<aside class="notes">
+
+<p>By default, column width is 10. This means messages longer than 10 characters will be cut off.</p>
+
+<p>You can change the maximum column width using the sqlite command <code>.width</code>.</p>
+
+<p>eg. <code>.width 6 12</code> will make the first column 6 characters and the second column 12 characters wide.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="turn-on-headers">Turn on headers</h3>
+
+<pre><code class="language-bash">.headers on
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-output-file-name">Set the output file name</h3>
+
+<pre><code class="language-bash">.output messages-list.txt
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="execute-a-query">Execute a query</h3>
+
+<pre><code class="language-sql">PRINT 
+SELECT first_name, last_name 
+FROM users
+WHERE first_name = "Tanya";
+</code></pre>
+
+<p>This query will write to the file.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="execute-another-query">Execute another query</h3>
+
+<pre><code class="language-sql">SELECT *
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="execute-a-table-query">Execute a table query</h3>
+
+<pre><code class="language-sql">SELECT first_name, last_name, email_address 
+FROM users;
+</code></pre>
 
 
 <aside class="notes">
