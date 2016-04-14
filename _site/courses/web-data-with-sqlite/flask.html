@@ -193,28 +193,12 @@
 	>
 		
 
+<p><img src="assets/images/flask-logo.png" alt="Flask Logo" height="200" /></p>
+
 <h2 id="what-the-heck-is-flask">What the heck is Flask?</h2>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="python-framework-for-websites">Python framework for websites</h3>
+<p>We will be using Flask to run a website<br />
+where we can interact with our database.</p>
 
 
 <aside class="notes">
@@ -235,7 +219,48 @@
 	>
 		
 
-<h3 id="html-and-css-website-with-python-behind-it">HTML and CSS website with python behind it</h3>
+<h3 id="flask-is-a-python-framework-for-websites">Flask is a Python framework for websites</h3>
+
+<p>This means it is a bunch of Python code that<br />
+someone else wrote to do common website tasks.</p>
+
+
+<aside class="notes">
+
+<p>Flask is a framework for Python in the same way that these other projects are frameworks for their base languages:</p>
+
+<ul>
+  <li>jQuery is a framework for JavaScript</li>
+  <li>Sass is a framework for CSS</li>
+  <li>Laravel is a framework for PHP</li>
+  <li>Symfony is a framework for PHP</li>
+</ul>
+
+<p>A framework provides a library of existing code in the target language, along with some recommended ways of structuring your program.</p>
+
+<p>Frameworks allow developers to work together more easily by having a set of “design rules” for their code.</p>
+
+<p>Frameworks also allow us to achieve outcomes faster, as we don’t need to write as much code.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="an-html-and-css-website-run-with-python">An HTML and CSS website run with Python</h3>
+
+<p>A Flask website still uses HTML and CSS,<br />
+but pages can also display data from Python.</p>
 
 
 <aside class="notes">
@@ -256,7 +281,10 @@
 	>
 		
 
-<h3 id="allows-you-to-run-code-before-displaying-a-page">allows you to run code before displaying a page</h3>
+<h3 id="allows-you-to-run-code-before-displaying-a-page">Allows you to run code before displaying a page</h3>
+
+<p>Every Flask page is processed in Python<br />
+before being displayed to the user.</p>
 
 
 <aside class="notes">
@@ -277,7 +305,10 @@
 	>
 		
 
-<h3 id="allows-you-to-re-use-code-across-pages">allows you to re-use code across pages</h3>
+<h3 id="allows-you-to-re-use-code-across-pages">Allows you to re-use code across pages</h3>
+
+<p>Flask support templates and includes,<br />
+so you can write code once and re-use it.</p>
 
 
 <aside class="notes">
@@ -298,7 +329,10 @@
 	>
 		
 
-<h3 id="built-in-support-for-database-access">built in support for database access</h3>
+<h3 id="built-in-support-for-database-access">Built in support for database access</h3>
+
+<p>We can use Python to access our database<br />
+and then pass the results into an HTML page.</p>
 
 
 <aside class="notes">
@@ -321,26 +355,8 @@
 
 <h2 id="set-up-new-project-from-starter">Set up new project from starter</h2>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="copy-files-assetszipflask-starterzip">copy files assets/zip/flask-starter.zip</h3>
+<p>Download and unzip the Flask starter kit.<br />
+<a href="assets/zip/flask-starter.zip" target="_blank">Download Flask Starter</a></p>
 
 
 <aside class="notes">
@@ -361,7 +377,10 @@
 	>
 		
 
-<h3 id="put-files-in-project-folder">put files in project folder</h3>
+<h3 id="copy-the-public-folder">Copy the public folder</h3>
+
+<p>Copy the whole folder called “public”<br />
+which is inside the flask-starter.</p>
 
 
 <aside class="notes">
@@ -382,7 +401,201 @@
 	>
 		
 
-<h3 id="simple-tour">simple tour</h3>
+<h3 id="paste-public-into-your-project-folder">Paste ‘public’ into your project folder</h3>
+
+<p>You should now have two folders in your project:<br />
+the <code>db</code> folder, and a new <code>public</code> folder.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="flask-tour">Flask tour</h2>
+
+<p>Let’s take a quick look at what<br />
+we have included in the starter.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="the-assets-folder">The assets folder</h3>
+
+<p>This is where you keep all of your images<br />
+and also any CSS of JavaScript you need.</p>
+
+
+<aside class="notes">
+
+<p>We’ve included a starter CSS file, a few images, and jQuery.</p>
+
+<p>You will need to modify these assets as you develop your project.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="includes-folder">Includes folder</h3>
+
+<p>This is where you keep pieces of HTML code<br />
+you’d like to use on more than one page.</p>
+
+<p>eg. header, footer, navigation</p>
+
+
+<aside class="notes">
+
+<p>You will need to modify these includes as you develop your project.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="templates-folder">Templates folder</h3>
+
+<p>In Flask, a template is the HTML layout<br />
+for a page in your website.</p>
+
+<p>eg. index, user-profile, contact, generic-page</p>
+
+
+<aside class="notes">
+
+<p>You can use the same template across multiple pages, or you can have a separate layout for every page - it’s up to you!</p>
+
+<p>The point is that you could for example design your home page to have a unique design, but have every other page have a consistent layout with only the page’s content changing.</p>
+
+<p>You will need to modify these templates as you develop your project.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="random-python-init-file">Random Python init file</h3>
+
+<p>This file is required by Python so that<br />
+it knows to look here for project files.</p>
+
+
+<aside class="notes">
+
+<p>This init file is a pain, but you need it in any folder where you have python files which need to be included in the project, otherwise the app won’t be able to find them.</p>
+
+<p>This init file also contains some code which the app needs when it first launches.</p>
+
+<p>You do not need to modify this file.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="the-data-manager-handles-database-connections">The data manager handles database connections</h3>
+
+<p>This file contains some helper functions to<br />
+keep our database connected on every page.</p>
+
+
+<aside class="notes">
+
+<p>The database manager is not a default part of Flask, it’s something Gather has written for you to make working with databases in Flask even easier.</p>
+
+<p>You need to change the name of the database referenced in this file.</p>
+
+<p>Once you’ve set the right database file path you do not need to modify this file again.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="the-routes-file-manages-your-sites-pages">The routes file manages your site’s pages</h3>
+
+<p>Maps web page URLs to Python functions.<br />
+Most of your Python code will go in here!</p>
 
 
 <aside class="notes">
@@ -405,26 +618,8 @@
 
 <h2 id="run-project">Run project</h2>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="open-shell">open shell</h3>
+<p>A Flask website is a Python app,<br />
+so we need to start it running.</p>
 
 
 <aside class="notes">
@@ -445,7 +640,50 @@
 	>
 		
 
-<h3 id="navigate-to-project">navigate to project</h3>
+<h3 id="create-a-run-script">Create a run script</h3>
+
+<pre><code class="language-python">from public import website
+website.run(debug=True)
+</code></pre>
+
+<p>Create a new file in your project<br />
+called <code>runserver.py</code> with the code above.</p>
+
+
+<aside class="notes">
+
+<p>This file should be directly inside your project folder.</p>
+
+<p>The means your project should now contain the two folders <strong>db</strong> and <strong>public</strong> plus a new file called <strong>runserver.py</strong>.</p>
+
+<p>This Python script imports the information from <strong>__init__.py</strong> in the public folder, which includes a variable called <strong>website</strong> which is an instance of Flask.</p>
+
+<p>It then executes the <strong>run</strong> function on the website, which starts the app and makes it accessible from the browser.</p>
+
+<p>The parameter <strong>debug=True</strong> makes the Flask site automatically restart any time you make changes to the website files.</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="execute-the-run-server-script-from-the-shell">Execute the ‘run server’ script from the shell</h3>
+
+<pre><code class="language-bash">python runserver.py
+</code></pre>
+
+<p>Some text should be displayed<br />
+to confirm the app is running.</p>
 
 
 <aside class="notes">
@@ -466,28 +704,10 @@
 	>
 		
 
-<h3 id="run-runserverpy">run runserver.py</h3>
+<h3 id="open-the-site-in-a-browser">Open the site in a browser</h3>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="open-in-browser">open in browser</h3>
+<p>Open your web browser and navigate to <br />
+the url <code>localhost:5000</code> to see your site.</p>
 
 
 <aside class="notes">
@@ -510,26 +730,8 @@
 
 <h2 id="create-routes-and-templates">Create routes and templates</h2>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="route-for-upload">route for upload</h3>
+<p>We have a home page, but we need<br />
+to set up some other pages too.</p>
 
 
 <aside class="notes">
@@ -550,7 +752,10 @@
 	>
 		
 
-<h3 id="template-for-upload">template for upload</h3>
+<h3 id="page-to-post-a-new-message">Page to post a new message</h3>
+
+<p>We need a page where a user can<br />
+type in and submit a new message.</p>
 
 
 <aside class="notes">
@@ -571,7 +776,22 @@
 	>
 		
 
-<h3 id="route-for-login">route for login</h3>
+<h3 id="template-for-new-message">Template for new message</h3>
+
+<pre><code class="language-html">&lt;h1&gt;Post a new message&lt;/h1&gt;
+
+&lt;form&gt;
+
+  &lt;label&gt;What's happening?&lt;/label&gt;
+  &lt;input type="text"&gt;
+
+  &lt;input type="submit" value="Post message"&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+<p>Create a template called <code>new-message.html</code><br />
+containing the HTML code provided.</p>
 
 
 <aside class="notes">
@@ -592,7 +812,16 @@
 	>
 		
 
-<h3 id="template-for-login">template for login</h3>
+<h3 id="route-for-new-message">Route for new message</h3>
+
+<pre><code class="language-python"># new message page
+@website.route('/new')
+def new_message():
+    return 'Home page'
+</code></pre>
+
+<p>Add a new route to <code>routes.py</code> which shows <br />
+the template <code>new-message</code> for the url <code>/new</code>.</p>
 
 
 <aside class="notes">
@@ -613,7 +842,25 @@
 	>
 		
 
-<h3 id="route-for-user-profile">route for user profile</h3>
+<h3 id="template-for-sign-in">Template for sign in</h3>
+
+<pre><code class="language-html">&lt;h1&gt;Sign in&lt;/h1&gt;
+
+&lt;form&gt;
+
+  &lt;label&gt;Username&lt;/label&gt;
+  &lt;input type="text"&gt;
+
+  &lt;label&gt;Password&lt;/label&gt;
+  &lt;input type="text"&gt;
+
+  &lt;input type="submit" value="Log in"&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+<p>Create a template called <code>sign-in.html</code><br />
+which contains a simple sign in form.</p>
 
 
 <aside class="notes">
@@ -634,7 +881,66 @@
 	>
 		
 
-<h3 id="template-for-user-profile">template for user profile</h3>
+<h3 id="route-for-sign-in">Route for sign in</h3>
+
+<pre><code class="language-python"># sign in page
+@website.route('/sign-in')
+def login():
+    return 'Sign in page'
+</code></pre>
+
+<p>Add a new route to which shows the<br />
+sign in template at the url <code>/sign-in</code>.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-log-out-page">Challenge: Log out page</h3>
+
+<p>Create a new template and route<br />
+for the site url <code>/log-out</code>.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="challenge-test-site">Challenge: Test Site</h3>
+
+<p>Write a list of all your routes<br />
+then test each in the browser.</p>
+
+<p>Tick them off if they work correctly!</p>
 
 
 <aside class="notes">
@@ -657,26 +963,8 @@
 
 <h2 id="create-navigation">Create navigation</h2>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="create-nav-bar-include">create nav bar include</h3>
+<p>We can use an <strong>include</strong> to store<br />
+a menu bar for use on every page.</p>
 
 
 <aside class="notes">
@@ -697,7 +985,18 @@
 	>
 		
 
-<h3 id="write-html-for-nav-bar">write html for nav bar</h3>
+<h3 id="create-nav-bar-include">Create nav bar include</h3>
+
+<pre><code class="language-html">&lt;nav&gt;
+  &lt;a href="/"&gt;Home&lt;/a&gt;
+  &lt;a href="/new"&gt;New Message&lt;/a&gt;
+  &lt;a href="/sign-in"&gt;Sign in&lt;/a&gt;
+  &lt;a href="/sign-out"&gt;Sign out&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+
+<p>Create a new file in the <strong>includes</strong> folder<br />
+called <strong>navbar.html</strong>, containing the code provided.</p>
 
 
 <aside class="notes">
@@ -718,7 +1017,40 @@
 	>
 		
 
-<h3 id="include-in-all-templates">include in all templates</h3>
+<h3 id="include-in-all-templates">Include in all templates</h3>
+
+<pre><code class="language-html">{% include navbar.html %}
+</code></pre>
+
+<p>At the top of each page template,<br />
+add a line of code to include the nav.</p>
+
+
+<aside class="notes">
+
+<p>New syntax! Woo! The curly brackets with percentage signs are how we run small pieces of Python code within an HTML page.</p>
+
+<p>Look out for more of this as we go on!</p>
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="test-your-navigation">Test your navigation</h3>
+
+<p>Reload your site in the browser<br />
+and click to each page to test it.</p>
 
 
 <aside class="notes">
