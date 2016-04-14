@@ -21,17 +21,90 @@ slides:
 
   - content: |
 
-      ### Get all messages
-
+      ### Write a query to get all messages
       
+      ```python
+      # home/index page
+      @website.route('/')
+      def index():
+          
+          query_string = 'SELECT content FROM messages'
+
+          return render_template('index.html')
+      ```
+
+      Find your home page route and create
+      a variable describing a query string.
 
   - content: |
 
-      ### Pass to view
+      ### Query the database
+
+      ```python
+      # home/index page
+      @website.route('/')
+      def index():
+          
+          query_string = 'SELECT content FROM messages'
+          query_results = datamanager.query_db(query_string, [], one=False)
+
+          return render_template('index.html')
+      ```
+
+      Use the data manager to send the query
+      to the database and fetch the results.
+
+  - content: |
+
+      ### Pass the query results to the template
+
+      ```python
+      # home/index page
+      @website.route('/')
+      def index():
+          
+          query_string = 'SELECT content FROM messages'
+          messages = datamanager.query_db(query_string, [], one=False)
+
+          return render_template('index.html', messages=query_results)
+      ```
+
+      Pass the query results into the template
+      under the variable name `messages`.
 
   - content: |
 
       ### Loop over messages
+
+      ```html
+      <ol>
+
+        {% for message in messages %}
+        <li>{{ message['content'] }}</li>
+        {% endfor %}
+
+      </ol>
+      ```
+
+      In your template, create a loop in the list
+      to create a list item for each message.
+
+  - content: |
+
+      ### Check that it worked
+
+      View the home page in your browser
+      and check the messages are showing!
+
+
+
+
+
+
+
+  - content: |
+
+      ## Combine user data
 
   - content: |
 
@@ -39,7 +112,16 @@ slides:
 
   - content: |
 
-      ### Display user by message
+      ### Display username by message
+
+
+
+
+
+
+  - content: |
+
+      ## Order and optimise the results
 
   - content: |
 
@@ -56,8 +138,18 @@ slides:
 
 ## List all users
 
+### Create template
 
-## list all photos
+### Create route
+
+### Query users table
+
+### Display using loop
+
+### Check visually
+
+
+
 
 
 
