@@ -12,16 +12,48 @@ slides:
       _Authenticating users_
 
 
-## Authenticate user
 
 
-## Sign out user
 
 
-## Smart sign in / sign out links
+  - content: |
+      
+      ## Authenticate user
 
 
-## Restrict access to new message page
+
+
+
+
+  - content: |
+      
+      ## Sign out user
+  
+
+
+
+
+
+
+
+  - content: |
+
+      ## Smart sign in / sign out links
+
+
+
+
+
+
+
+
+  - content: |
+
+      ## Restrict access to new message page
+
+
+
+
 
 
 
