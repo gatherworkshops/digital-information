@@ -6,6 +6,10 @@
 
   <body>
 
+  {% if current_user.is_authenticated %}
+    Hi {{ current_user.id }}!
+  {% endif %}
+
     <nav>
       <a href="/">Home</a>
       <a href="/new-message">New Message</a>
