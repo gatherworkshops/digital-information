@@ -1,47 +1,73 @@
-import sqlite3
 from public import website
+from public import datamanager
 from flask.ext import login as flask_login
+from flask.ext.login import login_required
+
+website.secret_key = 'super secret string' 
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(website)
 
-# Our mock database.
-users = {'foo@bar.tld': {'pw': 'secret'}}
-
-website.secret_key = 'super secret string'  # Change this!
+login_manager.login_view = "sign_in"
 
 class User(flask_login.UserMixin):
-    pass
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+        self.authenticated = False
+
+    def get_id(self):
+        return self.username
+
+    def is_authenticated(self):
+        return self.authenticated
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+    	return False
 
 
-
-'''
-It should return None (not raise an exception) 
-if the ID is not valid. 
-(In that case, the ID will manually be removed 
-from the session and processing will continue.)
-'''
 @login_manager.user_loader
-def user_loader(email):
-    if email not in users:
-        return
+def load_user(username):
+    query_string = (
+      'SELECT user_id, username, password, first_name, last_name ' 
+      'FROM users '
+      'WHERE username = ?'
+    )
 
-    user = User()
-    user.id = email
-    return user
+    query_result = datamanager.query_db(query_string, [username], one=True)
+
+    if query_result == None:
+        return None
+
+    else:
+        user = User(
+            query_result['username'],
+            query_result['password']
+        )
+
+        return user
 
 
-@login_manager.request_loader
-def request_loader(request):
-    email = request.form.get('email')
-    if email not in users:
-        return
 
-    user = User()
-    user.id = email
+def sign_in_user(username, password):
 
-    # DO NOT ever store passwords in plaintext and always compare password
-    # hashes using constant-time comparison!
-    user.is_authenticated = request.form['pw'] == users[email]['pw']
+    user = load_user(username)
 
-    return user
+    if user and user.password == password:
+    	user.authenticated = True
+    	flask_login.login_user(user)
+
+    return flask_login.current_user
+
+
+
+
+def sign_out_user():
+    flask_login.logout_user()
+
+
+    
