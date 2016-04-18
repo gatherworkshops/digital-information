@@ -55,7 +55,7 @@ slides:
 
   - content: |
 
-      ### Import the flask website
+      ### Import your website
 
       ```python
       from public import website
@@ -140,15 +140,19 @@ slides:
       ### Create a User class
 
       ```python
+      login_manager = flask_login.LoginManager()
+      login_manager.init_app(website)
+
       class User(flask_login.UserMixin):
 
           def __init__(self, username, password):
               self.username = username
               self.password = password
+              self.authenticated = False
       ```
 
-      In your usermanager file, create a User class
-      which requires a username and password to be supplied.
+      In your **user manager** after the login manager setup code, 
+      create a **User** class which requires a username and password.
 
 
   - content: |
@@ -161,6 +165,7 @@ slides:
           def __init__(self, username, password):
               self.username = username
               self.password = password
+              self.authenticated = False
 
           def get_id(self):
               return self.username
@@ -179,12 +184,13 @@ slides:
           def __init__(self, username, password):
               self.username = username
               self.password = password
+              self.authenticated = False
 
           def get_id(self):
               return self.username
 
           def is_authenticated(self):
-              return True
+              return self.authenticated
       ```
 
       In our app, if we find a user in the database
@@ -200,12 +206,13 @@ slides:
           def __init__(self, username, password):
               self.username = username
               self.password = password
+              self.authenticated = False
               
           def get_id(self):
               return self.username
 
           def is_authenticated(self):
-              return True
+              return self.authenticated
 
           def is_active(self):
               return True
@@ -224,7 +231,7 @@ slides:
           return self.username
 
       def is_authenticated(self):
-          return True
+          return self.authenticated
 
       def is_active(self):
           return True
@@ -248,12 +255,13 @@ slides:
           def __init__(self, username, password):
               self.username = username
               self.password = password
+              self.authenticated = False
 
           def get_id(self):
               return self.username
 
           def is_authenticated(self):
-              return True
+              return self.authenticated
 
           def is_active(self):
               return True
@@ -372,7 +380,10 @@ slides:
       ### Set the login page
 
       ```python
-      login_manager.login_view = "users.login"
+      login_manager = flask_login.LoginManager()
+      login_manager.init_app(website)
+
+      login_manager.login_view = "sign_in"
       ```
 
       This tells the flask-login plugin where people
@@ -396,62 +407,6 @@ slides:
 
 
 
-  - content: |
-
-      ## Create a sign in form
-
-      We need to create a sign in form
-      on the sign-in page template.
-
-
-  - content: |
-
-      ### Set the form action to sign-in
-
-      ```html
-      <form action="sign-in">
-      </form>
-      ```
-
-      The form "action" is the URL or route
-      where the form data should be submitted.
-
-
-  - content: |
-
-      ### Set the form method to post
-
-      ```html
-      <form action="sign-in" method="post">
-      </form>
-      ```
-
-      Setting the method to "post" allows us to
-      easily access the data from within Python.
-
-
-  - content: |
-
-      ### Name all form inputs
-
-      ```html
-      <form action="sign-in" method="post">
-
-        <label>Username</label>
-        <input name="username" type="text">
-
-        <label>Password</label>
-        <input name="password" type="text">
-
-        <input type="submit" value="Sign in">
-
-      </form>
-      ```
-
-      Form inputs must have a name attribute
-      for their data to be posted to the server.
-
-
 
 
 
@@ -472,8 +427,11 @@ slides:
       ```python
       def sign_in_user(username, password):
 
-          user = User(username, password)
-          flask_login.login_user(user)
+          user = load_user(username)
+
+          if user and user.password == password:
+            user.authenticated = True
+            flask_login.login_user(user)
 
           return flask_login.current_user
       ```
@@ -499,58 +457,10 @@ slides:
 
   - content: |
 
-      ## Modify the sign in route
+      ## Authenticate the user
 
-      Our **sign-in** route now needs to process sign ins
-      as well as display the sign in form to users.
-
-  - content: |
-
-      ### Define which methods are enabled for the route
-
-      ```python
-      @website.route('/sign-in', methods=["GET", "POST"])
-      def sign_in():
-          return render_template('sign-in.html')
-      ```
-
-      The **GET** method is for viewing the web page,
-      and the **POST** method is for processing form data.
-
-  - content: |
-
-      ### Do different things based on the method used
-
-      ```python
-      @website.route('/sign-in', methods=["GET", "POST"])
-      def sign_in():
-
-          if request.method == 'GET':
-              return render_template('sign-in.html')
-
-          if request.method == 'POST':
-              print('log in the user')
-
-      ```
-
-      For a **GET** request we want to display the form,
-      but for **POST** we want to log in the user.
-
-
-  - content: |
-
-      ### Get the posted username and password
-
-      ```python
-      if request.method == 'POST':
-
-          username = request.form.get('username')
-          password = request.form.get('password')
-
-      ```
-
-      We can get the values entered in the form
-      by using the names we specified in the HTML.
+      Sign in the user with the username
+      and password they entered in the form.
 
 
   - content: |
@@ -582,10 +492,10 @@ slides:
 
           user = usermanager.sign_in_user(username, password)
 
-          if user.is_authenticated:
-              redirect('/')
+          if user.is_authenticated():
+              return redirect('/')
           else:
-              render_template('sign-in.html')
+              return render_template('sign-in.html')
       ```
 
       If the user exists, they will be authenticated
@@ -817,33 +727,25 @@ slides:
 
   - content: |
 
-      ## Display username
+      ## Using user data in templates
+
+      We can display user data, or use their info
+      to show and hide elements on a page.
 
 
   - content: |
 
-      ### Show username
+      ### Displaying a username
 
       ```html
       {% if current_user.is_authenticated %}
-      Hello {% if current_user.username %}
+          Hello {% current_user.username %}
       {% endif %}
       ```
 
-
-
-
-
-
-
   - content: |
 
-      ## Smart sign in / sign out links
-
-
-  - content: |
-
-      ### Use template vars to show things
+      ### Smart sign in / sign out links
 
       ```html
       <nav>
@@ -872,7 +774,7 @@ slides:
 
       ## User Login: Complete!
 
-      [Take me to the next chapter!](updating-data.html)
+      [Take me to the next chapter!](web-forms.html)
 
 
 ---
