@@ -97,7 +97,7 @@ slides:
       ### Flask Login
 
       Flask Login is a plugin for Flask which makes
-      makes user login and session management easier.
+      user login and session management easier.
 
       [Install Flask Login](https://github.com/maxcountryman/flask-login){:target="_blank"}
 
