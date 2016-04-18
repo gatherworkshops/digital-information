@@ -217,7 +217,7 @@ for us to log users in and out.</p>
 	>
 		
 
-<h3 id="install-it">Install it</h3>
+<h3 id="install-the-flask-login-plugin">Install the flask-login plugin</h3>
 
 <pre><code class="language-bash">pip install flask-login
 </code></pre>
@@ -615,6 +615,9 @@ def is_anonymous(self):
 
 </code></pre>
 
+<p>Our app doesn’t support anonymous users,<br />
+so this function always returns False.</p>
+
 
 <aside class="notes">
 
@@ -757,6 +760,9 @@ that everything is still working.</p>
 
 <h2 id="restrict-access-to-pages">Restrict access to pages</h2>
 
+<p>We can make certain pages of our site<br />
+only accessible for logged in users.</p>
+
 
 <aside class="notes">
 
@@ -776,13 +782,13 @@ that everything is still working.</p>
 	>
 		
 
-<h3 id="import-loginrequired-to-usermanager">Import login_required to usermanager</h3>
+<h3 id="import-the-login-required-mixin">Import the “login required” mixin</h3>
 
 <pre><code class="language-python">from flask.ext.login import login_required
 </code></pre>
 
-<p>The login_required function is a mixin which<br />
-we can apply to routes to restrict access.</p>
+<p>In the usermanager import <strong>login_required</strong>, <br />
+a mixin we can apply to routes to restrict access.</p>
 
 
 <aside class="notes">
@@ -803,13 +809,13 @@ we can apply to routes to restrict access.</p>
 	>
 		
 
-<h3 id="import-usermanager-into-routes">Import usermanager into routes</h3>
+<h3 id="import-the-user-manager-into-routes">Import the user manager into routes</h3>
 
 <pre><code class="language-python">from public import usermanager
 </code></pre>
 
-<p>This will allow us to use login_required<br />
-and other function we have in the usermanager.</p>
+<p>This will allow us to use the <strong>login_required</strong> mixin<br />
+and other functions we defined in the usermanager.</p>
 
 
 <aside class="notes">
@@ -830,7 +836,7 @@ and other function we have in the usermanager.</p>
 	>
 		
 
-<h3 id="add-mixin-to-new-message-page">Add mixin to new message page</h3>
+<h3 id="add-login-required-to-the-new-message-page">Add “login required” to the new message page</h3>
 
 <pre><code class="language-python">@website.route('/new-message')
 @usermanager.login_required
@@ -893,7 +899,7 @@ to check that access is restricted.</p>
 
 <p>This tells the flask-login plugin where people<br />
 should be sent if they are not logged in and<br />
-try to access a resticted page.</p>
+try to access a restricted page.</p>
 
 
 <aside class="notes">
@@ -915,6 +921,11 @@ try to access a resticted page.</p>
 		
 
 <h3 id="check-the-login-redirect-works">Check the login redirect works</h3>
+
+<p>Try to navigate to the restricted “new message” page<br />
+and check that you are redirected to the login page.</p>
+
+<p class="checkpoint">Restricted pages should redirect to the login page.</p>
 
 
 <aside class="notes">
@@ -993,8 +1004,8 @@ where the form data should be submitted.</p>
 &lt;/form&gt;
 </code></pre>
 
-<p>Setting the method to “post” sends the data<br />
-in the background, rather than attached to the URL.</p>
+<p>Setting the method to “post” allows us to<br />
+easily access the data from within Python.</p>
 
 
 <aside class="notes">
@@ -1052,7 +1063,10 @@ for their data to be posted to the server.</p>
 	>
 		
 
-<h2 id="sign-in-route">sign in route</h2>
+<h2 id="create-function-to-sign-in-users">Create function to sign in users</h2>
+
+<p>This function in <strong>usermanager</strong> will take a <br />
+username and password, then return a signed in user.</p>
 
 
 <aside class="notes">
@@ -1073,14 +1087,132 @@ for their data to be posted to the server.</p>
 	>
 		
 
-<h3 id="sign-in-method-allow-get-and-post">sign in method allow get and post</h3>
+<h3 id="add-the-signinuser-function-to-usermanager">Add the “sign_in_user” function to usermanager</h3>
 
-<pre><code class="language-python"># sign in page
-@website.route('/sign-in', methods=["GET", "POST"])
+<pre><code class="language-python">def sign_in_user(username, password):
+
+    user = User(username, password)
+    flask_login.login_user(user)
+
+    return flask_login.current_user
+</code></pre>
+
+<p>This function creates an actual <strong>User</strong> object<br />
+and logs that user in using <strong>flask-login</strong>.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-your-app-runs">Check your app runs</h3>
+
+<p>Run your website and click around<br />
+to check for any new errors.</p>
+
+<p class="checkpoint">Your website should run and be error-free.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="modify-the-sign-in-route">Modify the sign in route</h2>
+
+<p>Our <strong>sign-in</strong> route now needs to process sign ins<br />
+as well as display the sign in form to users.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="define-which-methods-are-enabled-for-the-route">Define which methods are enabled for the route</h3>
+
+<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
+def sign_in():
+    return render_template('sign-in.html')
+</code></pre>
+
+<p>The <strong>GET</strong> method is for viewing the web page,<br />
+and the <strong>POST</strong> method is for processing form data.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="do-different-things-based-on-the-method-used">Do different things based on the method used</h3>
+
+<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
 def sign_in():
 
-    return render_template('sign-in.html')
+    if request.method == 'GET':
+        return render_template('sign-in.html')
+
+    if request.method == 'POST':
+        print('log in the user')
+
 </code></pre>
+
+<p>For a <strong>GET</strong> request we want to display the form,<br />
+but for <strong>POST</strong> we want to log in the user.</p>
 
 
 <aside class="notes">
@@ -1101,15 +1233,17 @@ def sign_in():
 	>
 		
 
-<h3 id="sign-in-method-handle-get-and-post">sign in method handle get and post</h3>
+<h3 id="get-the-posted-username-and-password">Get the posted username and password</h3>
 
-<pre><code class="language-python">if request.method == 'GET':
-    return render_template('sign-in.html')
+<pre><code class="language-python">if request.method == 'POST':
 
-if request.method == 'POST':
-    print('log in the user')
+    username = request.form.get('username')
+    password = request.form.get('password')
 
 </code></pre>
+
+<p>We can get the values entered in the form<br />
+by using the names we specified in the HTML.</p>
 
 
 <aside class="notes">
@@ -1130,39 +1264,57 @@ if request.method == 'POST':
 	>
 		
 
-<h3 id="get-the-posted-username-and-pass">get the posted username and pass</h3>
+<h3 id="use-the-username-and-password-to-authenticate">Use the username and password to authenticate</h3>
 
-<pre><code class="language-python">#form submit handler
-if request.method == 'POST':
+<pre><code class="language-python">if request.method == 'POST':
+
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    user = usermanager.sign_in_user(username, password)
+</code></pre>
+
+<p>We can pass the username and password to<br />
+the <code>sign_in_user</code> function to sign them in.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="redirect-based-on-the-result">Redirect based on the result</h3>
+
+<pre><code class="language-python">if request.method == 'POST':
 
     username = request.form.get('username')
     password = request.form.get('password')
 
     user = usermanager.sign_in_user(username, password)
 
-    return render_template()
+    if user.is_authenticated:
+        redirect('/')
+    else:
+        render_template('sign-in.html')
 </code></pre>
 
+<p>If the user exists, they will be authenticated<br />
+and we can redirect them to the home page.</p>
 
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="use-them-to-authenticate">use them to authenticate</h3>
+<p>If they don’t exist, we keep them on the sign in page.</p>
 
 
 <aside class="notes">
@@ -1183,7 +1335,10 @@ if request.method == 'POST':
 	>
 		
 
-<h3 id="redirect-based-on-the-result">redirect based on the result</h3>
+<h3 id="check-your-site-works">Check your site works</h3>
+
+<p>Everything should work as normal, except that<br />
+signing in will always keep you on the sign in page.</p>
 
 
 <aside class="notes">
@@ -1206,29 +1361,8 @@ if request.method == 'POST':
 
 <h2 id="implement-the-user-loader-function">Implement the user loader function</h2>
 
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="import-the-datamanager">Import the datamanager</h3>
-
-<p>So we can access the database<br />
-to look up a user</p>
+<p>We have a function to load a user but it<br />
+always returns None, it should return a user.</p>
 
 
 <aside class="notes">
@@ -1249,18 +1383,105 @@ to look up a user</p>
 	>
 		
 
-<h3 id="add-it-to-your-usermanager-file">Add it to your usermanager file</h3>
+<h3 id="import-the-datamanager-into-the-usermanager">Import the datamanager into the usermanager</h3>
 
-<pre><code class="language-python">'''
-It should return None (not raise an exception) 
-if the ID is not valid. 
-(In that case, the ID will manually be removed 
-from the session and processing will continue.)
-'''
-@login_manager.user_loader
+<pre><code class="language-python">from public import datamanager
+</code></pre>
+
+<p>Import the data manager so that we can <br />
+access the database to look up a user.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="write-a-query-to-find-the-user">Write a query to find the user</h3>
+
+<pre><code class="language-python">@login_manager.user_loader
 def load_user(username):
 
-    # 1. Fetch against the database a user by their username 
+    query_string = (
+      'SELECT user_id, username, password, first_name, last_name ' 
+      'FROM users '
+      'WHERE username = ?'
+    )
+</code></pre>
+
+<p>The query is fairly straightforward, but we also<br />
+included a question mark so we can pass in a username.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="run-the-query-passing-it-the-username-parameter">Run the query, passing it the username parameter</h3>
+
+<pre><code class="language-python">@login_manager.user_loader
+def load_user(username):
+
+    query_string = (
+      'SELECT user_id, username, password, first_name, last_name ' 
+      'FROM users '
+      'WHERE username = ?'
+    )
+
+    query_result = datamanager.query_db(query_string, [username], one=True)
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="if-the-query-fails-then-return-none">If the query fails then return None</h3>
+
+<pre><code class="language-python">@login_manager.user_loader
+def load_user(username):
+
     query_string = (
       'SELECT user_id, username, password, first_name, last_name ' 
       'FROM users '
@@ -1270,15 +1491,42 @@ def load_user(username):
     query_result = datamanager.query_db(query_string, [username], one=True)
 
     if query_result == None:
-        return
+        return None
+</code></pre>
 
-    # 2. Create a new object of `User` class and return it.
-    user = User(
-        query_result['username'],
-        query_result['password']
-    )
 
-    return user
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="if-the-query-succeeds-then-create-and-return-a-user">If the query succeeds then create and return a User</h3>
+
+<pre><code class="language-python">    query_result = datamanager.query_db(query_string, [username], one=True)
+
+    if query_result == None:
+        return None
+
+    else:
+        user = User(
+            query_result['username'],
+            query_result['password']
+        )
+
+        return user
 </code></pre>
 
 
@@ -1302,6 +1550,35 @@ def load_user(username):
 
 <h3 id="site-should-be-working">Site should be working</h3>
 
+<p>Check your site is working<br />
+and sign in is supported.</p>
+
+<p class="checkpoint">You should be able to log in to your website.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="signing-in-should-allow-access-to-new-messages">Signing in should allow access to new messages</h3>
+
+<p>Check that once you’ve signed in<br />
+you can access the <strong>new message</strong> page.</p>
+
 
 <aside class="notes">
 
@@ -1322,6 +1599,9 @@ def load_user(username):
 		
 
 <h2 id="sign-out-user">Sign out user</h2>
+
+<p>Now we can also add functionality<br />
+for a user to sign out.</p>
 
 
 <aside class="notes">
@@ -1371,7 +1651,7 @@ def sign_out():
 
 <h3 id="create-signoutuser-function">Create sign_out_user function</h3>
 
-<p>In usermanager.py</p>
+<p>In usermanager.py:</p>
 
 <pre><code class="language-python">def sign_out_user():
     flask_login.logout_user()
