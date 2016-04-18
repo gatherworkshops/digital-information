@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: Web Lists
+title: Displaying Data
 slides:
 
   - class: title-slide
@@ -8,8 +8,8 @@ slides:
 
       ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
-      # Web Lists
-      _Loading and displaying data_
+      # Displaying Data
+      _Loading data into a web page_
 
 
   - content: |
