@@ -195,8 +195,32 @@
 
 <h2 id="posting-a-message">Posting a message</h2>
 
-<p>Only logged in user should be able to post,<br />
+<p>Only logged in users should be able to post,<br />
 and their username should be associated.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="ensure-the-form-is-formatted-correctly">Ensure the form is formatted correctly</h3>
+
+<p>Add the form action and form method,<br />
+plus names for all form inputs.</p>
 
 
 <aside class="notes">
@@ -283,6 +307,48 @@ to handle both request types.</p>
 
 <h3 id="get-form-data">Get form data</h3>
 
+<pre><code class="language-python">def new_message():
+
+    if request.method == 'GET':
+        return render_template('new-message.html')
+
+    elif request.method == 'POST':
+
+        content = request.form.get('')
+
+        return redirect('/')
+
+</code></pre>
+
+<p>Get the message content from the form.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="import-datetime-so-we-can-get-the-current-time">Import datetime so we can get the current time</h3>
+
+<pre><code class="language-python">from datetime import datetime
+</code></pre>
+
+<p>Import the dattime module at <br />
+the top of your routes file.</p>
+
 
 <aside class="notes">
 
@@ -303,6 +369,22 @@ to handle both request types.</p>
 		
 
 <h3 id="generate-current-time">Generate current time</h3>
+
+<pre><code class="language-python">def new_message():
+
+    if request.method == 'GET':
+        return render_template('new-message.html')
+
+    elif request.method == 'POST':
+
+        content = request.form.get('message')
+        current_time = datetime.now
+
+        return redirect('/')
+
+</code></pre>
+
+<p>Generate the current time.</p>
 
 
 <aside class="notes">
@@ -325,6 +407,21 @@ to handle both request types.</p>
 
 <h3 id="get-logged-in-user-id">Get logged in user id</h3>
 
+<pre><code class="language-python">def new_message():
+
+    if request.method == 'GET':
+        return render_template('new-message.html')
+
+    elif request.method == 'POST':
+
+        content = request.form.get('message')
+        current_time = datetime.now
+        user_id = usermanager.current_user.user_id
+
+        return redirect('/')
+
+</code></pre>
+
 
 <aside class="notes">
 
@@ -345,6 +442,21 @@ to handle both request types.</p>
 		
 
 <h3 id="write-query">Write query</h3>
+
+<pre><code class="language-python">elif request.method == 'POST':
+
+    content = request.form.get('message')
+    current_time = datetime.now
+    user_id = usermanager.current_user.user_id
+
+    query_string = (
+      'INSERT INTO messages '
+      'VALUES [?,?,?]'
+    )
+
+    return redirect('/')
+
+</code></pre>
 
 
 <aside class="notes">
@@ -367,6 +479,21 @@ to handle both request types.</p>
 
 <h3 id="submit-query-with-parameters">Submit query with parameters</h3>
 
+<pre><code class="language-python">query_string = (
+  'INSERT INTO messages '
+  'VALUES [?,?,?]'
+)
+
+query_result = datamanager.query_db(
+    query_string, 
+    [content, current_time, user_id], 
+    one=True
+)
+
+return redirect('/')
+
+</code></pre>
+
 
 <aside class="notes">
 
@@ -388,6 +515,22 @@ to handle both request types.</p>
 
 <h3 id="check-result-is-valid">Check result is valid</h3>
 
+<pre><code class="language-python">
+query_result = datamanager.query_db(
+    query_string, 
+    [content, current_time, user_id], 
+    one=True
+)
+
+if query_result == None:
+    print('error')
+else:
+    print('success')
+
+return redirect('/')
+
+</code></pre>
+
 
 <aside class="notes">
 
@@ -407,7 +550,33 @@ to handle both request types.</p>
 	>
 		
 
-<h3 id="redirect-to-home-page">Redirect to home page</h3>
+<h3 id="show-error-if-there-was-one">Show error if there was one</h3>
+
+<p>Display in template</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-in-browser">Check in browser</h3>
+
+<p>Try posting a message and check<br />
+that it shows up on the home page.</p>
 
 
 <aside class="notes">
