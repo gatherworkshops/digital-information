@@ -34,7 +34,7 @@ slides:
       ### Code Editor
       
       We recommend a simple but modern editor,
-      such as [SublimeText](sublimetext.com), [Atom](atom.io) or [Visual Studio Code](code.visualstudio.com).
+      such as [SublimeText](http://sublimetext.com){:target="_blank"}, [Atom](http://atom.io){:target="_blank"} or [Visual Studio Code](http://code.visualstudio.com){:target="_blank"}.
 
     notes: |
 
@@ -48,7 +48,7 @@ slides:
       Used for working with databases visually.
       This app is free and cross-platform.
 
-      [Download SQLite Studio](sqlitestudio.pl/?act=download)
+      [Download SQLite Studio](http://sqlitestudio.pl/?act=download){:target="_blank"}
 
 
 
@@ -69,7 +69,7 @@ slides:
       The latest version of SQLite works really nicely
       with Python, so we'll use it for our app.
 
-      [Download SQLite](sqlite.org/download.html)
+      [Download SQLite](http://sqlite.org/download.html){:target="_blank"}
 
 
   - content: |
@@ -79,7 +79,7 @@ slides:
       Python will be the "back-end" of our website,
       communicating between our web page and database.
 
-      [Download Python3](python.org/downloads)
+      [Download Python3](http://python.org/downloads){:target="_blank"}
 
 
   - content: |
@@ -89,7 +89,7 @@ slides:
       Flask is a framework for Python which makes
       it easier to build websites with databases.
 
-      [Download Flask](flask.pocoo.org)
+      [Download Flask](http://flask.pocoo.org){:target="_blank"}
 
 
   - content: |
@@ -99,7 +99,7 @@ slides:
       Flask Login is a plugin for Flask which makes
       makes user losin and session management easier.
 
-      [Install Flask Login](https://github.com/maxcountryman/flask-login)
+      [Install Flask Login](https://github.com/maxcountryman/flask-login){:target="_blank"}
 
 
 
@@ -113,7 +113,7 @@ slides:
       This part is optional, but could be a handy
       service for designing visual database plans.
 
-      [Sign up for Vertabelo](vertabelo.com)
+      [Sign up for Vertabelo](http://vertabelo.com){:target="_blank"}
 
 
 
