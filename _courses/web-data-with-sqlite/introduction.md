@@ -92,6 +92,17 @@ slides:
       [Download Flask](flask.pocoo.org)
 
 
+  - content: |
+
+      ### Flask Login
+
+      Flask Login is a plugin for Flask which makes
+      makes user losin and session management easier.
+
+      [Install Flask Login](https://github.com/maxcountryman/flask-login)
+
+
+
 
   
 

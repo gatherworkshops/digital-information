@@ -774,7 +774,7 @@ slides:
 
       ## User Login: Complete!
 
-      [Take me to the next chapter!](web-forms.html)
+      [Take me to the next chapter!](authenticated-forms.html)
 
 
 ---
