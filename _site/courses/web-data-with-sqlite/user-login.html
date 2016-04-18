@@ -193,7 +193,1114 @@
 	>
 		
 
-<h2 id="authenticate-user">Authenticate user</h2>
+<h2 id="setting-up-flask-login">Setting up Flask-Login</h2>
+
+<p>This plugin will make it super easy<br />
+for us to log users in and out.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="install-it">Install it</h3>
+
+<pre><code class="language-bash">pip install flask-login
+</code></pre>
+
+<p>Python plugins need to be <br />
+installed from the shell.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="ready-for-use">Ready for use</h3>
+
+<p>We can now use it by importing the <br />
+<strong>flask-login</strong> package wherever we need.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="create-a-usermanager-file">Create a usermanager file</h3>
+
+<p>In your message-board application folder,<br />
+create a new file called <strong>usermanager.py</strong></p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="import-the-flask-website">Import the flask website</h3>
+
+<pre><code class="language-python">from public import website
+</code></pre>
+
+<p>Import your message-board Flask website<br />
+at the top of your <strong>usermanager.py</strong> file.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="import-flask-login">Import flask login</h3>
+
+<pre><code class="language-python">from public import website
+from flask.ext import login as flask_login
+</code></pre>
+
+<p>Also import the <strong>flask-login</strong> plugin<br />
+so we can use the additional functionality.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-a-secret-key">Add a secret key</h3>
+
+<pre><code class="language-python">from public import website
+from flask.ext import login as flask_login
+
+website.secret_key = 'super secret string' 
+</code></pre>
+
+<p>This is a requirement of flask-login<br />
+which we need to avoid errors.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="initialise-flask-login">Initialise flask login</h3>
+
+<pre><code class="language-python">from public import website
+from flask.ext import login as flask_login
+
+website.secret_key = 'super secret string' 
+
+login_manager = flask_login.LoginManager()
+login_manager.init_app(website)
+</code></pre>
+
+<p>Create an instance of the login manager<br />
+and pass it a reference to your web app.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-website-works">Check website works</h3>
+
+<p>Open your website in the browser and<br />
+click through pages to check they still work.</p>
+
+<p class="checkpoint">Your site should work, with nothing changed.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="create-a-user-class">Create a User class</h2>
+
+<p>The flask-login plugin requires that we have<br />
+a User class with a set of predefined functions.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="create-a-user-class">Create a User class</h3>
+
+<pre><code class="language-python">class User(flask_login.UserMixin):
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+</code></pre>
+
+<p>In your usermanager file, create a User class<br />
+which requires a username and password to be supplied.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-a-function-to-get-the-id">Add a function to get the id</h3>
+
+<pre><code class="language-python">class User(flask_login.UserMixin):
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def get_id(self):
+        return self.username
+
+</code></pre>
+
+<p>The flask-login plugin needs to be able to<br />
+access a unique id for every user.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-a-function-to-check-authentication">Add a function to check authentication</h3>
+
+<pre><code class="language-python">    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def get_id(self):
+        return self.username
+
+    def is_authenticated(self):
+        return True
+</code></pre>
+
+<p>In our app, if we find a user in the database<br />
+we assume they are authenticated so always return True.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-a-function-to-check-if-a-user-is-active">Add a function to check if a user is active</h3>
+
+<pre><code class="language-python">    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+        
+    def get_id(self):
+        return self.username
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+</code></pre>
+
+<p>In our app, every user who exists can be treated<br />
+as an “active” user, so always return true.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-a-function-to-check-if-a-user-is-anonymous">Add a function to check if a user is anonymous</h3>
+
+<pre><code class="language-python">def get_id(self):
+    return self.username
+
+def is_authenticated(self):
+    return True
+
+def is_active(self):
+    return True
+
+def is_anonymous(self):
+    return False
+
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-your-user-class-structure-is-correct">Check your User class structure is correct</h3>
+
+<pre style="font-size:40%"><code class="language-python">class User(flask_login.UserMixin):
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def get_id(self):
+        return self.username
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+</code></pre>
+
+<p class="checkpoint">Your finished User class should look like this.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="create-a-user-loader-function">Create a user loader function</h2>
+
+<p>The flask-login plugin also requires us to have a <br />
+function which can load a user based on their username.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="create-a-dummy-user-loader-function">Create a dummy user loader function</h3>
+
+<pre><code class="language-python">@login_manager.user_loader
+def load_user(username):
+    return None
+</code></pre>
+
+<p>In your usermanager file, create a placeholder <br />
+function called load_user which returns None.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="site-should-work">Site should work</h3>
+
+<p>Open your site in the browser and check<br />
+that everything is still working.</p>
+
+<p class="checkpoint">Your site should work, but still no change!</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="restrict-access-to-pages">Restrict access to pages</h2>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="import-loginrequired-to-usermanager">Import login_required to usermanager</h3>
+
+<pre><code class="language-python">from flask.ext.login import login_required
+</code></pre>
+
+<p>The login_required function is a mixin which<br />
+we can apply to routes to restrict access.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="import-usermanager-into-routes">Import usermanager into routes</h3>
+
+<pre><code class="language-python">from public import usermanager
+</code></pre>
+
+<p>This will allow us to use login_required<br />
+and other function we have in the usermanager.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-mixin-to-new-message-page">Add mixin to new message page</h3>
+
+<pre><code class="language-python">@website.route('/new-message')
+@usermanager.login_required
+def new_message():
+    return render_template('new-message.html')
+</code></pre>
+
+<p>This tells Flask that login is required<br />
+to access the new_message route.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-access-is-restricted">Check access is restricted</h3>
+
+<p>Navigate to the new-message page in your browser<br />
+to check that access is restricted.</p>
+
+<p class="checkpoint">You should see an “Unauthorized” notice.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-login-page">Set the login page</h3>
+
+<pre><code class="language-python">login_manager.login_view = "users.login"
+</code></pre>
+
+<p>This tells the flask-login plugin where people<br />
+should be sent if they are not logged in and<br />
+try to access a resticted page.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-the-login-redirect-works">Check the login redirect works</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="create-a-sign-in-form">Create a sign in form</h2>
+
+<p>We need to create a sign in form<br />
+on the sign-in page template.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-form-action-to-sign-in">Set the form action to sign-in</h3>
+
+<pre><code class="language-html">&lt;form action="sign-in"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>The form “action” is the URL or route<br />
+where the form data should be submitted.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-the-form-method-to-post">Set the form method to post</h3>
+
+<pre><code class="language-html">&lt;form action="sign-in" method="post"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>Setting the method to “post” sends the data<br />
+in the background, rather than attached to the URL.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="name-all-form-inputs">Name all form inputs</h3>
+
+<pre><code class="language-html">&lt;form action="sign-in" method="post"&gt;
+
+  &lt;label&gt;Username&lt;/label&gt;
+  &lt;input name="username" type="text"&gt;
+
+  &lt;label&gt;Password&lt;/label&gt;
+  &lt;input name="password" type="text"&gt;
+
+  &lt;input type="submit" value="Sign in"&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+<p>Form inputs must have a name attribute<br />
+for their data to be posted to the server.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="sign-in-route">sign in route</h2>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="sign-in-method-allow-get-and-post">sign in method allow get and post</h3>
+
+<pre><code class="language-python"># sign in page
+@website.route('/sign-in', methods=["GET", "POST"])
+def sign_in():
+
+    return render_template('sign-in.html')
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="sign-in-method-handle-get-and-post">sign in method handle get and post</h3>
+
+<pre><code class="language-python">if request.method == 'GET':
+    return render_template('sign-in.html')
+
+if request.method == 'POST':
+    print('log in the user')
+
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="get-the-posted-username-and-pass">get the posted username and pass</h3>
+
+<pre><code class="language-python">#form submit handler
+if request.method == 'POST':
+
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    user = usermanager.sign_in_user(username, password)
+
+    return render_template()
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="use-them-to-authenticate">use them to authenticate</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="redirect-based-on-the-result">redirect based on the result</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="implement-the-user-loader-function">Implement the user loader function</h2>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="import-the-datamanager">Import the datamanager</h3>
+
+<p>So we can access the database<br />
+to look up a user</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-it-to-your-usermanager-file">Add it to your usermanager file</h3>
+
+<pre><code class="language-python">'''
+It should return None (not raise an exception) 
+if the ID is not valid. 
+(In that case, the ID will manually be removed 
+from the session and processing will continue.)
+'''
+@login_manager.user_loader
+def load_user(username):
+
+    # 1. Fetch against the database a user by their username 
+    query_string = (
+      'SELECT user_id, username, password, first_name, last_name ' 
+      'FROM users '
+      'WHERE username = ?'
+    )
+
+    query_result = datamanager.query_db(query_string, [username], one=True)
+
+    if query_result == None:
+        return
+
+    # 2. Create a new object of `User` class and return it.
+    user = User(
+        query_result['username'],
+        query_result['password']
+    )
+
+    return user
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="site-should-be-working">Site should be working</h3>
 
 
 <aside class="notes">
@@ -235,6 +1342,180 @@
 	>
 		
 
+<h3 id="create-sign-out-route">Create sign out route</h3>
+
+<pre><code class="language-python"># sign out page
+@website.route('/sign-out')
+def sign_out():
+    return render_template('sign-out.html')
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="create-signoutuser-function">Create sign_out_user function</h3>
+
+<p>In usermanager.py</p>
+
+<pre><code class="language-python">def sign_out_user():
+    flask_login.logout_user()
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="call-sign-out-function-from-route">Call sign out function from route</h3>
+
+<pre><code class="language-python"># sign out page
+@website.route('/sign-out')
+def sign_out():
+    usermanager.sign_out_user()
+    return render_template('sign-out.html')
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="test-that-you-can-sign-in-and-sign-out">Test that you can sign in and sign out</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="password-encryption">Password encryption</h2>
+
+<p>You should totes encrypt passwords<br />
+but we’re not doing it today</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="display-username">Display username</h2>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="show-username">Show username</h3>
+
+<pre><code class="language-html">{% if current_user.is_authenticated %}
+Hello {% if current_user.username %}
+{% endif %}
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
 <h2 id="smart-sign-in--sign-out-links">Smart sign in / sign out links</h2>
 
 
@@ -256,7 +1537,21 @@
 	>
 		
 
-<h2 id="restrict-access-to-new-message-page">Restrict access to new message page</h2>
+<h3 id="use-template-vars-to-show-things">Use template vars to show things</h3>
+
+<pre><code class="language-html">&lt;nav&gt;
+
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+    &lt;a href="/new-message"&gt;New Message&lt;/a&gt;
+
+    {% if current_user.is_authenticated %}
+      &lt;a href="/sign-out"&gt;Sign out&lt;/a&gt;
+    {% else %}
+      &lt;a href="/sign-in"&gt;Sign in&lt;/a&gt;
+    {% endif %}
+
+&lt;/nav&gt;
+</code></pre>
 
 
 <aside class="notes">

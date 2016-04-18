@@ -12,6 +12,9 @@ from public import usermanager
 @website.route('/')
 def index():
 
+    #if usermanager.login_manager.current_user.is_authenticated:
+    #    print(usermanager.login_manager.current_user.id)
+
     query_string = (
       'SELECT content, username, time_created ' 
       'FROM messages INNER JOIN users '
@@ -40,10 +43,29 @@ def new_message():
 
 
 # sign in page
-@website.route('/sign-in')
+@website.route('/sign-in', methods=["GET", "POST"])
 def sign_in():
 
-    return render_template('sign-in.html')
+    # sign in page
+    if request.method == 'GET':
+
+        return render_template('sign-in.html')
+
+
+    # form submit handler
+    if request.method == 'POST':
+
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        user = usermanager.sign_in_user(username, password)
+
+        if user.is_authenticated:
+            next_page = url_for('index')
+        else:
+            next_page = url_for('sign_in')
+
+        return redirect(next_page)
 
     
 
@@ -51,6 +73,8 @@ def sign_in():
 # sign out page
 @website.route('/sign-out')
 def sign_out():
+
+    usermanager.sign_out_user()
 
     return render_template('sign-out.html')
 

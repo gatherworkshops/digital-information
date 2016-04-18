@@ -49,8 +49,8 @@
 			,
 		
 			{
-			"name": "web-lists",
-			"title": "Web Lists"
+			"name": "displaying-data",
+			"title": "Displaying Data"
 			}
 			,
 		
@@ -73,32 +73,8 @@
 			,
 		
 			{
-			"name": "web-edits",
-			"title": "Web Edits"
-			}
-			,
-		
-			{
 			"name": "deleting-data",
 			"title": "Deleting Data"
-			}
-			,
-		
-			{
-			"name": "web-delete",
-			"title": "Web Deletes"
-			}
-			,
-		
-			{
-			"name": "reading-combined-data",
-			"title": "Reading Combined Data"
-			}
-			,
-		
-			{
-			"name": "writing-combined-data",
-			"title": "Writing Combined Data"
 			}
 			
 		
