@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Web Forms</title>
+        <title>Authenticated Forms</title>
         <meta name="viewport" content="width=device-width">
 
         <!-- google translate - language identifier -->
@@ -70,7 +70,7 @@
         
         <ul class="chapter-nav nav navbar-nav invisible">
         <li class="dropdown">
-          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Web Forms <span class="caret"></span></a>
+          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Authenticated Forms <span class="caret"></span></a>
           <ul class="chapters dropdown-menu">
           </ul>
         </li>
@@ -171,8 +171,8 @@
 
 <p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
 
-<h1 id="web-forms">Web Forms</h1>
-<p><em>Capturing user input</em></p>
+<h1 id="authenticated-forms">Authenticated Forms</h1>
+<p><em>Associating form data with a user</em></p>
 
 
 <aside class="notes">
@@ -193,10 +193,10 @@
 	>
 		
 
-<h2 id="create-a-sign-in-form">Create a sign in form</h2>
+<h2 id="posting-a-message">Posting a message</h2>
 
-<p>We need to create a sign in form<br />
-on the sign-in page template.</p>
+<p>Only logged in user should be able to post,<br />
+and their username should be associated.</p>
 
 
 <aside class="notes">
@@ -217,13 +217,16 @@ on the sign-in page template.</p>
 	>
 		
 
-<h3 id="set-the-form-action-to-sign-in">Set the form action to sign-in</h3>
+<h3 id="allow-post-data-for-new-message-route">Allow POST data for new message route</h3>
 
-<pre><code class="language-html">&lt;form action="sign-in"&gt;
+<pre><code class="language-python">@website.route('/new-message', method=['GET', 'POST'])
+@usermanager.login_required
+def new_message():
+    return render_template('new-message.html')
 </code></pre>
 
-<p>The form “action” is the URL or route<br />
-where the form data should be submitted.</p>
+<p>Add both POST and GET method options<br />
+to the <strong>new message</strong> route.</p>
 
 
 <aside class="notes">
@@ -244,138 +247,20 @@ where the form data should be submitted.</p>
 	>
 		
 
-<h3 id="set-the-form-method-to-post">Set the form method to post</h3>
+<h3 id="handle-both-get-and-post-methods">Handle both GET and POST methods</h3>
 
-<pre><code class="language-html">&lt;form action="sign-in" method="post"&gt;
-</code></pre>
-
-<p>Setting the method to “post” allows us to<br />
-easily access the data from within Python.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="name-all-form-inputs">Name all form inputs</h3>
-
-<pre><code class="language-html">&lt;form action="sign-in" method="post"&gt;
-
-  &lt;label&gt;Username&lt;/label&gt;
-  &lt;input name="username" type="text"&gt;
-
-  &lt;label&gt;Password&lt;/label&gt;
-  &lt;input name="password" type="text"&gt;
-
-  &lt;input type="submit" value="Sign in"&gt;
-
-&lt;/form&gt;
-</code></pre>
-
-<p>Form inputs must have a name attribute<br />
-for their data to be posted to the server.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h2 id="modify-the-sign-in-route">Modify the sign in route</h2>
-
-<p>Our <strong>sign-in</strong> route now needs to process sign ins<br />
-as well as display the sign in form to users.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="define-which-methods-are-enabled-for-the-route">Define which methods are enabled for the route</h3>
-
-<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
-def sign_in():
-    return render_template('sign-in.html')
-</code></pre>
-
-<p>The <strong>GET</strong> method is for viewing the web page,<br />
-and the <strong>POST</strong> method is for processing form data.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="do-different-things-based-on-the-method-used">Do different things based on the method used</h3>
-
-<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
-def sign_in():
+<pre><code class="language-python">def new_message():
 
     if request.method == 'GET':
-        return render_template('sign-in.html')
+        return render_template('new-message.html')
 
-    if request.method == 'POST':
-        return 'log in the user'
+    elif request.method == 'POST':
+        return redirect('/')
 
 </code></pre>
 
-<p>For a <strong>GET</strong> request we want to display the form,<br />
-but for <strong>POST</strong> we want to log in the user.</p>
+<p>Modify the <code>new_message</code> function <br />
+to handle both request types.</p>
 
 
 <aside class="notes">
@@ -396,17 +281,7 @@ but for <strong>POST</strong> we want to log in the user.</p>
 	>
 		
 
-<h3 id="get-the-posted-username-and-password">Get the posted username and password</h3>
-
-<pre><code class="language-python">if request.method == 'POST':
-
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-</code></pre>
-
-<p>We can get the values entered in the form<br />
-by using the names we specified in the HTML.</p>
+<h3 id="get-form-data">Get form data</h3>
 
 
 <aside class="notes">
@@ -427,19 +302,112 @@ by using the names we specified in the HTML.</p>
 	>
 		
 
-<h3 id="check-the-form-fields-in-the-shell">Check the form fields in the shell</h3>
+<h3 id="generate-current-time">Generate current time</h3>
 
-<pre><code class="language-python">if request.method == 'POST':
 
-    username = request.form.get('username')
-    password = request.form.get('password')
+<aside class="notes">
 
-    print('username:', username)
-    print('password:', password)
-</code></pre>
 
-<p>Check you’ve received them correctly,<br />
-we’ll use them to log in later!</p>
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="get-logged-in-user-id">Get logged in user id</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="write-query">Write query</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="submit-query-with-parameters">Submit query with parameters</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-result-is-valid">Check result is valid</h3>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="redirect-to-home-page">Redirect to home page</h3>
 
 
 <aside class="notes">
@@ -462,9 +430,9 @@ we’ll use them to log in later!</p>
 
 <p><img src="/digital-information/theme/assets/images/thumbs-up.svg" alt="Thumbs Up!" height="200" /></p>
 
-<h2 id="web-forms-complete">Web Forms: Complete!</h2>
+<h2 id="authenticated-forms-complete">Authenticated Forms: Complete!</h2>
 
-<p><a href="user-login.html">Take me to the next chapter!</a></p>
+<p><a href="updating-data.html">Take me to the next chapter!</a></p>
 
 
 <aside class="notes">

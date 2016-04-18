@@ -292,7 +292,7 @@ create a new file called <strong>usermanager.py</strong></p>
 	>
 		
 
-<h3 id="import-the-flask-website">Import the flask website</h3>
+<h3 id="import-your-website">Import your website</h3>
 
 <pre><code class="language-python">from public import website
 </code></pre>
@@ -462,15 +462,19 @@ a User class with a set of predefined functions.</p>
 
 <h3 id="create-a-user-class">Create a User class</h3>
 
-<pre><code class="language-python">class User(flask_login.UserMixin):
+<pre><code class="language-python">login_manager = flask_login.LoginManager()
+login_manager.init_app(website)
+
+class User(flask_login.UserMixin):
 
     def __init__(self, username, password):
         self.username = username
         self.password = password
+        self.authenticated = False
 </code></pre>
 
-<p>In your usermanager file, create a User class<br />
-which requires a username and password to be supplied.</p>
+<p>In your <strong>user manager</strong> after the login manager setup code, <br />
+create a <strong>User</strong> class which requires a username and password.</p>
 
 
 <aside class="notes">
@@ -498,6 +502,7 @@ which requires a username and password to be supplied.</p>
     def __init__(self, username, password):
         self.username = username
         self.password = password
+        self.authenticated = False
 
     def get_id(self):
         return self.username
@@ -531,12 +536,13 @@ access a unique id for every user.</p>
 <pre><code class="language-python">    def __init__(self, username, password):
         self.username = username
         self.password = password
+        self.authenticated = False
 
     def get_id(self):
         return self.username
 
     def is_authenticated(self):
-        return True
+        return self.authenticated
 </code></pre>
 
 <p>In our app, if we find a user in the database<br />
@@ -566,12 +572,13 @@ we assume they are authenticated so always return True.</p>
 <pre><code class="language-python">    def __init__(self, username, password):
         self.username = username
         self.password = password
+        self.authenticated = False
         
     def get_id(self):
         return self.username
 
     def is_authenticated(self):
-        return True
+        return self.authenticated
 
     def is_active(self):
         return True
@@ -605,7 +612,7 @@ as an “active” user, so always return true.</p>
     return self.username
 
 def is_authenticated(self):
-    return True
+    return self.authenticated
 
 def is_active(self):
     return True
@@ -644,12 +651,13 @@ so this function always returns False.</p>
     def __init__(self, username, password):
         self.username = username
         self.password = password
+        self.authenticated = False
 
     def get_id(self):
         return self.username
 
     def is_authenticated(self):
-        return True
+        return self.authenticated
 
     def is_active(self):
         return True
@@ -894,7 +902,10 @@ to check that access is restricted.</p>
 
 <h3 id="set-the-login-page">Set the login page</h3>
 
-<pre><code class="language-python">login_manager.login_view = "users.login"
+<pre><code class="language-python">login_manager = flask_login.LoginManager()
+login_manager.init_app(website)
+
+login_manager.login_view = "sign_in"
 </code></pre>
 
 <p>This tells the flask-login plugin where people<br />
@@ -946,123 +957,6 @@ and check that you are redirected to the login page.</p>
 	>
 		
 
-<h2 id="create-a-sign-in-form">Create a sign in form</h2>
-
-<p>We need to create a sign in form<br />
-on the sign-in page template.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="set-the-form-action-to-sign-in">Set the form action to sign-in</h3>
-
-<pre><code class="language-html">&lt;form action="sign-in"&gt;
-&lt;/form&gt;
-</code></pre>
-
-<p>The form “action” is the URL or route<br />
-where the form data should be submitted.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="set-the-form-method-to-post">Set the form method to post</h3>
-
-<pre><code class="language-html">&lt;form action="sign-in" method="post"&gt;
-&lt;/form&gt;
-</code></pre>
-
-<p>Setting the method to “post” allows us to<br />
-easily access the data from within Python.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="name-all-form-inputs">Name all form inputs</h3>
-
-<pre><code class="language-html">&lt;form action="sign-in" method="post"&gt;
-
-  &lt;label&gt;Username&lt;/label&gt;
-  &lt;input name="username" type="text"&gt;
-
-  &lt;label&gt;Password&lt;/label&gt;
-  &lt;input name="password" type="text"&gt;
-
-  &lt;input type="submit" value="Sign in"&gt;
-
-&lt;/form&gt;
-</code></pre>
-
-<p>Form inputs must have a name attribute<br />
-for their data to be posted to the server.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
 <h2 id="create-function-to-sign-in-users">Create function to sign in users</h2>
 
 <p>This function in <strong>usermanager</strong> will take a <br />
@@ -1091,8 +985,11 @@ username and password, then return a signed in user.</p>
 
 <pre><code class="language-python">def sign_in_user(username, password):
 
-    user = User(username, password)
-    flask_login.login_user(user)
+    user = load_user(username)
+
+    if user and user.password == password:
+      user.authenticated = True
+      flask_login.login_user(user)
 
     return flask_login.current_user
 </code></pre>
@@ -1145,105 +1042,10 @@ to check for any new errors.</p>
 	>
 		
 
-<h2 id="modify-the-sign-in-route">Modify the sign in route</h2>
+<h2 id="authenticate-the-user">Authenticate the user</h2>
 
-<p>Our <strong>sign-in</strong> route now needs to process sign ins<br />
-as well as display the sign in form to users.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="define-which-methods-are-enabled-for-the-route">Define which methods are enabled for the route</h3>
-
-<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
-def sign_in():
-    return render_template('sign-in.html')
-</code></pre>
-
-<p>The <strong>GET</strong> method is for viewing the web page,<br />
-and the <strong>POST</strong> method is for processing form data.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="do-different-things-based-on-the-method-used">Do different things based on the method used</h3>
-
-<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
-def sign_in():
-
-    if request.method == 'GET':
-        return render_template('sign-in.html')
-
-    if request.method == 'POST':
-        print('log in the user')
-
-</code></pre>
-
-<p>For a <strong>GET</strong> request we want to display the form,<br />
-but for <strong>POST</strong> we want to log in the user.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="get-the-posted-username-and-password">Get the posted username and password</h3>
-
-<pre><code class="language-python">if request.method == 'POST':
-
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-</code></pre>
-
-<p>We can get the values entered in the form<br />
-by using the names we specified in the HTML.</p>
+<p>Sign in the user with the username<br />
+and password they entered in the form.</p>
 
 
 <aside class="notes">
@@ -1305,10 +1107,10 @@ the <code>sign_in_user</code> function to sign them in.</p>
 
     user = usermanager.sign_in_user(username, password)
 
-    if user.is_authenticated:
-        redirect('/')
+    if user.is_authenticated():
+        return redirect('/')
     else:
-        render_template('sign-in.html')
+        return render_template('sign-in.html')
 </code></pre>
 
 <p>If the user exists, they will be authenticated<br />
@@ -1749,7 +1551,10 @@ but we’re not doing it today</p>
 	>
 		
 
-<h2 id="display-username">Display username</h2>
+<h2 id="using-user-data-in-templates">Using user data in templates</h2>
+
+<p>We can display user data, or use their info<br />
+to show and hide elements on a page.</p>
 
 
 <aside class="notes">
@@ -1770,10 +1575,10 @@ but we’re not doing it today</p>
 	>
 		
 
-<h3 id="show-username">Show username</h3>
+<h3 id="displaying-a-username">Displaying a username</h3>
 
 <pre><code class="language-html">{% if current_user.is_authenticated %}
-Hello {% if current_user.username %}
+    Hello {% current_user.username %}
 {% endif %}
 </code></pre>
 
@@ -1796,28 +1601,7 @@ Hello {% if current_user.username %}
 	>
 		
 
-<h2 id="smart-sign-in--sign-out-links">Smart sign in / sign out links</h2>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="use-template-vars-to-show-things">Use template vars to show things</h3>
+<h3 id="smart-sign-in--sign-out-links">Smart sign in / sign out links</h3>
 
 <pre><code class="language-html">&lt;nav&gt;
 
@@ -1856,7 +1640,7 @@ Hello {% if current_user.username %}
 
 <h2 id="user-login-complete">User Login: Complete!</h2>
 
-<p><a href="updating-data.html">Take me to the next chapter!</a></p>
+<p><a href="web-forms.html">Take me to the next chapter!</a></p>
 
 
 <aside class="notes">

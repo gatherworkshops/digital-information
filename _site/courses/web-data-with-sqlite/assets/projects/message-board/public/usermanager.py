@@ -10,14 +10,6 @@ login_manager.init_app(website)
 
 login_manager.login_view = "sign_in"
 
-
-'''
-We must have a user class for the flask login
-plugin to work correctly. Our User class extends
-the flask login class UserMixin which gives it
-all the properties and functions it needs
-behind the scenes.
-'''
 class User(flask_login.UserMixin):
 
     def __init__(self, username, password):
@@ -25,31 +17,57 @@ class User(flask_login.UserMixin):
         self.password = password
         self.authenticated = False
 
-    # Return the email address to satisfy Flask-Login's requirements.
     def get_id(self):
         return self.username
 
-    # Return True if the user is authenticated
     def is_authenticated(self):
         return self.authenticated
 
-    # All registered users are active
     def is_active(self):
         return True
 
-    # Our app doesn't support anonymous users
     def is_anonymous(self):
-        return False
+    	return False
 
 
-
-'''
-It should return None (not raise an exception) 
-if the ID is not valid. 
-(In that case, the ID will manually be removed 
-from the session and processing will continue.)
-'''
 @login_manager.user_loader
 def load_user(username):
+    query_string = (
+      'SELECT user_id, username, password, first_name, last_name ' 
+      'FROM users '
+      'WHERE username = ?'
+    )
 
-    return None
+    query_result = datamanager.query_db(query_string, [username], one=True)
+
+    if query_result == None:
+        return None
+
+    else:
+        user = User(
+            query_result['username'],
+            query_result['password']
+        )
+
+        return user
+
+
+
+def sign_in_user(username, password):
+
+    user = load_user(username)
+
+    if user and user.password == password:
+    	user.authenticated = True
+    	flask_login.login_user(user)
+
+    return flask_login.current_user
+
+
+
+
+def sign_out_user():
+    flask_login.logout_user()
+
+
+    

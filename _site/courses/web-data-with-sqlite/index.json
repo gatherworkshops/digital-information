@@ -55,14 +55,20 @@
 			,
 		
 			{
+			"name": "web-forms",
+			"title": "Web Forms"
+			}
+			,
+		
+			{
 			"name": "user-login",
 			"title": "User Login"
 			}
 			,
 		
 			{
-			"name": "web-forms",
-			"title": "Web Forms"
+			"name": "authenticated-forms",
+			"title": "Authenticated Forms"
 			}
 			,
 		

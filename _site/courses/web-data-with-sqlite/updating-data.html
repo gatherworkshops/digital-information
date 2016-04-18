@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Web Forms</title>
+        <title>Updating Data</title>
         <meta name="viewport" content="width=device-width">
 
         <!-- google translate - language identifier -->
@@ -70,7 +70,7 @@
         
         <ul class="chapter-nav nav navbar-nav invisible">
         <li class="dropdown">
-          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Web Forms <span class="caret"></span></a>
+          <a href="#" class="chapter-name dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Updating Data <span class="caret"></span></a>
           <ul class="chapters dropdown-menu">
           </ul>
         </li>
@@ -171,275 +171,8 @@
 
 <p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
 
-<h1 id="web-forms">Web Forms</h1>
-<p><em>Capturing user input</em></p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h2 id="create-a-sign-in-form">Create a sign in form</h2>
-
-<p>We need to create a sign in form<br />
-on the sign-in page template.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="set-the-form-action-to-sign-in">Set the form action to sign-in</h3>
-
-<pre><code class="language-html">&lt;form action="sign-in"&gt;
-</code></pre>
-
-<p>The form “action” is the URL or route<br />
-where the form data should be submitted.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="set-the-form-method-to-post">Set the form method to post</h3>
-
-<pre><code class="language-html">&lt;form action="sign-in" method="post"&gt;
-</code></pre>
-
-<p>Setting the method to “post” allows us to<br />
-easily access the data from within Python.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="name-all-form-inputs">Name all form inputs</h3>
-
-<pre><code class="language-html">&lt;form action="sign-in" method="post"&gt;
-
-  &lt;label&gt;Username&lt;/label&gt;
-  &lt;input name="username" type="text"&gt;
-
-  &lt;label&gt;Password&lt;/label&gt;
-  &lt;input name="password" type="text"&gt;
-
-  &lt;input type="submit" value="Sign in"&gt;
-
-&lt;/form&gt;
-</code></pre>
-
-<p>Form inputs must have a name attribute<br />
-for their data to be posted to the server.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h2 id="modify-the-sign-in-route">Modify the sign in route</h2>
-
-<p>Our <strong>sign-in</strong> route now needs to process sign ins<br />
-as well as display the sign in form to users.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="define-which-methods-are-enabled-for-the-route">Define which methods are enabled for the route</h3>
-
-<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
-def sign_in():
-    return render_template('sign-in.html')
-</code></pre>
-
-<p>The <strong>GET</strong> method is for viewing the web page,<br />
-and the <strong>POST</strong> method is for processing form data.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="do-different-things-based-on-the-method-used">Do different things based on the method used</h3>
-
-<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
-def sign_in():
-
-    if request.method == 'GET':
-        return render_template('sign-in.html')
-
-    if request.method == 'POST':
-        return 'log in the user'
-
-</code></pre>
-
-<p>For a <strong>GET</strong> request we want to display the form,<br />
-but for <strong>POST</strong> we want to log in the user.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="get-the-posted-username-and-password">Get the posted username and password</h3>
-
-<pre><code class="language-python">if request.method == 'POST':
-
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-</code></pre>
-
-<p>We can get the values entered in the form<br />
-by using the names we specified in the HTML.</p>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="check-the-form-fields-in-the-shell">Check the form fields in the shell</h3>
-
-<pre><code class="language-python">if request.method == 'POST':
-
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-    print('username:', username)
-    print('password:', password)
-</code></pre>
-
-<p>Check you’ve received them correctly,<br />
-we’ll use them to log in later!</p>
+<h1 id="updating-data">Updating Data</h1>
+<p><em>Saving changes to existing data</em></p>
 
 
 <aside class="notes">
@@ -462,9 +195,9 @@ we’ll use them to log in later!</p>
 
 <p><img src="/digital-information/theme/assets/images/thumbs-up.svg" alt="Thumbs Up!" height="200" /></p>
 
-<h2 id="web-forms-complete">Web Forms: Complete!</h2>
+<h2 id="updating-data-complete">Updating Data: Complete!</h2>
 
-<p><a href="user-login.html">Take me to the next chapter!</a></p>
+<p><a href="deleting-data.html">Take me to the next chapter!</a></p>
 
 
 <aside class="notes">

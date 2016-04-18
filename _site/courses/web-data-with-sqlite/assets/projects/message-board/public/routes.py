@@ -40,10 +40,21 @@ def new_message():
 
 
 # sign in page
-@website.route('/sign-in')
+@website.route('/sign-in', methods=["GET", "POST"])
 def sign_in():
+    if request.method == 'GET':
+        return render_template('sign-in.html')
 
-    return render_template('sign-in.html')
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        user = usermanager.sign_in_user(username, password)
+
+        if user.is_authenticated:
+            return redirect('/')
+        else:
+            return render_template('sign-in.html')
 
     
 
@@ -51,7 +62,7 @@ def sign_in():
 # sign out page
 @website.route('/sign-out')
 def sign_out():
-
+    usermanager.sign_out_user()
     return render_template('sign-out.html')
 
 
