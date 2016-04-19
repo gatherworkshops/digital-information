@@ -220,7 +220,7 @@ slides:
 
   - content: |
 
-      ### Every table need a unique ID column
+      ### Every table needs a unique ID column
 
       This column is called the **Primary Key**.
       Its type is `integer` and its value is auto-generated.
@@ -238,7 +238,10 @@ slides:
 
       ### Challenge: Relationship Diagrams
 
-      Draw the relationship lines between these tables.
+      Draw these tables, their attributes 
+      and map their relationships:
+
+      users, friendships, photos, albums
 
 
   - content: |
@@ -259,10 +262,10 @@ slides:
         Tables are planned using table maps and visual lines between.
       - **Relationships**
         Tables can have related data using primary and foreign keys.
-      - **Creating**
-        We can create using the command line or SQLite Studio.
-      - **Schemas**
-        We can write a script to represent our table structure.
+      - **Primary Keys**
+        Are columns which uniquely identify a row item.
+      - **Foreign Keys**
+        Are columns which store the primary key of an item in another table.
       {:.flex-list}
 
 
