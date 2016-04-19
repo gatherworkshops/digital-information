@@ -154,7 +154,7 @@ slides:
 
       ### Use `numeric` to store numbers
 
-      USe to store a mix of integer and real numbers
+      Use to store a mix of integer and real numbers
 
 
   - content: |
@@ -228,7 +228,7 @@ slides:
 
   - content: |
 
-      ### Linked data is stored using the row's ID
+      ### Linked data is stored using the rows ID
 
       A linked data column is know as a **Foreign Key**.
       Its type is `integer` and you must specify the ID to store.
