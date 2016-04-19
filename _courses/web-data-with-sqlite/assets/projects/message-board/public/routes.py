@@ -6,6 +6,7 @@ from flask import url_for
 from public import website
 from public import datamanager
 from public import usermanager
+from datetime import datetime
 
 
 # home/index page
@@ -31,10 +32,39 @@ def index():
 
 
 # new message page
-@website.route('/new-message')
+@website.route('/new-message', methods=['GET', 'POST'])
 @usermanager.login_required
 def new_message():
-    return render_template('new-message.html')
+    if request.method == 'GET':
+        return render_template('new-message.html')
+
+    elif request.method == 'POST':
+
+        content = request.form.get('message')
+        current_time = datetime.now()
+        user_id = usermanager.flask_login.current_user.user_id
+
+        print(current_time)
+
+        query_string = (
+          'INSERT INTO messages( content, time_created, user_id ) '
+          'VALUES (?,?,?)'
+        )
+
+        query_result = datamanager.query_db(
+            query_string, 
+            [content, current_time, user_id], 
+            one=True
+        )
+
+        if query_result == None:
+            print('error')
+        else:
+            print('success')
+
+
+        return redirect('/')
+
 
 
 

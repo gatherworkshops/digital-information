@@ -49,6 +49,10 @@ def load_user(username):
             query_result['password']
         )
 
+        user.user_id = query_result['user_id']
+        user.first_name = query_result['first_name']
+        user.last_name = query_result['last_name']
+
         return user
 
 
