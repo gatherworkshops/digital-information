@@ -176,7 +176,7 @@ slides:
 
   - content: |
 
-      ### The routes file manages your sites pages
+      ### The routes file manages your site's pages
 
       Maps web page URLs to Python functions.
       Most of your Python code will go in here!

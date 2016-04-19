@@ -228,7 +228,7 @@ slides:
 
   - content: |
 
-      ### Linked data is stored using the rows ID
+      ### Linked data is stored using the row's ID
 
       A linked data column is know as a **Foreign Key**.
       Its type is `integer` and you must specify the ID to store.
