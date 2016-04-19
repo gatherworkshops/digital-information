@@ -476,6 +476,39 @@ we need to join data from two tables.</p>
 	>
 		
 
+<h3 id="tidy-up-long-queries">Tidy up long queries</h3>
+
+<pre><code class="language-python">query_string = (
+    'SELECT content, username '
+    'FROM messages INNER JOIN users '
+    'USING (user_id)'
+)
+
+query_results = datamanager.query_db(query_string, [], one=False)
+</code></pre>
+
+<p>Once queries get longer than about 5 or 6 words,<br />
+you should tidy them by splitting over multiple lines.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
 <h3 id="display-username-by-message">Display username by message</h3>
 
 <pre><code class="language-html">{% for message in messages %}
@@ -623,9 +656,9 @@ to reduce strain on the website.</p>
 
 <p><img src="/digital-information/theme/assets/images/thumbs-up.svg" alt="Thumbs Up!" height="200" /></p>
 
-<h2 id="web-lists-complete">Web Lists: Complete!</h2>
+<h2 id="displaying-data-complete">Displaying Data: Complete!</h2>
 
-<p><a href="user-login.html">Take me to the next chapter!</a></p>
+<p><a href="web-forms.html">Take me to the next chapter!</a></p>
 
 
 <aside class="notes">

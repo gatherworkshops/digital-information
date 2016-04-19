@@ -576,6 +576,9 @@ your dummy data script and execute it.</p>
 		
 <h2 id="scripting-complex-data">Scripting complex data</h2>
 
+<p>Many times we want to include data<br />
+which goes beyond just plain text.</p>
+
 
 <aside class="notes">
 
@@ -805,7 +808,7 @@ depends on the previously created row.</p>
 <pre><code class="language-sql">INSERT INTO messages VALUES (
   NULL,
   'Hello',
-  julianday('now'),
+  datetime('now'),
   last_insert_rowid()
 );
 </code></pre>

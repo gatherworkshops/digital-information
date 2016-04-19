@@ -193,10 +193,10 @@
 	>
 		
 
-<h2 id="create-a-sign-in-form">Create a sign in form</h2>
+<h2 id="prepare-the-sign-in-form">Prepare the sign in form</h2>
 
-<p>We need to create a sign in form<br />
-on the sign-in page template.</p>
+<p>We need the form on the sign-in <br />
+page to be set up correctly.</p>
 
 
 <aside class="notes">
@@ -279,7 +279,7 @@ easily access the data from within Python.</p>
   &lt;input name="username" type="text"&gt;
 
   &lt;label&gt;Password&lt;/label&gt;
-  &lt;input name="password" type="text"&gt;
+  &lt;input name="password" type="password"&gt;
 
   &lt;input type="submit" value="Sign in"&gt;
 
@@ -332,9 +332,36 @@ as well as display the sign in form to users.</p>
 	>
 		
 
+<h3 id="import-flasks-request-package">Import Flask’s request package</h3>
+
+<pre><code class="language-python">from flask import request
+</code></pre>
+
+<p>At the top of <strong>routes.py</strong>, import the<br />
+request package to allow us to process forms.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
 <h3 id="define-which-methods-are-enabled-for-the-route">Define which methods are enabled for the route</h3>
 
-<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
+<pre><code class="language-python">@website.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
     return render_template('sign-in.html')
 </code></pre>
@@ -363,7 +390,7 @@ and the <strong>POST</strong> method is for processing form data.</p>
 
 <h3 id="do-different-things-based-on-the-method-used">Do different things based on the method used</h3>
 
-<pre><code class="language-python">@website.route('/sign-in', methods=["GET", "POST"])
+<pre><code class="language-python">@website.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
 
     if request.method == 'GET':
@@ -376,6 +403,30 @@ def sign_in():
 
 <p>For a <strong>GET</strong> request we want to display the form,<br />
 but for <strong>POST</strong> we want to log in the user.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-that-both-get-and-post-are-supported">Check that both GET and POST are supported</h3>
+
+<p>Browse to the sign in page and ensue that<br />
+you get a different page when clicking sign in.</p>
 
 
 <aside class="notes">
@@ -438,8 +489,8 @@ by using the names we specified in the HTML.</p>
     print('password:', password)
 </code></pre>
 
-<p>Check you’ve received them correctly,<br />
-we’ll use them to log in later!</p>
+<p>Sign in with a username and password,<br />
+then check that they printed in the shell.</p>
 
 
 <aside class="notes">

@@ -16,12 +16,13 @@ HEADER
 
 /* 
 the full header which contains
-the logo and navigation
+the logo, navigation and username
 */
 .page-header {
 	background: #222222;
 	color: #EFEFEF;
 	width: 100%;
+	display: flex;
 }
 
 /* 
@@ -41,6 +42,7 @@ the page links in the header
 .main-navigation {
 	padding: 10px;
 	display: inline-block;
+	flex: 1;
 }
 
 /* 
@@ -50,6 +52,23 @@ the links in the nav bar
 	color: #FFFFFF;
 	text-decoration: none;
 	margin: 10px;
+}
+
+/*
+contains the username and either
+sign in or sign out button
+*/
+.user-info {
+	padding: 10px;
+}
+
+.user-info a {
+	color: #446688;
+	text-decoration: none;
+}
+
+.user-info a:hover {
+	color: #EFEFEF;
 }
 
 
@@ -64,7 +83,8 @@ PAGE CONTENT
 */
 
 .page-content {
-	width: 50%;
+	width: 100%;
+	max-width: 600px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -104,12 +124,13 @@ the edit button on each message
 */
 .messages-list li a {
 	float: right;
-	color: #FFFFFF;
-	background: #446688;
-	border: 1px solid #335577;
+	color: #446688;
 	text-decoration: none;
 	display: block;
-	padding: 3px 5px;
+}
+
+.message-list li a:hover {
+	color: #6688FF;
 }
 
 .messages-list li.own-message {

@@ -243,7 +243,7 @@ plus names for all form inputs.</p>
 
 <h3 id="allow-post-data-for-new-message-route">Allow POST data for new message route</h3>
 
-<pre><code class="language-python">@website.route('/new-message', method=['GET', 'POST'])
+<pre><code class="language-python">@website.route('/new-message', methods=['GET', 'POST'])
 @usermanager.login_required
 def new_message():
     return render_template('new-message.html')
@@ -314,7 +314,7 @@ to handle both request types.</p>
 
     elif request.method == 'POST':
 
-        content = request.form.get('')
+        content = request.form.get('message')
 
         return redirect('/')
 
@@ -378,7 +378,7 @@ the top of your routes file.</p>
     elif request.method == 'POST':
 
         content = request.form.get('message')
-        current_time = datetime.now
+        current_time = datetime.now()
 
         return redirect('/')
 
@@ -415,7 +415,7 @@ the top of your routes file.</p>
     elif request.method == 'POST':
 
         content = request.form.get('message')
-        current_time = datetime.now
+        current_time = datetime.now()
         user_id = usermanager.current_user.user_id
 
         return redirect('/')
@@ -446,12 +446,12 @@ the top of your routes file.</p>
 <pre><code class="language-python">elif request.method == 'POST':
 
     content = request.form.get('message')
-    current_time = datetime.now
+    current_time = datetime.now()
     user_id = usermanager.current_user.user_id
 
     query_string = (
-      'INSERT INTO messages '
-      'VALUES [?,?,?]'
+      'INSERT INTO messages( content, time_created, user_id ) '
+      'VALUES (?,?,?)'
     )
 
     return redirect('/')
@@ -480,8 +480,8 @@ the top of your routes file.</p>
 <h3 id="submit-query-with-parameters">Submit query with parameters</h3>
 
 <pre><code class="language-python">query_string = (
-  'INSERT INTO messages '
-  'VALUES [?,?,?]'
+  'INSERT INTO messages( content, time_created, user_id ) '
+  'VALUES (?,?,?)'
 )
 
 query_result = datamanager.query_db(
@@ -529,29 +529,6 @@ else:
 return redirect('/')
 
 </code></pre>
-
-
-<aside class="notes">
-
-
-</aside>
-
-</section>
-
-
-
-<!-- slide -->
-<section class=""
-		
-	
-		id=""
-	
-	>
-		
-
-<h3 id="show-error-if-there-was-one">Show error if there was one</h3>
-
-<p>Display in template</p>
 
 
 <aside class="notes">

@@ -449,10 +449,10 @@ we have included in the starter.</p>
 	>
 		
 
-<h3 id="the-assets-folder">The assets folder</h3>
+<h3 id="the-static-folder">The static folder</h3>
 
 <p>This is where you keep all of your images<br />
-and also any CSS of JavaScript you need.</p>
+and also any CSS or JavaScript you need.</p>
 
 
 <aside class="notes">
@@ -1013,8 +1013,8 @@ then test each in the browser.</p>
 
 <h2 id="create-navigation">Create navigation</h2>
 
-<p>We can use an <strong>include</strong> to store<br />
-a menu bar for use on every page.</p>
+<p>We can use a <strong>base template</strong> to define<br />
+the same basic layout for use on every page.</p>
 
 
 <aside class="notes">
@@ -1035,18 +1035,10 @@ a menu bar for use on every page.</p>
 	>
 		
 
-<h3 id="create-nav-bar-include">Create nav bar include</h3>
+<h3 id="create-a-base-template">Create a base template</h3>
 
-<pre><code class="language-html">&lt;nav&gt;
-  &lt;a href="/"&gt;Home&lt;/a&gt;
-  &lt;a href="/new-message"&gt;New Message&lt;/a&gt;
-  &lt;a href="/sign-in"&gt;Sign in&lt;/a&gt;
-  &lt;a href="/sign-out"&gt;Sign out&lt;/a&gt;
-&lt;/nav&gt;
-</code></pre>
-
-<p>Create a new file in the <strong>includes</strong> folder<br />
-called <strong>navbar.html</strong>, containing the code provided.</p>
+<p>In your templates folder, create a<br />
+new file called <strong>base-template.html</strong>.</p>
 
 
 <aside class="notes">
@@ -1067,20 +1059,249 @@ called <strong>navbar.html</strong>, containing the code provided.</p>
 	>
 		
 
-<h3 id="include-in-all-templates">Include in all templates</h3>
+<h3 id="define-the-html-layout">Define the HTML layout</h3>
 
-<pre><code class="language-html">{% include navbar.html %}
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+
+  &lt;head&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+  &lt;/body&gt;
+
+&lt;/html&gt;
+
 </code></pre>
 
-<p>At the top of each page template,<br />
-add a line of code to include the nav.</p>
+<p>Use regular HTML to create a page<br />
+which could be considered “empty”.</p>
 
 
 <aside class="notes">
 
-<p>New syntax! Woo! The curly brackets with percentage signs are how we run small pieces of Python code within an HTML page.</p>
 
-<p>Look out for more of this as we go on!</p>
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-a-css-import-to-the-head">Add a CSS import to the head</h3>
+
+<pre><code class="language-html">&lt;head&gt;
+    &lt;link rel="stylesheet" href="/static/css/styles.css"&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p>The Flask starter kit comes with some<br />
+CSS for this project, which you can use.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="create-a-header-with-navigation">Create a header with navigation</h3>
+
+<pre><code class="language-html">&lt;body&gt;
+
+    &lt;header class="page-header"&gt;
+
+        &lt;span class="logo"&gt;SuperChat&lt;/span&gt;
+
+        &lt;nav class="main-navigation"&gt;
+          &lt;a href="/"&gt;Home&lt;/a&gt;
+          &lt;a href="/new-message"&gt;New Message&lt;/a&gt;
+        &lt;/nav&gt;
+
+        &lt;div class="user-info"&gt;
+            &lt;a href="/sign-out"&gt;Sign out&lt;/a&gt;
+            &lt;a href="/sign-in"&gt;Sign in&lt;/a&gt;
+        &lt;/div&gt;
+
+    &lt;/header&gt;
+
+&lt;/body&gt;
+</code></pre>
+
+<p>The header contains a logo, main navigation<br />
+and some information for the current user.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-a-section-for-page-content">Add a section for page content</h3>
+
+<pre><code class="language-html">    &lt;/header&gt;
+
+    &lt;section class="page-content"&gt;
+    &lt;/section&gt;
+
+&lt;/body&gt;
+</code></pre>
+
+<p>Below the header, create a section which<br />
+will contain different content for each page.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="define-a-template-block-called-content">Define a template block called content</h3>
+
+<pre><code class="language-html">&lt;section class="page-content"&gt;
+
+    {% block content %}{% endblock %}
+
+&lt;/section&gt;
+</code></pre>
+
+<p>A Flask template block defines where dynamic<br />
+content should be injected into the template.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="apply-the-base-template-to-the-home-page">Apply the base template to the home page</h3>
+
+<pre><code class="language-html">{% extends "base-template.html" %}
+
+{% block content %}
+&lt;h1&gt;Messages&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Messages go here&lt;/li&gt;
+  &lt;li&gt;Another message&lt;/li&gt;
+  &lt;li&gt;Plus a third one&lt;/li&gt;
+&lt;/ol&gt;
+{% endblock %}
+</code></pre>
+
+<p>Edit the <strong>index.html</strong> template so that it extends <br />
+the base template and defines the content block.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-that-it-works">Check that it works</h3>
+
+<p>Check in your browser to see if the<br />
+base template was properly applied.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="apply-base-template-to-all-templates">Apply base template to all templates</h3>
+
+<p>For all other templates, extend the base template<br />
+and wrap the page content in a content block.</p>
+
+
+<aside class="notes">
+
 
 </aside>
 
@@ -1125,7 +1346,7 @@ and click to each page to test it.</p>
 
 <h2 id="flask-complete">Flask: Complete!</h2>
 
-<p><a href="web-lists.html">Take me to the next chapter!</a></p>
+<p><a href="displaying-data.html">Take me to the next chapter!</a></p>
 
 
 <aside class="notes">

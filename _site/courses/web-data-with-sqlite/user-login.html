@@ -270,8 +270,8 @@ installed from the shell.</p>
 
 <h3 id="create-a-usermanager-file">Create a usermanager file</h3>
 
-<p>In your message-board application folder,<br />
-create a new file called <strong>usermanager.py</strong></p>
+<p>In your website’s public folder,<br />
+create a new file <strong>usermanager.py</strong></p>
 
 
 <aside class="notes">
@@ -1044,8 +1044,8 @@ to check for any new errors.</p>
 
 <h2 id="authenticate-the-user">Authenticate the user</h2>
 
-<p>Sign in the user with the username<br />
-and password they entered in the form.</p>
+<p>When the user signs in, we need to process the <br />
+username and password they entered in the form.</p>
 
 
 <aside class="notes">
@@ -1076,8 +1076,8 @@ and password they entered in the form.</p>
     user = usermanager.sign_in_user(username, password)
 </code></pre>
 
-<p>We can pass the username and password to<br />
-the <code>sign_in_user</code> function to sign them in.</p>
+<p>Modify your sign-in route to pass the username <br />
+and password to the <code>sign_in_user</code> function.</p>
 
 
 <aside class="notes">
@@ -1117,6 +1117,33 @@ the <code>sign_in_user</code> function to sign them in.</p>
 and we can redirect them to the home page.</p>
 
 <p>If they don’t exist, we keep them on the sign in page.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="import-the-redirect-package">Import the redirect package</h3>
+
+<pre><code class="language-python">from flask import redirect
+</code></pre>
+
+<p>Import the redirect package<br />
+at the top of <strong>routes.py</strong></p>
 
 
 <aside class="notes">
@@ -1330,6 +1357,48 @@ def load_user(username):
 
         return user
 </code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="attach-the-additional-optional-user-info">Attach the additional optional user info</h3>
+
+<pre><code class="language-python">query_result = datamanager.query_db(query_string, [username], one=True)
+
+if query_result == None:
+    return None
+
+else:
+    user = User(
+        query_result['username'],
+        query_result['password']
+    )
+
+    user.user_id = query_result['user_id']
+    user.first_name = query_result['first_name']
+    user.last_name = query_result['last_name']
+
+    return user
+</code></pre>
+
+<p>We can also store the user’s user_id<br />
+and their first and last name on the User.</p>
 
 
 <aside class="notes">
@@ -1578,7 +1647,7 @@ to show and hide elements on a page.</p>
 <h3 id="displaying-a-username">Displaying a username</h3>
 
 <pre><code class="language-html">{% if current_user.is_authenticated %}
-    Hello {% current_user.username %}
+    Hello {{ current_user.username }}
 {% endif %}
 </code></pre>
 
