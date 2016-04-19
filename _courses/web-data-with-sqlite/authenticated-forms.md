@@ -182,7 +182,6 @@ slides:
       ### Check result is valid
 
       ```python
-
       query_result = datamanager.query_db(
           query_string, 
           [content, current_time, user_id], 
