@@ -1,21 +1,31 @@
 <html>
 
   <head>
-    
+    <link rel="stylesheet" href="/static/css/styles.css">
   </head>
 
 
   <body>
 
-    <nav>
-      <a href="/">Home</a>
-      <a href="/new-message">New Message</a>
-      <a href="/sign-out">Sign out</a>
-      <a href="/sign-in">Sign in</a>
-    </nav>
+    <header class="page-header">
 
+        <span class="logo">MessageBoard</span>
+
+        <nav class="main-navigation">
+          <a href="/">Home</a>
+          <a href="/new-message">New Message</a>
+          <a href="/sign-out">Sign out</a>
+          <a href="/sign-in">Sign in</a>
+        </nav>
+
+    </header>
+
+
+    <section class="page-content">
 
     {% block content %}{% endblock %}
+
+    </section>
     
   </body>
 

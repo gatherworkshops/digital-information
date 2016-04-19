@@ -3,14 +3,27 @@
 {% block content %}
 <h1>Messages</h1>
 
-<ol>
+<ol class="messages-list">
 
 	{% for message in messages %}
+
+		{% if current_user.username == message['username'] %}
+			{% set own_message = True %}
+		{% else %}
+			{% set own_message = False %}
+		{% endif %}
+
+		{% if own_message %}
+		<li class="own-message">
+		{% else %}
         <li>
+        {% endif %}
+
             {{ message['username'] }}: {{ message['content'] }}
-            {% if current_user.username == message['username'] %}
+            {% if own_message %}
               <a href="{{ url_for('edit_message', message_id = message['message_id']) }}">Edit</a>
             {% endif %}
+
         </li>
     {% endfor %}
 
