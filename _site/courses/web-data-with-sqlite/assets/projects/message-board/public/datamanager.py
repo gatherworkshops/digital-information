@@ -45,10 +45,15 @@ def teardown_request(exception):
 
 
 def query_db(query, args=(), one=False):
-    cur = get_db().execute(query, args)
-    rv = cur.fetchall()
-    cur.close()
-    return (rv[0] if rv else None) if one else rv
+    try:
+        cur = get_db().execute(query, args)
+        get_db().commit()
+        rv = cur.fetchall()
+        cur.close()
+        return (rv[0] if rv else None) if one else rv
+    except sqlite3.Error as er:
+        print('er:', er)
+        return None
 
 
 def convert_row_to_dictionary(cursor, row):

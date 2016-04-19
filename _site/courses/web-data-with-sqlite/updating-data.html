@@ -193,6 +193,565 @@
 	>
 		
 
+<h2 id="editing-a-message">Editing a message</h2>
+
+<p>To demonstrate editing an existing item<br />
+in the database we can edit a message.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="create-a-template-for-editing-a-message">Create a template for editing a message</h3>
+
+<pre><code class="language-html">&lt;form action="edit-message" method="post"&gt;
+
+    &lt;label&gt;Message&lt;/label&gt;
+    &lt;input name="message" type="text"&gt;
+
+    &lt;input type="submit" value="Save"&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+<p>Write a new template called edit-message.html<br />
+which contains a form for editable fields.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="include-a-hidden-field-for-the-id">Include a hidden field for the id</h3>
+
+<pre><code class="language-html">&lt;form action="edit-message" method="post"&gt;
+
+    &lt;label&gt;Message&lt;/label&gt;
+    &lt;input name="message" type="text"&gt;
+
+    &lt;input name="message_id" type="hidden"&gt;
+
+    &lt;input type="submit" value="Save"&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+<p>This will help us know which table row<br />
+to update when the form is submitted.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="route-for-editing-a-message">Route for editing a message</h3>
+
+<pre><code class="language-python"># edit message page
+@website.route('/edit-message')
+@usermanager.login_required
+def edit_message():
+    return render_template('edit-message.html')
+</code></pre>
+
+<p>Create a new route for the message editor<br />
+and display the correct template for it.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="set-up-the-get-and-post-methods">Set up the GET and POST methods</h3>
+
+<pre><code class="language-python"># edit message page
+@website.route('/edit-message', methods=['GET', 'POST'])
+@usermanager.login_required
+def edit_message():
+
+    if request.method == 'GET':
+        return render_template('edit-message.html')
+
+    elif request.method == 'POST':
+        return redirect('/')
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="pass-the-message-id-to-the-edit-message-route">Pass the message id to the edit-message route</h3>
+
+<pre><code class="language-python"># edit message page
+@website.route('/edit-message/&lt;message_id&gt;', methods=['GET', 'POST'])
+@usermanager.login_required
+def edit_message(message_id):
+
+    if request.method == 'GET':
+        return render_template('edit-message.html')
+
+    elif request.method == 'POST':
+        return redirect('/')
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="load-the-message-data-in-the-route">Load the message data in the route</h3>
+
+<pre><code class="language-python">if request.method == 'GET':
+
+    query_string = (
+        'SELECT message_id, content, user_id '
+        'FROM messages '
+        'WHERE message_id = ?'
+    )
+
+    query_result = datamanager.query_db(
+        query_string, 
+        [message_id],
+        one=True
+    )
+
+    return render_template('edit-message.html')
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="pass-the-message-data-to-the-template">Pass the message data to the template</h3>
+
+<pre><code class="language-python">return render_template('edit-message.html', message=query_result)
+</code></pre>
+
+<p>Pass the query result to the template<br />
+under the variable name <strong>message</strong>.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="display-the-message-data-in-the-form">Display the message data in the form</h3>
+
+<pre><code class="language-html">&lt;form action="edit-message" method="post"&gt;
+
+    &lt;label&gt;Message&lt;/label&gt;
+    &lt;input name="message" type="text" value="{{ message.content }}"&gt;
+
+    &lt;input name="message_id" type="hidden" value="{{ message.message_id }}"&gt;
+
+    &lt;input type="submit" value="Save"&gt;
+
+&lt;/form&gt;
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-that-the-form-data-shows-up">Check that the form data shows up</h3>
+
+<pre><code class="language-bash">localhost:5000/edit-message/1
+</code></pre>
+
+<p>Browse to the edit-message url in your<br />
+browser and check that the message is showing.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="saving-the-modified-form-data">Saving the modified form data</h2>
+
+<p>The user can now make changes to the form<br />
+but the changes also need to be saved.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="make-the-message-id-optional-so-we-can-post">Make the message id optional so we can post</h3>
+
+<pre><code class="language-python"># edit message page
+@website.route('/edit-message/&lt;message_id&gt;', methods=['GET', 'POST'])
+@usermanager.login_required
+def edit_message(message_id = None):
+
+    ...
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="write-the-post-processing">Write the POST processing</h3>
+
+<pre><code class="language-python">if request.method == 'POST':
+
+    message_content = request.form.get('message')
+    message_id = request.form.get('message_id')
+
+    query_string = (
+        'UPDATE messages '
+        'SET content = ? '
+        'WHERE message_id = ?'
+    )
+
+    query_result = datamanager.query_db(
+        query_string, 
+        [message_content, message_id],
+        one=True
+    )
+
+    return redirect('/')
+</code></pre>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="check-that-it-works">Check that it works</h3>
+
+<p>Edit a message in the browser<br />
+and check that it saves correctly.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h2 id="linking-to-an-edit-page">Linking to an edit page</h2>
+
+<p>We can add a link to messages<br />
+that the user can click to edit.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="retrieve-the-message-id-for-home-page-messages">Retrieve the message id for home page messages</h3>
+
+<pre><code class="language-python">@website.route('/')
+def index():
+
+    query_string = (
+      'SELECT message_id, content, username, time_created ' 
+      'FROM messages INNER JOIN users '
+      'USING (user_id) '
+      'ORDER BY time_created DESC'
+    )
+</code></pre>
+
+<p>Update the query to load the message_id<br />
+so we can use it for our edit link.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="add-a-link-to-the-message-html">Add a link to the message HTML</h3>
+
+<pre><code class="language-html">{% for message in messages %}
+    &lt;li&gt;
+        {{ message['username'] }}: {{ message['content'] }}
+        &lt;a href="{{ url_for('edit_message', message_id = message['message_id']) }}"&gt;Edit&lt;/a&gt;
+    &lt;/li&gt;
+{% endfor %}
+</code></pre>
+
+<p>Modify the <strong>index.html</strong> template to<br />
+include an <strong>edit</strong> link on the message.</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
+<h3 id="only-show-the-edit-link-for-the-message-owner">Only show the edit link for the message owner</h3>
+
+<pre><code class="language-html">{% for message in messages %}
+    &lt;li&gt;
+        {{ message['username'] }}: {{ message['content'] }}
+        {% if current_user.username == message['username'] %}
+        &lt;a href="{{ url_for('edit_message', message_id = message['message_id']) }}"&gt;Edit&lt;/a&gt;
+        {% endif %}
+    &lt;/li&gt;
+{% endfor %}
+</code></pre>
+
+<p>Users should only be able to edit their<br />
+own messages, not messages by other people!</p>
+
+
+<aside class="notes">
+
+
+</aside>
+
+</section>
+
+
+
+<!-- slide -->
+<section class=""
+		
+	
+		id=""
+	
+	>
+		
+
 <p><img src="/digital-information/theme/assets/images/thumbs-up.svg" alt="Thumbs Up!" height="200" /></p>
 
 <h2 id="updating-data-complete">Updating Data: Complete!</h2>
