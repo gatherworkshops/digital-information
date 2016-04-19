@@ -162,6 +162,24 @@ slides:
 
   - content: |
 
+      ### Tidy up long queries
+
+      ```python
+      query_string = (
+          'SELECT content, username '
+          'FROM messages INNER JOIN users '
+          'USING (user_id)'
+      )
+      
+      query_results = datamanager.query_db(query_string, [], one=False)
+      ```
+
+      Once queries get longer than about 5 or 6 words,
+      you should tidy them by splitting over multiple lines.
+
+
+  - content: |
+
       ### Display username by message
 
       ```html
@@ -263,9 +281,9 @@ slides:
 
       ![Thumbs Up!]([[BASE_URL]]/theme/assets/images/thumbs-up.svg){: height="200"}
 
-      ## Web Lists: Complete!
+      ## Displaying Data: Complete!
 
-      [Take me to the next chapter!](user-login.html)
+      [Take me to the next chapter!](web-forms.html)
 
 
 ---

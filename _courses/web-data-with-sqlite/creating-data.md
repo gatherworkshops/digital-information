@@ -166,6 +166,9 @@ slides:
   - content: |
       ## Scripting complex data
 
+      Many times we want to include data
+      which goes beyond just plain text.
+
 
   - content: |
 
@@ -255,7 +258,7 @@ slides:
       INSERT INTO messages VALUES (
         NULL,
         'Hello',
-        julianday('now'),
+        datetime('now'),
         last_insert_rowid()
       );
       ```

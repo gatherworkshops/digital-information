@@ -105,10 +105,10 @@ slides:
 
   - content: |
 
-      ### Create a new text file `schema.sql` in your db folder
+      ### Create a new file schema.sql in your db folder
 
-      A database schema describes the structure
-      of a database using code.
+      A database schema describes the 
+      structure of a database using code.
 
 
   - content: |

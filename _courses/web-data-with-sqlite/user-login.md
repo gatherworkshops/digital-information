@@ -48,8 +48,8 @@ slides:
 
       ### Create a usermanager file
 
-      In your message-board application folder,
-      create a new file called **usermanager.py**
+      In your website's public folder,
+      create a new file **usermanager.py**
 
 
 
@@ -459,8 +459,8 @@ slides:
 
       ## Authenticate the user
 
-      Sign in the user with the username
-      and password they entered in the form.
+      When the user signs in, we need to process the 
+      username and password they entered in the form.
 
 
   - content: |
@@ -476,8 +476,8 @@ slides:
           user = usermanager.sign_in_user(username, password)
       ```
 
-      We can pass the username and password to
-      the `sign_in_user` function to sign them in.
+      Modify your sign-in route to pass the username 
+      and password to the `sign_in_user` function.
 
 
   - content: |
@@ -503,6 +503,17 @@ slides:
 
       If they don't exist, we keep them on the sign in page.
 
+
+  - content: |
+
+      ### Import the redirect package
+
+      ```python
+      from flask import redirect
+      ```
+
+      Import the redirect package
+      at the top of **routes.py**
 
   - content: |
 
@@ -614,6 +625,34 @@ slides:
 
               return user
       ```
+
+
+  - content: |
+
+      ### Attach the additional optional user info
+
+      ```python
+      query_result = datamanager.query_db(query_string, [username], one=True)
+
+      if query_result == None:
+          return None
+
+      else:
+          user = User(
+              query_result['username'],
+              query_result['password']
+          )
+
+          user.user_id = query_result['user_id']
+          user.first_name = query_result['first_name']
+          user.last_name = query_result['last_name']
+
+          return user
+      ```
+
+      We can also store the user's user_id
+      and their first and last name on the User.
+      
 
 
   - content: |
@@ -739,7 +778,7 @@ slides:
 
       ```html
       {% if current_user.is_authenticated %}
-          Hello {% current_user.username %}
+          Hello {{ current_user.username }}
       {% endif %}
       ```
 

@@ -113,10 +113,10 @@ slides:
 
   - content: |
 
-      ### The assets folder
+      ### The static folder
 
       This is where you keep all of your images
-      and also any CSS of JavaScript you need.
+      and also any CSS or JavaScript you need.
 
     notes: |
 
@@ -383,41 +383,156 @@ slides:
       
       ## Create navigation
 
-      We can use an **include** to store
-      a menu bar for use on every page.
+      We can use a **base template** to define
+      the same basic layout for use on every page.
+
 
   - content: |
 
-      ### Create nav bar include
+      ### Create a base template
 
-      ```html
-      <nav>
-        <a href="/">Home</a>
-        <a href="/new-message">New Message</a>
-        <a href="/sign-in">Sign in</a>
-        <a href="/sign-out">Sign out</a>
-      </nav>
-      ```
+      In your templates folder, create a
+      new file called **base-template.html**.
 
-      Create a new file in the **includes** folder
-      called **navbar.html**, containing the code provided.
 
   - content: |
-      
-      ### Include in all templates
+
+      ### Define the HTML layout
 
       ```html
-      {% include navbar.html %}
+      <!doctype html>
+      <html>
+
+        <head>
+        </head>
+
+        <body>
+        </body>
+
+      </html>
+
       ```
 
-      At the top of each page template,
-      add a line of code to include the nav.
+      Use regular HTML to create a page
+      which could be considered "empty".
 
-    notes: |
 
-      New syntax! Woo! The curly brackets with percentage signs are how we run small pieces of Python code within an HTML page.
+  - content: |
 
-      Look out for more of this as we go on!
+      ### Add a CSS import to the head
+
+      ```html
+      <head>
+          <link rel="stylesheet" href="/static/css/styles.css">
+      </head>
+      ```
+
+      The Flask starter kit comes with some
+      CSS for this project, which you can use.
+
+
+  - content: |
+
+      ### Create a header with navigation
+
+      ```html
+      <body>
+
+          <header class="page-header">
+
+              <span class="logo">SuperChat</span>
+
+              <nav class="main-navigation">
+                <a href="/">Home</a>
+                <a href="/new-message">New Message</a>
+              </nav>
+
+              <div class="user-info">
+                  <a href="/sign-out">Sign out</a>
+                  <a href="/sign-in">Sign in</a>
+              </div>
+
+          </header>
+
+      </body>
+      ```
+
+      The header contains a logo, main navigation
+      and some information for the current user.
+
+
+
+  - content: |
+
+      ### Add a section for page content
+
+      ```html
+          </header>
+
+          <section class="page-content">
+          </section>
+
+      </body>
+      ```
+
+      Below the header, create a section which
+      will contain different content for each page.
+
+
+  - content: |
+
+      ### Define a template block called content
+
+      ```html
+      <section class="page-content">
+
+          {% block content %}{% endblock %}
+
+      </section>
+      ```
+
+      A Flask template block defines where dynamic
+      content should be injected into the template.
+
+
+  - content: |
+
+      ### Apply the base template to the home page
+
+      ```html
+      {% extends "base-template.html" %}
+
+      {% block content %}
+      <h1>Messages</h1>
+
+      <ol>
+        <li>Messages go here</li>
+        <li>Another message</li>
+        <li>Plus a third one</li>
+      </ol>
+      {% endblock %}
+      ```
+
+      Edit the **index.html** template so that it extends 
+      the base template and defines the content block.
+
+
+  - content: |
+
+      ### Check that it works
+
+      Check in your browser to see if the
+      base template was properly applied.
+
+
+
+  - content: |
+
+      ### Apply base template to all templates
+
+      For all other templates, extend the base template
+      and wrap the page content in a content block.
+
 
   - content: |
 
@@ -437,6 +552,6 @@ slides:
 
       ## Flask: Complete!
 
-      [Take me to the next chapter!](web-lists.html)
+      [Take me to the next chapter!](displaying-data.html)
 
 ---

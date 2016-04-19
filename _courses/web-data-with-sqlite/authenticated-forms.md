@@ -35,7 +35,7 @@ slides:
       ### Allow POST data for new message route
 
       ```python
-      @website.route('/new-message', method=['GET', 'POST'])
+      @website.route('/new-message', methods=['GET', 'POST'])
       @usermanager.login_required
       def new_message():
           return render_template('new-message.html')
@@ -75,7 +75,7 @@ slides:
 
           elif request.method == 'POST':
 
-              content = request.form.get('')
+              content = request.form.get('message')
 
               return redirect('/')
 
@@ -109,7 +109,7 @@ slides:
           elif request.method == 'POST':
 
               content = request.form.get('message')
-              current_time = datetime.now
+              current_time = datetime.now()
 
               return redirect('/')
 
@@ -130,7 +130,7 @@ slides:
           elif request.method == 'POST':
 
               content = request.form.get('message')
-              current_time = datetime.now
+              current_time = datetime.now()
               user_id = usermanager.current_user.user_id
 
               return redirect('/')
@@ -145,12 +145,12 @@ slides:
       elif request.method == 'POST':
 
           content = request.form.get('message')
-          current_time = datetime.now
+          current_time = datetime.now()
           user_id = usermanager.current_user.user_id
 
           query_string = (
-            'INSERT INTO messages '
-            'VALUES [?,?,?]'
+            'INSERT INTO messages( content, time_created, user_id ) '
+            'VALUES (?,?,?)'
           )
 
           return redirect('/')
@@ -163,8 +163,8 @@ slides:
 
       ```python
       query_string = (
-        'INSERT INTO messages '
-        'VALUES [?,?,?]'
+        'INSERT INTO messages( content, time_created, user_id ) '
+        'VALUES (?,?,?)'
       )
 
       query_result = datamanager.query_db(
@@ -196,12 +196,6 @@ slides:
       return redirect('/')
 
       ```
-  
-  - content: |
-
-      ### Show error if there was one
-
-      Display in template
 
 
   - content: |

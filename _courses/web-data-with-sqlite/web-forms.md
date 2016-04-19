@@ -21,10 +21,10 @@ slides:
 
   - content: |
 
-      ## Create a sign in form
+      ## Prepare the sign in form
 
-      We need to create a sign in form
-      on the sign-in page template.
+      We need the form on the sign-in 
+      page to be set up correctly.
 
 
   - content: |
@@ -62,7 +62,7 @@ slides:
         <input name="username" type="text">
 
         <label>Password</label>
-        <input name="password" type="text">
+        <input name="password" type="password">
 
         <input type="submit" value="Sign in">
 
@@ -89,10 +89,22 @@ slides:
 
   - content: |
 
+      ### Import Flask's request package
+
+      ```python
+      from flask import request
+      ```
+
+      At the top of **routes.py**, import the
+      request package to allow us to process forms.
+
+
+  - content: |
+
       ### Define which methods are enabled for the route
 
       ```python
-      @website.route('/sign-in', methods=["GET", "POST"])
+      @website.route('/sign-in', methods=['GET', 'POST'])
       def sign_in():
           return render_template('sign-in.html')
       ```
@@ -105,7 +117,7 @@ slides:
       ### Do different things based on the method used
 
       ```python
-      @website.route('/sign-in', methods=["GET", "POST"])
+      @website.route('/sign-in', methods=['GET', 'POST'])
       def sign_in():
 
           if request.method == 'GET':
@@ -118,6 +130,14 @@ slides:
 
       For a **GET** request we want to display the form,
       but for **POST** we want to log in the user.
+
+
+  - content: |
+
+      ### Check that both GET and POST are supported
+
+      Browse to the sign in page and ensue that
+      you get a different page when clicking sign in.
 
 
   - content: |
@@ -149,8 +169,8 @@ slides:
           print('password:', password)
       ```
 
-      Check you've received them correctly,
-      we'll use them to log in later!
+      Sign in with a username and password,
+      then check that they printed in the shell.
 
 
 
