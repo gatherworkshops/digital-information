@@ -23,6 +23,14 @@ slides:
 
   - content: |
 
+      ### Create a project folder
+
+      Create a folder called **message-board** in a 
+      safe place where you usually save projects.
+
+
+  - content: |
+
       ### Open SQLite Studio
 
       ![SQLite Studio main screen](assets/images/sqlite-studio-main-screen.png){:height="350"}
@@ -331,8 +339,8 @@ slides:
 
       ## Structural Overview
 
-      Let's look briefly at how a SQLite database works 
-      and what is stored inside it.
+      Let's look briefly at how a SQLite database 
+      works and what is stored inside it.
 
 
   - content: |
