@@ -1,0 +1,16 @@
+{% extends "base-template.html" %}
+
+{% block content %}
+<h1>Edit an existing message</h1>
+
+<form action="edit-message" method="post">
+
+    <label>Message</label>
+    <input name="message" type="text" value="{{ message.content }}">
+
+    <input name="message_id" type="hidden" value="{{ message.message_id }}">
+
+    <input type="submit" value="Save">
+
+</form>
+{% endblock %}

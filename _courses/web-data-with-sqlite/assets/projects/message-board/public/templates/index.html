@@ -6,8 +6,13 @@
 <ol>
 
 	{% for message in messages %}
-		<li>{{ message['username'] }}: {{ message['content'] }}</li>
-	{% endfor %}
+        <li>
+            {{ message['username'] }}: {{ message['content'] }}
+            {% if current_user.username == message['username'] %}
+              <a href="{{ url_for('edit_message', message_id = message['message_id']) }}">Edit</a>
+            {% endif %}
+        </li>
+    {% endfor %}
 
 </ol>
 {% endblock %}

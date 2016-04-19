@@ -13,7 +13,7 @@ from public import usermanager
 def index():
 
     query_string = (
-      'SELECT content, username, time_created ' 
+      'SELECT message_id, content, username, time_created ' 
       'FROM messages INNER JOIN users '
       'USING (user_id) '
       'ORDER BY time_created DESC'
@@ -36,6 +36,50 @@ def index():
 def new_message():
     return render_template('new-message.html')
 
+
+
+
+# new message page
+@website.route('/edit-message/<message_id>', methods=['GET', 'POST'])
+@usermanager.login_required
+def edit_message(message_id = None):
+
+    if request.method == 'GET':
+
+        query_string = (
+            'SELECT message_id, content, user_id '
+            'FROM messages '
+            'WHERE message_id = ?'
+        )
+
+        query_result = datamanager.query_db(
+            query_string, 
+            [message_id],
+            one=True
+        )
+
+        return render_template('edit-message.html', message=query_result)
+
+    elif request.method == 'POST':
+
+        message_content = request.form.get('message')
+        message_id = request.form.get('message_id')
+
+        query_string = (
+          'UPDATE messages '
+          'SET content = ? '
+          'WHERE message_id = ?'
+        )
+
+        query_result = datamanager.query_db(
+            query_string, 
+            [message_content, message_id],
+            one=True
+        )
+
+        print('result:', query_result)
+
+        return redirect('/')
 
 
 
