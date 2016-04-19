@@ -127,24 +127,10 @@ slides:
 
   - content: |
 
-      ### Includes folder
-
-      This is where you keep pieces of HTML code
-      you'd like to use on more than one page.
-
-      eg. header, footer, navigation
-
-    notes: |
-
-      You will need to modify these includes as you develop your project.
-
-
-  - content: |
-
       ### Templates folder
 
-      In Flask, a template is the HTML layout
-      for a page in your website.
+      A Flask template is the HTML layout
+      for a page (or pages) in your website.
 
       eg. index, user-profile, contact, generic-page
 
