@@ -194,7 +194,7 @@ slides:
         message_id INTEGER PRIMARY KEY AUTOINCREMENT,
         content TEXT(300),
         time_created TEXT(30),
-        user_id INTEGER FOREIGN KEY
+        user_id INTEGER FOREIGN_KEY
       );
       ```
 
