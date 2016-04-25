@@ -198,18 +198,7 @@ slides:
       );
       ```
 
-  - content: |
-
-      ### Include any required foreign keys
-
-      ```sql
-      CREATE TABLE messages(
-        message_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        content TEXT(300),
-        time_created TEXT(30),
-        user_id INTEGER FOREIGN_KEY
-      );
-      ```
+      Remember to include any required foreign keys
 
   - content: |
 

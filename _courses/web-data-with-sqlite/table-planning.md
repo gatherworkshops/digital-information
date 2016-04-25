@@ -154,7 +154,7 @@ slides:
 
       ### Use `numeric` to store numbers
 
-      USe to store a mix of integer and real numbers
+      Use to store a mix of integer and real numbers
 
 
   - content: |
