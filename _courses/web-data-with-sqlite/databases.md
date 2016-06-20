@@ -164,7 +164,7 @@ slides:
 
       ### Navigate to your project folder
 
-      Use `cd` to change directory into your project folder.
+      Use `cd folder-name/` to change directory into your project folder.
 
 
   - content: |
