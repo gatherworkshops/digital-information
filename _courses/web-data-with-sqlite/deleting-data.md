@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Deleting Data
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Deleting Data
       _Removing records from a data set_

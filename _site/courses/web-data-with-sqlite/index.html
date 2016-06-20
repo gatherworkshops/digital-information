@@ -1,45 +1,43 @@
-
-
-
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Web Data with SQLite</title>
         <meta name="viewport" content="width=device-width">
 
-        <!-- google translate - language identifier -->
-        <meta name="google-translate-customization" content="a148a80643fbe5d7-b9de7b0f0180d6d8-g318479cea978092f-2b"></meta>
+        <title>Web Data with SQLite</title>
+        
 
         <!-- Bootstrap -->
-        <link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
 
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+<!-- only include revealJS styles if there is a slideshow on the page -->
 
-        <!-- Custom Fonts -->
-        <link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 
-        <!-- revealjs for slideshows -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/revealjs/css/reveal.min.css">
+<!-- Prism -->
+<link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
 
-        <!-- Prism -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
-        <script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+<!-- Custom Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+
+
+
+
+
+        
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="/digital-information/favicon.ico">
 
     </head>
 
-    <body class="course-page">
+    <body>
 <nav id="page-navigation">
 
 
@@ -61,10 +59,8 @@
     <!-- page name or course name depending on context -->
     
 
-        <!-- page name should always be available from page data -->
-        <p class="page-name navbar-text invisible">
-            Web Data with SQLite 
-        </p>
+        <!-- course name has to be set by jQuery from JSON data -->
+        <a class="course-name navbar-text invisible" href="index.html"></a>
 
     
 
@@ -87,56 +83,19 @@
     </div><!-- /.navbar-collapse -->
 
 
-
-    <script>
-        // generates the chapter dropdown menu from a json file
-        $(document).ready( function() {
-
-            // updates the nav with data fetched from the course's JSON.
-            // we do this via JSON to avoid the need for repetition of
-            // sitemap or coursemap data in a place other than the course's
-            // root directory, as Jekyll can only read custom data from the
-            // _data dir which is not ideal.
-            function generateMenu(course) {
-
-                // find all elements we will modify
-                var navBar = $('#page-navigation');
-                var courseName = navBar.find('.course-name');
-                var chapterDropdown = navBar.find('.dropdown-menu');
-
-                // update the course name in the nav bar
-                courseName.html(course.title);
-
-                // create and append a menu item for each chapter
-                $.each(course.chapters, function(index, chapter){
-                    var chapterLink = $(
-                        '<li>' +
-                            '<a href="' + this.name + '">' +
-                                this.title +
-                            '</a>' +
-                        '</li>'
-                    );
-                    chapterDropdown.append(chapterLink);
-                });
-
-                // show all hidden nav elements
-                navBar
-                    .find('.invisible')
-                    .removeClass('invisible');
-            }
-
-            // go get the course data
-            $.get( "index.json", generateMenu);
-
-        });
-    </script>
-
-
 </nav>
 
 
-
 <div class="page-content">
+
+
+
+
+<!-- display slideshow if there is one (when on a chapter page) -->
+
+
+
+<!-- display a fat page header if there is one (home page, course page) -->
 
 	
 <div class="page-header">
@@ -146,334 +105,366 @@
 	
 </div>
 
+
+
+
+<!-- display page content -->
+<div class="container">
+
+</div><!-- .container -->
+
+
+<!-- list courses if there are any (when on home page) -->
+
+
+
+<!-- list chapters if there are any (when on a course page) -->
+
+	<ol class="chapter-list">
 	
-
-	<div class="container">
-		<div class="row chapter-links">
-
-			<ol class="chapter-list col-md-10 col-md-offset-1">
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="introduction.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/introduction.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Introduction</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="introduction.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/introduction.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Introduction</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="databases.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/databases.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Databases</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="databases.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/databases.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Databases</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="table-planning.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/table-planning.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Table Planning</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="table-planning.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/table-planning.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Table Planning</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="table-creation.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/table-creation.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Table Creation</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="creating-tables.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/creating-tables.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Creating Tables</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="creating-data.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/creating-data.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Creating Data</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="creating-data.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/creating-data.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Creating Data</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="reading-data.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/reading-data.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Reading Data</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="reading-data.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/reading-data.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Reading Data</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="flask.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/flask.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Flask</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="flask.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/flask.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Flask</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="displaying-data.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/displaying-data.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Displaying Data</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="displaying-data.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/displaying-data.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Displaying Data</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="web-forms.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/web-forms.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Web Forms</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="web-forms.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/web-forms.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Web Forms</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="user-login.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/user-login.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">User Login</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="user-login.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/user-login.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">User Login</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="authenticated-forms.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/authenticated-forms.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Authenticated Forms</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="authenticated-forms.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/authenticated-forms.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Authenticated Forms</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="updating-data.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/updating-data.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Updating Data</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="updating-data.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/updating-data.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Updating Data</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			        
+		
 
 
-<li class="chapter-item">
+		
 
+
+	    <li class="chapter-item">
+		    <a href="deleting-data.html">
+
+		    	<div class="zoom-badge">
+		    		<div class="inner" style="background-image: url(
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/deleting-data.jpg
+        );"></div>
+		    	</div>
+
+			    <div class="content">
+
+			        <h2 class="title">Deleting Data</h2>
+			        <p></p>
+
+			    </div>
+		    </a>
+		</li>
+
+		
 	
-    <a href="deleting-data.html">
-    
-
-        <img class="header-image" src="
-    assets/tiles/deleting-data.jpg
-">
-
-        <div class="chapter-info">
-            <h2 class="title">Deleting Data</h2>
-            <p></p>
-        </div>
-
-    </a>
-
-</li>
-
-			    
-
-			</ol>
-
-		</div>
-	</div>
+</ol>
 
 
-	<footer class="page-footer flex-container">
+
+<footer class="page-footer flex-container">
 
 	<div class="container">
 		
@@ -547,18 +538,26 @@
     
 
 
+
+
 </div><!-- .page-content -->
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Prism code highlighter -->
+<script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
+
+<!-- only include dropdown navbar if there is a slideshow on the page -->
+
+	<script src="/digital-information/theme/assets/js/navbar.js"></script>
 
 
+<!-- only include revealJS if there is a slideshow on the page -->
 
 
-
-
-
-
-	
-
-	
-
-	
+</body>
+</html>

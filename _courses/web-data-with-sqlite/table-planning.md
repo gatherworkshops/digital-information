@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Table Planning
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Table Planning
       _Mapping your data structure_

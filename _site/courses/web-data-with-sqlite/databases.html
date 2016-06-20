@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Databases</title>
         <meta name="viewport" content="width=device-width">
 
-        <!-- google translate - language identifier -->
-        <meta name="google-translate-customization" content="a148a80643fbe5d7-b9de7b0f0180d6d8-g318479cea978092f-2b"></meta>
+        <title>Databases</title>
+        
 
         <!-- Bootstrap -->
-        <link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
 
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+<!-- only include revealJS styles if there is a slideshow on the page -->
 
-        <!-- Custom Fonts -->
-        <link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 
-        <!-- revealjs for slideshows -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/revealjs/css/reveal.min.css">
+    <!-- revealjs for slideshows -->
+    <link rel="stylesheet" href="/digital-information/theme/assets/submodules/revealjs/css/reveal.min.css">
 
-        <!-- Prism -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
-        <script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
+    <!-- Custom Slideshow CSS -->
+    <link rel="stylesheet" href="/digital-information/theme/assets/css/slideshow.css">
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+
+
+<!-- Prism -->
+<link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
+
+
+<!-- Custom Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+
+
+
+
+
+        
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="/digital-information/favicon.ico">
 
     </head>
 
-    <body class="">
+    <body>
 <nav id="page-navigation">
 
 
@@ -92,60 +101,18 @@
     </div><!-- /.navbar-collapse -->
 
 
-
-    <script>
-        // generates the chapter dropdown menu from a json file
-        $(document).ready( function() {
-
-            // updates the nav with data fetched from the course's JSON.
-            // we do this via JSON to avoid the need for repetition of
-            // sitemap or coursemap data in a place other than the course's
-            // root directory, as Jekyll can only read custom data from the
-            // _data dir which is not ideal.
-            function generateMenu(course) {
-
-                // find all elements we will modify
-                var navBar = $('#page-navigation');
-                var courseName = navBar.find('.course-name');
-                var chapterDropdown = navBar.find('.dropdown-menu');
-
-                // update the course name in the nav bar
-                courseName.html(course.title);
-
-                // create and append a menu item for each chapter
-                $.each(course.chapters, function(index, chapter){
-                    var chapterLink = $(
-                        '<li>' +
-                            '<a href="' + this.name + '">' +
-                                this.title +
-                            '</a>' +
-                        '</li>'
-                    );
-                    chapterDropdown.append(chapterLink);
-                });
-
-                // show all hidden nav elements
-                navBar
-                    .find('.invisible')
-                    .removeClass('invisible');
-            }
-
-            // go get the course data
-            $.get( "index.json", generateMenu);
-
-        });
-    </script>
-
-
 </nav>
 
-	
-		
-			
+
 <div class="page-content">
 
 
-<div class="slideshow">
+
+
+<!-- display slideshow if there is one (when on a chapter page) -->
+
+	
+	<div class="slideshow">
 
 	<div class="reveal">
 
@@ -157,19 +124,18 @@
 
 
 <!-- slide -->
-<section class="title-slide"
-		
+<section 
+	
 	
 		id=""
-		data-background="/digital-information/media/images/theme/theme-tile.svg" 
+		class="title-slide"
+		data-background="/digital-information/assets/theme-tile.svg" 
 		data-background-color="#663399"
 		data-background-size="200px" 
 		data-background-repeat="repeat"
 	
 	>
 		
-
-<p><img src="/digital-information/theme/assets/images/gw_logo.png" alt="Gather Workshops Logo" /></p>
 
 <h1 id="databases">Databases</h1>
 <p><em>Storing your app data</em></p>
@@ -185,10 +151,11 @@
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -208,10 +175,11 @@
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -232,10 +200,11 @@ safe place where you usually save projects.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -258,10 +227,11 @@ Open it up so we can get started!</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -284,10 +254,11 @@ at the top left of the app.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -310,10 +281,11 @@ to the right of the File input box.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -336,10 +308,11 @@ and navigate inside the project folder.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -362,10 +335,11 @@ using the file extension <code>.db</code>.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -387,10 +361,11 @@ using the file extension <code>.db</code>.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -413,10 +388,11 @@ to open the database in SQLite Studio</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -438,10 +414,11 @@ to open the database in SQLite Studio</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -465,10 +442,11 @@ click the “Connect” button.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -491,10 +469,11 @@ under the database name in the sidebar.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -517,10 +496,11 @@ then click the “Disconnect” button.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -542,10 +522,11 @@ once you get used to it.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -566,10 +547,11 @@ or Terminal if you’re using OSX.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -589,10 +571,11 @@ or Terminal if you’re using OSX.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -619,10 +602,11 @@ you would like to use, and press enter.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -651,10 +635,11 @@ you would like to use, and press enter.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -678,10 +663,11 @@ to close the database connection.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -705,10 +691,11 @@ The file <code>messenger.db</code> should be listed.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -738,10 +725,11 @@ most likely <code>hyphenated-names</code> or <code>underscore_names</code>.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -768,10 +756,11 @@ most likely <code>hyphenated-names</code> or <code>underscore_names</code>.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -815,10 +804,11 @@ most likely <code>hyphenated-names</code> or <code>underscore_names</code>.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -845,10 +835,11 @@ most likely <code>hyphenated-names</code> or <code>underscore_names</code>.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -869,10 +860,11 @@ conventions consistent with the rest of your project.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -893,10 +885,11 @@ works and what is stored inside it.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -917,10 +910,11 @@ email it, just like any other file.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -941,10 +935,11 @@ single database, with organised data inside.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -969,10 +964,11 @@ but always another level down, inside a table.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -993,10 +989,11 @@ independently of the data stored within it.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1017,10 +1014,11 @@ encrypts all the data stored inside.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1040,10 +1038,11 @@ encrypts all the data stored inside.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1064,10 +1063,11 @@ from a script and including a command.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1088,10 +1088,11 @@ is that free SQLite GUI programs can’t open them.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1114,10 +1115,11 @@ is that free SQLite GUI programs can’t open them.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1140,10 +1142,11 @@ is that free SQLite GUI programs can’t open them.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1164,10 +1167,11 @@ is that free SQLite GUI programs can’t open them.</p>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1196,10 +1200,11 @@ Password protecting a SQLite database is frustrating.</li>
 
 
 <!-- slide -->
-<section class=""
-		
+<section 
+	
 	
 		id=""
+		class=""
 	
 	>
 		
@@ -1238,13 +1243,124 @@ Password protecting a SQLite database is frustrating.</li>
 
 </div><!-- .slideshow -->
 
-
-
-</div>
+<div class="slideshow-clearer" style="margin-top:100vh"></div>
 
 
 
-		<script src="/digital-information/theme/assets/submodules/revealjs/lib/js/head.min.js"></script>
+<!-- display a fat page header if there is one (home page, course page) -->
+
+
+
+<!-- display page content -->
+<div class="container">
+
+
+</div><!-- .container -->
+
+
+<!-- list courses if there are any (when on home page) -->
+
+
+
+<!-- list chapters if there are any (when on a course page) -->
+
+
+
+<footer class="page-footer flex-container">
+
+	<div class="container">
+		
+		<div class="row">
+
+			<!-- links section -->
+			<div class="col-md-4 links">
+				<nav>
+					<a href="http://gathergather.co.nz/workshops">
+						Gather Workshops Website
+					</a>
+					<br>
+					<a href="http://twitter.com/gatherworkshops">
+						Follow us on Twitter
+					</a>
+					<a href="http://github.com/gatherworkshops/Building-the-Web">
+						Fork this project on GitHub
+					</a>
+					<a href="http://github.com/gatherworkshops/Building-the-Web/issues">
+						Report a problem on GitHub
+					</a>
+				</nav>
+			</div>
+
+			<div class="col-md-4">
+				<!-- Other Workshops -->
+			</div>
+
+			<!-- creative commons licence -->
+			<div class="col-md-4">
+
+				<div class="license-icons">
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+						<img alt="Creative Commons License" src="/digital-information/theme/assets/images/icons/cc.png">
+						<img alt="By Attribution" src="/digital-information/theme/assets/images/icons/by.png">
+						<img alt="Non-Commercial" src="/digital-information/theme/assets/images/icons/nc.png">
+					</a>
+				</div>
+
+				<div class="license-text">
+
+					<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">
+						Digital Information
+					</span> 
+					by 
+					<a xmlns:cc="http://creativecommons.org/ns#" href="http://gathergather.co.nz/workshops" property="cc:attributionName" rel="cc:attributionURL">
+						Gather Workshops
+					</a> 
+					is licensed <br>
+					under a 
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+						CC-BY-NC 4.0 International License</a>.
+					<br>
+					<br>
+
+					<a xmlns:cc="http://creativecommons.org/ns#" href="http://gathergather.co.nz/workshops/contact" rel="cc:morePermissions">Contact us</a> 
+					to seek further usage permissions.
+				</div><!-- .license-text -->
+
+			</div><!-- col-md-8 -->
+
+		</div><!-- row -->
+
+		
+
+	</div><!-- .container -->
+	
+	
+</footer>
+		
+    
+
+
+
+
+</div><!-- .page-content -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Prism code highlighter -->
+<script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
+
+<!-- only include dropdown navbar if there is a slideshow on the page -->
+
+	<script src="/digital-information/theme/assets/js/navbar.js"></script>
+
+
+<!-- only include revealJS if there is a slideshow on the page -->
+
+	<script src="/digital-information/theme/assets/submodules/revealjs/lib/js/head.min.js"></script>
 <script src="/digital-information/theme/assets/submodules/revealjs/js/reveal.min.js"></script>
 
 <script>
@@ -1258,7 +1374,7 @@ Password protecting a SQLite database is frustrating.</li>
 		center: true,
 
 		width: 1024,
-		height: 576,
+		height: 768,
 		margin: 0.1,
 		maxScale: 5,
 
@@ -1273,8 +1389,8 @@ Password protecting a SQLite database is frustrating.</li>
 			{ src: '/digital-information/theme/assets/submodules/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 			{ src: '/digital-information/theme/assets/submodules/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
 			{ src: '/digital-information/theme/assets/submodules/sidenotes/sidenotes.js' },
-			{ src: '/digital-information/theme/assets/submodules/sidenotes/libs/js.cookie.js' }
-			/*{ src: '/digital-information/assets/submodules/prism/prism.js', callback: function() { Prism.highlightAll() }}*/
+			{ src: '/digital-information/theme/assets/submodules/sidenotes/libs/js.cookie.js' },
+			{ src: '/digital-information/theme/assets/submodules/prism/prism.js', callback: function() { Prism.highlightAll() }}
 		]
 	});
     
@@ -1298,37 +1414,24 @@ Password protecting a SQLite database is frustrating.</li>
 			slide.children().css('zoom', Reveal.getScale());
 		}
 	});
+
+
+	// checkpoints are able to be clicked to go to the next slide.
+	// when clicked they also visibly update to a green style.
+	$(document).ready( function() {
+		Reveal.addEventListener( 'ready', function( event ) {
+			
+			$('.checkpoint').click( function(){
+				$(this).addClass('checked');
+				setTimeout( Reveal.next, 1000 );
+			});
+
+		});
+	});
 		
 
 </script>
 
-		<script>
 
-		// adds a class 'codeblock-title' to the paragraph element
-		// directly preceding any '.highlight' code block.
-		// the title is used to give instructions on where to place
-		// the code from the code block.
-		$(document).ready( function(){
-
-			$('.highlight').prev('p').addClass('codeblock-title');
-			
-		});
-
-
-		// checkpoints are able to be clicked to go to the next slide.
-		// when clicked they also visibly update to a green style.
-		$(document).ready( function() {
-			Reveal.addEventListener( 'ready', function( event ) {
-    			
-    			$('.checkpoint').click( function(){
-					$(this).addClass('checked');
-					setTimeout( Reveal.next, 1000 );
-				});
-
-			});
-		});
-
-		</script>
-
-	</body>
+</body>
 </html>

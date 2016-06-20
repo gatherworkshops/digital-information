@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Databases
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Databases
       _Storing your app data_

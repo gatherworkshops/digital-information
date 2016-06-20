@@ -6,10 +6,15 @@ theme_images: "/digital-information/theme/assets/images"
 course_images: "/digital-information/media/images"
 
 markdown: kramdown
+highlighter: kramdown # use kramdown locally. won't work on github.
 
 kramdown:
   input: GFM
   enable_coderay: false
+  hard_wrap: true
+  # disable rouge syntax highlighting on github pages
+  syntax_highlighter_opts:
+    disable : true
 
 # Where things are
 source:       .
@@ -23,8 +28,15 @@ sass:
 collections:
   courses:
     output: true
-    layout: chapter
 
+# default settings
+defaults:
+  -
+    scope:
+      path: ""
+      type: "courses"
+    values:
+      layout: "default"
 
 # theme
 themecolor: "#663399"

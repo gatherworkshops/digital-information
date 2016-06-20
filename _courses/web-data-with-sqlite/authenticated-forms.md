@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Authenticated Forms
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Authenticated Forms
       _Associating form data with a user_

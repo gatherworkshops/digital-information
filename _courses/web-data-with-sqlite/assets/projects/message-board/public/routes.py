@@ -125,7 +125,7 @@ def sign_in():
 
         user = usermanager.sign_in_user(username, password)
 
-        if user.is_authenticated:
+        if user and user.is_authenticated():
             return redirect('/')
         else:
             return render_template('sign-in.html')

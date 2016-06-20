@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Displaying Data
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Displaying Data
       _Loading data into a web page_

@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Updating Data
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Updating Data
       _Saving changes to existing data_

@@ -41,7 +41,10 @@ def load_user(username):
     query_result = datamanager.query_db(query_string, [username], one=True)
 
     if query_result == None:
-        return None
+
+        user = User(
+            None, None
+        )
 
     else:
         user = User(
@@ -49,11 +52,17 @@ def load_user(username):
             query_result['password']
         )
 
-        user.user_id = query_result['user_id']
-        user.first_name = query_result['first_name']
-        user.last_name = query_result['last_name']
+	    user.user_id = query_result['user_id']
+	    user.first_name = query_result['first_name']
+	    user.last_name = query_result['last_name']
 
-        return user
+    return user
+
+
+
+
+
+
 
 
 

@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Flask
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Flask
       _Running a Python website_

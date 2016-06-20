@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Table Creation
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Table Creation
       _Containers to store your app data_

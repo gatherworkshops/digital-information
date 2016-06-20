@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: Reading Data
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # Reading Data
       _Getting data out of your database_

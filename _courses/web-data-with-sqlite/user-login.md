@@ -1,12 +1,10 @@
 ---
-layout: chapter
 title: User Login
+
 slides:
 
   - class: title-slide
     content: |
-
-      ![Gather Workshops Logo]([[BASE_URL]]/theme/assets/images/gw_logo.png)
 
       # User Login
       _Authenticating users_

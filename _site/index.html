@@ -1,43 +1,44 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Courses</title>
         <meta name="viewport" content="width=device-width">
 
-        <!-- google translate - language identifier -->
-        <meta name="google-translate-customization" content="a148a80643fbe5d7-b9de7b0f0180d6d8-g318479cea978092f-2b"></meta>
+        <title>Courses</title>
+        
 
         <!-- Bootstrap -->
-        <link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/digital-information/theme/assets/submodules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
 
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+<!-- only include revealJS styles if there is a slideshow on the page -->
 
-        <!-- Custom Fonts -->
-        <link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 
-        <!-- revealjs for slideshows -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/revealjs/css/reveal.min.css">
+<!-- Prism -->
+<link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
 
-        <!-- Prism -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/submodules/prism/prism.css">
-        <script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+<!-- Custom Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/digital-information/theme/assets/css/styles.css">
+
+
+
+
+
+        
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="/digital-information/favicon.ico">
 
     </head>
 
-    <body class="">
-	<nav id="page-navigation">
+    <body>
+<nav id="page-navigation">
 
 
     <!-- branding and strand name - always visible. links to home page -->
@@ -84,56 +85,20 @@
     </div><!-- /.navbar-collapse -->
 
 
-
-    <script>
-        // generates the chapter dropdown menu from a json file
-        $(document).ready( function() {
-
-            // updates the nav with data fetched from the course's JSON.
-            // we do this via JSON to avoid the need for repetition of
-            // sitemap or coursemap data in a place other than the course's
-            // root directory, as Jekyll can only read custom data from the
-            // _data dir which is not ideal.
-            function generateMenu(course) {
-
-                // find all elements we will modify
-                var navBar = $('#page-navigation');
-                var courseName = navBar.find('.course-name');
-                var chapterDropdown = navBar.find('.dropdown-menu');
-
-                // update the course name in the nav bar
-                courseName.html(course.title);
-
-                // create and append a menu item for each chapter
-                $.each(course.chapters, function(index, chapter){
-                    var chapterLink = $(
-                        '<li>' +
-                            '<a href="' + this.name + '">' +
-                                this.title +
-                            '</a>' +
-                        '</li>'
-                    );
-                    chapterDropdown.append(chapterLink);
-                });
-
-                // show all hidden nav elements
-                navBar
-                    .find('.invisible')
-                    .removeClass('invisible');
-            }
-
-            // go get the course data
-            $.get( "index.json", generateMenu);
-
-        });
-    </script>
-
-
 </nav>
 
 
-	<div class="page-content">
-	
+<div class="page-content">
+
+
+
+
+<!-- display slideshow if there is one (when on a chapter page) -->
+
+
+
+<!-- display a fat page header if there is one (home page, course page) -->
+
 	
 <div class="page-header">
 
@@ -142,51 +107,62 @@
 	
 </div>
 
-	<div class="container">
 
+
+
+<!-- display page content -->
+<div class="container">
+
+</div><!-- .container -->
+
+
+<!-- list courses if there are any (when on home page) -->
+
+	<ul class="course-list">
     
 
         
 
-        
-            <div class="row course-links">
-        
-
-                
-
-
-
-
-<div class="tile-link col-md-4">
-
-	
-	<a style="opacity:0.5;">
-    
-
-        <img class="header-image" src="
-    /digital-information/courses/web-data-with-sqlite/assets/tiles/web-data-with-sqlite.jpg
-">
-
-        <span class="title">Web Data with SQLite</span>
-        <span class="length">6 hours | Coming Soon</span>
-        <p>Learn the basics of information management in web development by coding a simple quiz game with high score tracking.</p>
 
         
 
-    </a>
-
-</div>
-
         
-            </div>
-        
+
+
+        <li>
+            <a href=" 
+            /digital-information/courses/web-data-with-sqlite
+        ">
+
+                <img class="header-image" src="
+            /digital-information/courses/web-data-with-sqlite/assets/tiles/web-data-with-sqlite.jpg
+        ">
+
+                <div class="content">
+                    <span class="title">Web Data with SQLite</span>
+                    <span class="length">6 hours</span>
+                    <p>Learn the basics of information management in web development by coding a message board app with user capability.</p>
+
+                    
+                </div>
+
+            </a>
+        </li>
+
+
+
+
 
     
+</ul>
 
-</div>
 
 
-	<footer class="page-footer flex-container">
+<!-- list chapters if there are any (when on a course page) -->
+
+
+
+<footer class="page-footer flex-container">
 
 	<div class="container">
 		
@@ -260,6 +236,24 @@
     
 
 
-	</div><!-- .page-content -->
 
-	
+
+</div><!-- .page-content -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/digital-information/theme/assets/submodules/jquery/jquery-1.11.2.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/digital-information/theme/assets/submodules/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Prism code highlighter -->
+<script src="/digital-information/theme/assets/submodules/prism/prism.js"></script>
+
+<!-- only include dropdown navbar if there is a slideshow on the page -->
+
+
+<!-- only include revealJS if there is a slideshow on the page -->
+
+
+</body>
+</html>
